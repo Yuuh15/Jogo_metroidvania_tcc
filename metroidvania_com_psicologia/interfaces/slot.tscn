@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=3 uid="uid://ca2pe3w4hjtgl"]
+
+[ext_resource type="Script" uid="uid://dj45hwef1wm16" path="res://scripts/slot.gd" id="1_uaswq"]
+[ext_resource type="Texture2D" uid="uid://d2m713dy82hoe" path="res://interfaces/inventory_slot_16x.png" id="2_1jgha"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_uaswq"]
+font_size = 12
+
+[node name="slot" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_uaswq")
+
+[node name="background" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 44.0
+offset_bottom = 44.0
+texture = ExtResource("2_1jgha")
+
+[node name="sprite" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+offset_right = 44.0
+offset_bottom = 44.0
+
+[node name="amount" type="Label" parent="."]
+layout_mode = 1
+offset_left = 12.0
+offset_top = 21.0
+offset_right = 44.0
+offset_bottom = 44.0
+text = "0"
+label_settings = SubResource("LabelSettings_uaswq")
+horizontal_alignment = 2
+vertical_alignment = 2
