@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://m0w2uklh55yb"]
+
+[ext_resource type="Script" uid="uid://dj6imps4v6ows" path="res://items/dash/dash.gd" id="1_xjgg3"]
+[ext_resource type="Texture2D" uid="uid://bmkf6uj0cgc1p" path="res://items/dash/dash.png" id="2_xjgg3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6x8vo"]
+radius = 9.0
+
+[node name="dash" type="Node2D"]
+script = ExtResource("1_xjgg3")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1.125, 1.125)
+texture = ExtResource("2_xjgg3")
+
+[node name="playerDetection" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="playerDetection"]
+position = Vector2(-1, -1)
+shape = SubResource("CircleShape2D_6x8vo")
+
+[connection signal="body_shape_entered" from="playerDetection" to="." method="_on_player_detection_body_shape_entered"]
