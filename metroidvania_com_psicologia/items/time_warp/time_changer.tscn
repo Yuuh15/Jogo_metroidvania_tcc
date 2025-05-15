@@ -56,6 +56,7 @@ frame = 2
 frame_progress = 0.384898
 
 [node name="playerDetection" type="Area2D" parent="."]
+collision_layer = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="playerDetection"]
 position = Vector2(-1, 0)

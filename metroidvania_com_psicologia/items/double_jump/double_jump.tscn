@@ -14,6 +14,7 @@ scale = Vector2(1.125, 1.125)
 texture = ExtResource("2_ek6sk")
 
 [node name="playerDetection" type="Area2D" parent="."]
+collision_layer = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="playerDetection"]
 position = Vector2(0, 0.5)
