@@ -9,6 +9,9 @@ extends CharacterBody2D
 # Isso evita com que a animação não seja carregada
 @onready var anim: AnimatedSprite2D = $anim
 
+@export_category("Movement Parameters")
+@export var Jump_Buffer_Time: float = 0.1
+
 var speed := 150.0
 
 const jump_speed = -300.0
@@ -17,6 +20,7 @@ const jump_cutoff = 0.5
 # Estabelece o número máximo de Pulos Máximos do jogador
 # De início, o número de pulos máximos é 1
 var maxJumps = 1
+var jump_buffer: bool = false
 
 var doubleJump := false
 
@@ -65,6 +69,8 @@ func _physics_process(delta: float) -> void:
 		velocity.y = 0
 		isJumping = false
 		isStomping = false
+		if jump_buffer:
+			Jump()
 	
 	if is_on_wall():
 		anim.play("idle")
@@ -77,9 +83,12 @@ func _physics_process(delta: float) -> void:
 		await slow_motion()
 
 	# Verifica a tecla de pulo
-	if Input.is_action_pressed("jump") and is_on_floor():
-		isJumping = true # Atualiza o verificador de pulo
-		velocity.y = jump_speed # Utiliza velocidade para não "teleportar" o jogador para cima
+	if Input.is_action_pressed("jump"):
+		if is_on_floor():
+			Jump()
+		else:
+			jump_buffer = true	
+			get_tree().create_timer(Jump_Buffer_Time).timeout.connect(on_jump_buffer_timeout)
 
 	# Permite o Pulo Duplo, se liberado
 	if Input.is_action_just_pressed("jump") and not is_on_floor() and not isDashing and maxJumps > 1:
@@ -218,3 +227,10 @@ func _on_dash_cooldown_timeout() -> void:
 
 func _on_stomp_cooldown_timeout() -> void:
 	stompReloading = false # Replace with function body.
+	
+func Jump()-> void:
+		velocity.y = jump_speed # Utiliza velocidade para não "teleportar" o jogador para cima
+		isJumping = true # Atualiza o verificador de pulo
+
+func on_jump_buffer_timeout() ->  void:
+	jump_buffer = false
