@@ -1,0 +1,54 @@
+[gd_scene load_steps=9 format=3 uid="uid://bs142q3whn5qa"]
+
+[ext_resource type="Script" uid="uid://mrd4xvmbpeot" path="res://enemies/depression/slime/depression_slime.gd" id="1_0to1k"]
+[ext_resource type="Texture2D" uid="uid://bvjwksv7dkr5g" path="res://enemies/depression/slime/gosma depressiva parada.png" id="1_d3t7g"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0to1k"]
+atlas = ExtResource("1_d3t7g")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vr8kv"]
+atlas = ExtResource("1_d3t7g")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x4mbx"]
+atlas = ExtResource("1_d3t7g")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ipp72"]
+atlas = ExtResource("1_d3t7g")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wqjqj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0to1k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vr8kv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x4mbx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ipp72")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0j8vl"]
+size = Vector2(23, 32)
+
+[node name="depression-slime" type="CharacterBody2D"]
+script = ExtResource("1_0to1k")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_wqjqj")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2.5, 0)
+shape = SubResource("RectangleShape2D_0j8vl")
