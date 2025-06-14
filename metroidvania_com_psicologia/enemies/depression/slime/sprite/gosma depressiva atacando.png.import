@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bvjwksv7dkr5g"
-path="res://.godot/imported/gosma depressiva parada.png-8cab08690492280a0e60cf6faeceb2de.ctex"
+uid="uid://dmbc4srkktimy"
+path="res://.godot/imported/gosma depressiva atacando.png-d512d9ddb246c9217ea6fc30411d28b0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://enemies/depression/slime/gosma depressiva parada.png"
-dest_files=["res://.godot/imported/gosma depressiva parada.png-8cab08690492280a0e60cf6faeceb2de.ctex"]
+source_file="res://enemies/depression/slime/sprite/gosma depressiva atacando.png"
+dest_files=["res://.godot/imported/gosma depressiva atacando.png-d512d9ddb246c9217ea6fc30411d28b0.ctex"]
 
 [params]
 

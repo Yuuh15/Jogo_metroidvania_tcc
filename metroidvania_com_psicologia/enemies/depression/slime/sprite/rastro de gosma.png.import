@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d1nunij3yij52"
-path="res://.godot/imported/rastro de gosma.png-22b652e02cade63231956523ef62c1d7.ctex"
+path="res://.godot/imported/rastro de gosma.png-41c6957da2541d98f07079e8dc4076e6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://enemies/depression/slime/rastro de gosma.png"
-dest_files=["res://.godot/imported/rastro de gosma.png-22b652e02cade63231956523ef62c1d7.ctex"]
+source_file="res://enemies/depression/slime/sprite/rastro de gosma.png"
+dest_files=["res://.godot/imported/rastro de gosma.png-41c6957da2541d98f07079e8dc4076e6.ctex"]
 
 [params]
 

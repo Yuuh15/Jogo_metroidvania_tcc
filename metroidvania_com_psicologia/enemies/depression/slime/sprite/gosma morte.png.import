@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cqkt7i42wva5n"
-path="res://.godot/imported/gosma morte.png-d4b2e4fab9f0fd8636b61ca65eee44d2.ctex"
+path="res://.godot/imported/gosma morte.png-22e34c4bc338605810b9d2b2caeb0d6f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://enemies/depression/slime/gosma morte.png"
-dest_files=["res://.godot/imported/gosma morte.png-d4b2e4fab9f0fd8636b61ca65eee44d2.ctex"]
+source_file="res://enemies/depression/slime/sprite/gosma morte.png"
+dest_files=["res://.godot/imported/gosma morte.png-22e34c4bc338605810b9d2b2caeb0d6f.ctex"]
 
 [params]
 

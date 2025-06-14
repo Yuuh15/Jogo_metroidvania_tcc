@@ -1,7 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://bs142q3whn5qa"]
+[gd_scene load_steps=18 format=3 uid="uid://bs142q3whn5qa"]
 
 [ext_resource type="Script" uid="uid://mrd4xvmbpeot" path="res://enemies/depression/slime/depression_slime.gd" id="1_0to1k"]
-[ext_resource type="Texture2D" uid="uid://bvjwksv7dkr5g" path="res://enemies/depression/slime/gosma depressiva parada.png" id="1_d3t7g"]
+[ext_resource type="Texture2D" uid="uid://bvjwksv7dkr5g" path="res://enemies/depression/slime/sprite/gosma depressiva parada.png" id="1_d3t7g"]
+[ext_resource type="Texture2D" uid="uid://dmbc4srkktimy" path="res://enemies/depression/slime/sprite/gosma depressiva atacando.png" id="3_wqjqj"]
+[ext_resource type="Script" uid="uid://dv26duycoykqb" path="res://scripts/state-machine-controller.gd" id="3_x4mbx"]
+[ext_resource type="Script" uid="uid://n72t1rkwfmg4" path="res://enemies/depression/slime/states/patrol.gd" id="4_ipp72"]
+[ext_resource type="Script" uid="uid://epdp0k0us1qw" path="res://enemies/depression/slime/states/follow.gd" id="5_ipp72"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0to1k"]
 atlas = ExtResource("1_d3t7g")
@@ -17,6 +21,22 @@ region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ipp72"]
 atlas = ExtResource("1_d3t7g")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0j8vl"]
+atlas = ExtResource("3_wqjqj")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3tucb"]
+atlas = ExtResource("3_wqjqj")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_102uf"]
+atlas = ExtResource("3_wqjqj")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oo5vg"]
+atlas = ExtResource("3_wqjqj")
 region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_wqjqj"]
@@ -37,12 +57,34 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0j8vl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3tucb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_102uf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oo5vg")
+}],
+"loop": true,
+"name": &"follow",
+"speed": 7.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0j8vl"]
-size = Vector2(23, 32)
+size = Vector2(17, 32)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wqjqj"]
+radius = 5.0
 
 [node name="depression-slime" type="CharacterBody2D"]
+collision_layer = 8
+collision_mask = 3
 script = ExtResource("1_0to1k")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -52,3 +94,42 @@ autoplay = "default"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(2.5, 0)
 shape = SubResource("RectangleShape2D_0j8vl")
+
+[node name="StateMachineController" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("3_x4mbx")
+initial_state = NodePath("Patrol")
+metadata/_custom_type_script = "uid://dv26duycoykqb"
+
+[node name="Patrol" type="Node" parent="StateMachineController" node_paths=PackedStringArray("enemy")]
+script = ExtResource("4_ipp72")
+enemy = NodePath("../..")
+metadata/_custom_type_script = "uid://l6eq8yklu062"
+
+[node name="Follow" type="Node" parent="StateMachineController" node_paths=PackedStringArray("enemy")]
+script = ExtResource("5_ipp72")
+enemy = NodePath("../..")
+metadata/_custom_type_script = "uid://l6eq8yklu062"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2(0, 5)
+target_position = Vector2(80, 0)
+
+[node name="TrailTimer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[node name="attack" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="attack"]
+position = Vector2(9, 1)
+shape = SubResource("CapsuleShape2D_wqjqj")
+debug_color = Color(0.992166, 0, 0.255789, 0.42)
+
+[connection signal="timeout" from="Timer" to="StateMachineController/Follow" method="_on_timer_timeout"]
+[connection signal="timeout" from="TrailTimer" to="." method="_on_trail_timer_timeout"]
+[connection signal="body_entered" from="attack" to="." method="_on_attack_body_entered"]
