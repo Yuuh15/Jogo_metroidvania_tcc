@@ -130,6 +130,9 @@ position = Vector2(9, 1)
 shape = SubResource("CapsuleShape2D_wqjqj")
 debug_color = Color(0.992166, 0, 0.255789, 0.42)
 
+[node name="trail" type="Marker2D" parent="."]
+position = Vector2(-14, 16)
+
 [connection signal="timeout" from="Timer" to="StateMachineController/Follow" method="_on_timer_timeout"]
 [connection signal="timeout" from="TrailTimer" to="." method="_on_trail_timer_timeout"]
 [connection signal="body_entered" from="attack" to="." method="_on_attack_body_entered"]

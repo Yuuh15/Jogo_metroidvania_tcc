@@ -6,6 +6,7 @@ extends StaticBody2D
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	set_collision_layer_value(2, false)
+	$Area2D.set_collision_mask_value(1, false)
 	shard_emitter.config()
 	shard_emitter.shatter()
 	
