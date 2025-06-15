@@ -161,10 +161,9 @@ position = Vector2(-180, 102)
 position = Vector2(740, -17)
 shape = SubResource("RectangleShape2D_wndkh")
 
-[node name="depression-slime" parent="." node_paths=PackedStringArray("patrolPoints", "player") instance=ExtResource("13_axl34")]
+[node name="depression-slime" parent="." node_paths=PackedStringArray("patrolPoints") instance=ExtResource("13_axl34")]
 position = Vector2(2437, -304)
 patrolPoints = NodePath("patrolPoints")
-player = NodePath("../player")
 
 [node name="patrolPoints" type="Node2D" parent="depression-slime"]
 
@@ -172,84 +171,4 @@ player = NodePath("../player")
 position = Vector2(125, 11)
 
 [node name="Marker2D2" type="Marker2D" parent="depression-slime/patrolPoints"]
-position = Vector2(-49, 8)
-
-[node name="Enemies" type="Node2D" parent="."]
-
-[node name="depression-slime" parent="Enemies" node_paths=PackedStringArray("patrolPoints", "player") instance=ExtResource("13_axl34")]
-position = Vector2(2437, -304)
-patrolPoints = NodePath("patrolPoints")
-player = NodePath("../../player")
-
-[node name="patrolPoints" type="Node2D" parent="Enemies/depression-slime"]
-
-[node name="Marker2D" type="Marker2D" parent="Enemies/depression-slime/patrolPoints"]
-position = Vector2(125, 11)
-
-[node name="Marker2D2" type="Marker2D" parent="Enemies/depression-slime/patrolPoints"]
-position = Vector2(-49, 8)
-
-[node name="depression-slime2" parent="Enemies" node_paths=PackedStringArray("patrolPoints", "player") instance=ExtResource("13_axl34")]
-position = Vector2(2437, -304)
-patrolPoints = NodePath("patrolPoints")
-player = NodePath("../../player")
-
-[node name="patrolPoints" type="Node2D" parent="Enemies/depression-slime2"]
-
-[node name="Marker2D" type="Marker2D" parent="Enemies/depression-slime2/patrolPoints"]
-position = Vector2(125, 11)
-
-[node name="Marker2D2" type="Marker2D" parent="Enemies/depression-slime2/patrolPoints"]
-position = Vector2(-49, 8)
-
-[node name="depression-slime3" parent="Enemies" node_paths=PackedStringArray("patrolPoints", "player") instance=ExtResource("13_axl34")]
-position = Vector2(2437, -304)
-patrolPoints = NodePath("patrolPoints")
-player = NodePath("../../player")
-
-[node name="patrolPoints" type="Node2D" parent="Enemies/depression-slime3"]
-
-[node name="Marker2D" type="Marker2D" parent="Enemies/depression-slime3/patrolPoints"]
-position = Vector2(125, 11)
-
-[node name="Marker2D2" type="Marker2D" parent="Enemies/depression-slime3/patrolPoints"]
-position = Vector2(-49, 8)
-
-[node name="depression-slime4" parent="Enemies" node_paths=PackedStringArray("patrolPoints", "player") instance=ExtResource("13_axl34")]
-position = Vector2(2437, -304)
-patrolPoints = NodePath("patrolPoints")
-player = NodePath("../../player")
-
-[node name="patrolPoints" type="Node2D" parent="Enemies/depression-slime4"]
-
-[node name="Marker2D" type="Marker2D" parent="Enemies/depression-slime4/patrolPoints"]
-position = Vector2(125, 11)
-
-[node name="Marker2D2" type="Marker2D" parent="Enemies/depression-slime4/patrolPoints"]
-position = Vector2(-49, 8)
-
-[node name="depression-slime5" parent="Enemies" node_paths=PackedStringArray("patrolPoints", "player") instance=ExtResource("13_axl34")]
-position = Vector2(2437, -304)
-patrolPoints = NodePath("patrolPoints")
-player = NodePath("../../player")
-
-[node name="patrolPoints" type="Node2D" parent="Enemies/depression-slime5"]
-
-[node name="Marker2D" type="Marker2D" parent="Enemies/depression-slime5/patrolPoints"]
-position = Vector2(125, 11)
-
-[node name="Marker2D2" type="Marker2D" parent="Enemies/depression-slime5/patrolPoints"]
-position = Vector2(-49, 8)
-
-[node name="depression-slime6" parent="Enemies" node_paths=PackedStringArray("patrolPoints", "player") instance=ExtResource("13_axl34")]
-position = Vector2(2437, -304)
-patrolPoints = NodePath("patrolPoints")
-player = NodePath("../../player")
-
-[node name="patrolPoints" type="Node2D" parent="Enemies/depression-slime6"]
-
-[node name="Marker2D" type="Marker2D" parent="Enemies/depression-slime6/patrolPoints"]
-position = Vector2(125, 11)
-
-[node name="Marker2D2" type="Marker2D" parent="Enemies/depression-slime6/patrolPoints"]
 position = Vector2(-49, 8)

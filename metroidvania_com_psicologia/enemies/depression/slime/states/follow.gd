@@ -7,14 +7,13 @@ extends State
 
 func enter():
 	sprite.play("follow")
-	$"../../TrailTimer".wait_time = 0.1/3
+	$"../../TrailTimer".wait_time = 0.1 / 4
 	timer.start()
+	enemy.speed = enemy.followSpeed
 
 func physics_process(delta: float):
-	
 	if enemy.canWalk():
 		enemy.direction = 1 if enemy.global_position.x < enemy.player.global_position.x else -1
-		enemy.velocity.x = enemy.followSpeed * enemy.direction
 	else:
 		enemy.direction = -enemy.direction
 		Transitioned.emit(self, "patrol")

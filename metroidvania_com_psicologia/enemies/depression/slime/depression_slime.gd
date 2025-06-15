@@ -1,10 +1,14 @@
 extends CharacterBody2D
 
 @export var patrolPoints : Node2D
-@export var speed := 25
-@export var followSpeed := 100
+var points : Array[int]
+
+@export var patrolSpeed : int = 25
+@export var followSpeed : int = 100
+
+var speed : int
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
-@export var player : CharacterBody2D
+@onready var player: CharacterBody2D = $"../player"
 @onready var ray_cast_2d: RayCast2D = $vision
 @onready var attackArea: CollisionShape2D = $attack/CollisionShape2D
 var trail = preload("res://enemies/depression/slime/trail/trail.tscn")
@@ -13,7 +17,15 @@ var trail = preload("res://enemies/depression/slime/trail/trail.tscn")
 
 var direction := 1
 
-func _process(delta: float) -> void:
+func _ready() -> void:
+	if patrolPoints == null or patrolPoints.get_children().size() != 2:
+		print("Verifique os pontos de patrulhas")
+	elif patrolPoints.get_children().size() == 2:
+		points = [patrolPoints.get_children()[0].global_position.x, patrolPoints.get_children()[1].global_position.x]
+		patrolPoints.queue_free()
+		points.sort()
+
+func _physics_process(delta: float) -> void:
 	if direction == 1:
 		sprite.flip_h = false
 		ray_cast_2d.target_position.x = 80
@@ -26,12 +38,11 @@ func _process(delta: float) -> void:
 		attackArea.position.x = -9
 		trailPos.position.x = 14
 		walk.position.x = -17
-	
 
-func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-
+	
+	velocity.x = direction * speed
 	move_and_slide()
 
 
