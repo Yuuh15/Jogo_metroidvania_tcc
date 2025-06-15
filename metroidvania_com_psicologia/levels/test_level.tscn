@@ -171,4 +171,4 @@ patrolPoints = NodePath("patrolPoints")
 position = Vector2(125, 11)
 
 [node name="Marker2D2" type="Marker2D" parent="depression-slime/patrolPoints"]
-position = Vector2(-49, 8)
+position = Vector2(-101, 14)

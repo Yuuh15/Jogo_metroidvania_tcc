@@ -3,8 +3,8 @@ extends CharacterBody2D
 @export var patrolPoints : Node2D
 var points : Array[int]
 
-@export var patrolSpeed : int = 25
-@export var followSpeed : int = 100
+var patrolSpeed : int = 25
+var followSpeed : int = 100
 
 var speed : int
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
@@ -19,7 +19,7 @@ var direction := 1
 
 func _ready() -> void:
 	if patrolPoints == null or patrolPoints.get_children().size() != 2:
-		print("Verifique os pontos de patrulhas")
+		points = [global_position.x - 50, global_position.x + 50]
 	elif patrolPoints.get_children().size() == 2:
 		points = [patrolPoints.get_children()[0].global_position.x, patrolPoints.get_children()[1].global_position.x]
 		patrolPoints.queue_free()
