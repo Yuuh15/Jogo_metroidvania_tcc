@@ -114,7 +114,7 @@ metadata/_custom_type_script = "uid://l6eq8yklu062"
 wait_time = 5.0
 one_shot = true
 
-[node name="RayCast2D" type="RayCast2D" parent="."]
+[node name="vision" type="RayCast2D" parent="."]
 position = Vector2(0, 5)
 target_position = Vector2(80, 0)
 
@@ -132,6 +132,11 @@ debug_color = Color(0.992166, 0, 0.255789, 0.42)
 
 [node name="trail" type="Marker2D" parent="."]
 position = Vector2(-14, 16)
+
+[node name="walk" type="RayCast2D" parent="."]
+position = Vector2(17, 0)
+target_position = Vector2(0, 23)
+collision_mask = 2
 
 [connection signal="timeout" from="Timer" to="StateMachineController/Follow" method="_on_timer_timeout"]
 [connection signal="timeout" from="TrailTimer" to="." method="_on_trail_timer_timeout"]

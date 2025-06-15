@@ -3,7 +3,7 @@ extends State
 @export var enemy : CharacterBody2D
 @onready var sprite : AnimatedSprite2D = $"../../AnimatedSprite2D"
 @onready var timer: Timer = $"../../Timer"
-@onready var ray_cast_2d: RayCast2D = $"../../RayCast2D"
+@onready var ray_cast_2d: RayCast2D = $"../../vision"
 
 func enter():
 	sprite.play("follow")
@@ -11,8 +11,14 @@ func enter():
 	timer.start()
 
 func physics_process(delta: float):
-	enemy.direction = 1 if enemy.global_position.x < enemy.player.global_position.x else -1
-	enemy.velocity.x = enemy.followSpeed * enemy.direction
+	
+	if enemy.canWalk():
+		enemy.direction = 1 if enemy.global_position.x < enemy.player.global_position.x else -1
+		enemy.velocity.x = enemy.followSpeed * enemy.direction
+	else:
+		enemy.direction = -enemy.direction
+		Transitioned.emit(self, "patrol")
+	
 	if ray_cast_2d.is_colliding():
 		timer.start()
 		
