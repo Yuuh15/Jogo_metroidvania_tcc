@@ -10,10 +10,11 @@ var speed : int
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var player: CharacterBody2D = $"../player"
 @onready var ray_cast_2d: RayCast2D = $vision
-@onready var attackArea: CollisionShape2D = $attack/CollisionShape2D
 var trail = preload("res://enemies/depression/slime/trail/trail.tscn")
 @onready var trailPos: Marker2D = $trail
 @onready var walk: RayCast2D = $walk
+@onready var hurt_box_shape: CollisionShape2D = $HurtBox/hurtBoxShape
+@onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 
 var direction := 1
 
@@ -29,15 +30,17 @@ func _physics_process(delta: float) -> void:
 	if direction == 1:
 		sprite.flip_h = false
 		ray_cast_2d.target_position.x = 80
-		attackArea.position.x = 9
 		trailPos.position.x = -14
 		walk.position.x = 17
+		hurt_box_shape.position.x = 12
+		collision_shape_2d.position.x = 2.5
 	else:
 		sprite.flip_h = true
 		ray_cast_2d.target_position.x = -80
-		attackArea.position.x = -9
 		trailPos.position.x = 14
 		walk.position.x = -17
+		hurt_box_shape.position.x = -12
+		collision_shape_2d.position.x = -2.5
 
 	if not is_on_floor():
 		velocity += get_gravity() * delta
@@ -56,3 +59,8 @@ func canWalk() -> bool:
 	if walk.is_colliding():
 		return true
 	return false
+
+
+func _on_hurt_box_body_entered(body: Node2D) -> void:
+	var direction = -1 if sprite.flip_h else 1
+	player.velocity.x = 1000 * direction

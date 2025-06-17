@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bs142q3whn5qa"]
+[gd_scene load_steps=20 format=3 uid="uid://bs142q3whn5qa"]
 
 [ext_resource type="Script" uid="uid://mrd4xvmbpeot" path="res://enemies/depression/slime/depression_slime.gd" id="1_0to1k"]
 [ext_resource type="Texture2D" uid="uid://bvjwksv7dkr5g" path="res://enemies/depression/slime/sprite/gosma depressiva parada.png" id="1_d3t7g"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://dv26duycoykqb" path="res://scripts/state-machine-controller.gd" id="3_x4mbx"]
 [ext_resource type="Script" uid="uid://n72t1rkwfmg4" path="res://enemies/depression/slime/states/patrol.gd" id="4_ipp72"]
 [ext_resource type="Script" uid="uid://epdp0k0us1qw" path="res://enemies/depression/slime/states/follow.gd" id="5_ipp72"]
+[ext_resource type="PackedScene" uid="uid://bb0nk86d7xdgp" path="res://componentes/hurt_box.tscn" id="7_0j8vl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0to1k"]
 atlas = ExtResource("1_d3t7g")
@@ -77,10 +78,15 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0j8vl"]
-size = Vector2(17, 32)
+size = Vector2(17, 31)
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wqjqj"]
-radius = 5.0
+[sub_resource type="GDScript" id="GDScript_0j8vl"]
+script/source = "extends \"res://componentes/hurt_box.gd\"
+"
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0j8vl"]
+radius = 2.0
+height = 20.0
 
 [node name="depression-slime" type="CharacterBody2D"]
 collision_layer = 8
@@ -92,7 +98,7 @@ sprite_frames = SubResource("SpriteFrames_wqjqj")
 autoplay = "default"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(2.5, 0)
+position = Vector2(2.5, 0.5)
 shape = SubResource("RectangleShape2D_0j8vl")
 
 [node name="StateMachineController" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
@@ -122,14 +128,6 @@ target_position = Vector2(80, 0)
 wait_time = 0.1
 autostart = true
 
-[node name="attack" type="Area2D" parent="."]
-collision_layer = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="attack"]
-position = Vector2(9, 1)
-shape = SubResource("CapsuleShape2D_wqjqj")
-debug_color = Color(0.992166, 0, 0.255789, 0.42)
-
 [node name="trail" type="Marker2D" parent="."]
 position = Vector2(-14, 16)
 
@@ -138,6 +136,15 @@ position = Vector2(17, 0)
 target_position = Vector2(0, 23)
 collision_mask = 2
 
+[node name="HurtBox" parent="." instance=ExtResource("7_0j8vl")]
+script = SubResource("GDScript_0j8vl")
+damage = 15
+
+[node name="hurtBoxShape" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(12, 5)
+shape = SubResource("CapsuleShape2D_0j8vl")
+debug_color = Color(0.970763, 0, 0.452533, 0.42)
+
 [connection signal="timeout" from="Timer" to="StateMachineController/Follow" method="_on_timer_timeout"]
 [connection signal="timeout" from="TrailTimer" to="." method="_on_trail_timer_timeout"]
-[connection signal="body_entered" from="attack" to="." method="_on_attack_body_entered"]
+[connection signal="body_entered" from="HurtBox" to="." method="_on_hurt_box_body_entered"]

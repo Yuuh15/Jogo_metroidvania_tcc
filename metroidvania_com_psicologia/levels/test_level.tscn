@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=4 uid="uid://co8e3r47x3lmq"]
+[gd_scene load_steps=23 format=4 uid="uid://co8e3r47x3lmq"]
 
 [ext_resource type="Texture2D" uid="uid://bllm7pssgvr1t" path="res://levels/tile/tileset-PLACE-HOLDER.png" id="1_8nelv"]
 [ext_resource type="Texture2D" uid="uid://di7repnlatj4v" path="res://levels/tile/background-PLACE-HOLDER.png" id="1_aeujl"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://m0w2uklh55yb" path="res://items/dash/dash.tscn" id="7_ur00s"]
 [ext_resource type="PackedScene" uid="uid://o0o06ki3ajpk" path="res://misc/killzone.tscn" id="8_wndkh"]
 [ext_resource type="PackedScene" uid="uid://bs142q3whn5qa" path="res://enemies/depression/slime/depression_slime.tscn" id="13_axl34"]
+[ext_resource type="PackedScene" uid="uid://c6b5wiedlbj1y" path="res://gui/healthBar/health_bar.tscn" id="14_8hjdj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tlucr"]
 texture = ExtResource("1_aeujl")
@@ -172,3 +173,12 @@ position = Vector2(125, 11)
 
 [node name="Marker2D2" type="Marker2D" parent="depression-slime/patrolPoints"]
 position = Vector2(-101, 14)
+
+[node name="Hud" type="CanvasLayer" parent="."]
+
+[node name="HealthBar" parent="Hud" node_paths=PackedStringArray("target") instance=ExtResource("14_8hjdj")]
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 124.0
+offset_bottom = 29.0
+target = NodePath("../../player")
