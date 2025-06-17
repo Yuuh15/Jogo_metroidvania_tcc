@@ -1,6 +1,6 @@
 [gd_scene load_steps=17 format=3 uid="uid://cutjuuoqdkn4h"]
 
-[ext_resource type="Script" uid="uid://cm7487iox8ffl" path="res://gui/teste/main_menu.gd" id="1_hn0nd"]
+[ext_resource type="Script" uid="uid://cm7487iox8ffl" path="res://gui/menu/scripts/main_menu.gd" id="1_88dmf"]
 [ext_resource type="Texture2D" uid="uid://dk2y2c7dfwmmr" path="res://gui/menu/img/botão com mouse.png" id="2_bd8gm"]
 [ext_resource type="Texture2D" uid="uid://dilcxp31wi5xv" path="res://gui/menu/img/Botão menu.png" id="3_ybyo8"]
 
@@ -51,7 +51,7 @@ offset_right = 6.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_hn0nd")
+script = ExtResource("1_88dmf")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -81,7 +81,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 9
 
-[node name="Button" type="Button" parent="VBoxContainer"]
+[node name="Start" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
@@ -95,7 +95,7 @@ theme_override_styles/pressed = SubResource("StyleBoxTexture_bd8gm")
 theme_override_styles/normal = SubResource("StyleBoxTexture_ybyo8")
 text = "iniciar"
 
-[node name="Button2" type="Button" parent="VBoxContainer"]
+[node name="Options" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
@@ -109,7 +109,7 @@ theme_override_styles/pressed = SubResource("StyleBoxTexture_vorps")
 theme_override_styles/normal = SubResource("StyleBoxTexture_w0ptl")
 text = "opções"
 
-[node name="Button3" type="Button" parent="VBoxContainer"]
+[node name="Exit" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
@@ -145,6 +145,6 @@ text = "The Mind"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_start_pressed"]
-[connection signal="pressed" from="VBoxContainer/Button2" to="." method="_on_options_pressed"]
-[connection signal="pressed" from="VBoxContainer/Button3" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="VBoxContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="VBoxContainer/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="VBoxContainer/Exit" to="." method="_on_exit_pressed"]

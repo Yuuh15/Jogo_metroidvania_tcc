@@ -12,7 +12,8 @@ var input_actions = {
 	"jump": "Pular",
 	"move_left": "Esquerda",
 	"move_right": "Direita",
-	"ataque": "Ataque"
+	"use_power": "Poderes",
+	"time_warp": "Distorção temporal"
 }
 
 func _ready() -> void:
@@ -77,8 +78,10 @@ func _save_input_config():
 
 	config.save("user://input.cfg")
 
+	
+func _on_back_pressed() -> void:
+	get_tree().change_scene_to_file("res://gui/menu/opções.tscn")
+
+
 func _on_botão_padrão_pressed() -> void:
 	_create_action_list()
-
-func _on_voltar_pressed() -> void:
-	get_tree().change_scene_to_file("res://gui/menu/opções.tscn")

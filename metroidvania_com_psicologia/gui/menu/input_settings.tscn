@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dqaca14u5yfdd"]
 
-[ext_resource type="Script" uid="uid://ws8xd6xtsn6x" path="res://gui/teste/input_settings.gd" id="1_6k22c"]
+[ext_resource type="Script" uid="uid://ws8xd6xtsn6x" path="res://gui/menu/scripts/input_settings.gd" id="1_y6l0d"]
 [ext_resource type="PackedScene" uid="uid://cmhkbknvy1y8v" path="res://gui/menu/input_button.tscn" id="2_u4tk5"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6k22c"]
@@ -13,7 +13,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_6k22c")
+script = ExtResource("1_y6l0d")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -79,10 +79,10 @@ layout_mode = 2
 focus_mode = 0
 text = "Configuração Padrão"
 
-[node name="Voltar" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Back" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 focus_mode = 0
 text = "Voltar"
 
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Botão_Padrão" to="." method="_on_botão_padrão_pressed"]
-[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Voltar" to="." method="_on_voltar_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]

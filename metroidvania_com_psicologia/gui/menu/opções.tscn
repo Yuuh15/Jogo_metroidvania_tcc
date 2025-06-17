@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=3 uid="uid://bylnvutdpamas"]
 
-[ext_resource type="Script" uid="uid://btu6yrs1o2gi0" path="res://gui/teste/opções.gd" id="1_pn0yl"]
+[ext_resource type="Script" uid="uid://btu6yrs1o2gi0" path="res://gui/menu/scripts/opções.gd" id="1_e3wve"]
 [ext_resource type="Texture2D" uid="uid://dk2y2c7dfwmmr" path="res://gui/menu/img/botão com mouse.png" id="2_epbfq"]
 [ext_resource type="Texture2D" uid="uid://dilcxp31wi5xv" path="res://gui/menu/img/Botão menu.png" id="3_kksc1"]
 
@@ -43,7 +43,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_pn0yl")
+script = ExtResource("1_e3wve")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -69,7 +69,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 9
 
-[node name="Button" type="Button" parent="VBoxContainer"]
+[node name="Audio" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
@@ -86,7 +86,7 @@ audio
 
 "
 
-[node name="Button2" type="Button" parent="VBoxContainer"]
+[node name="Controlls" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
@@ -103,7 +103,7 @@ controles
 
 "
 
-[node name="Button3" type="Button" parent="VBoxContainer"]
+[node name="Back" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
@@ -119,5 +119,5 @@ voltar
 
 "
 
-[connection signal="pressed" from="VBoxContainer/Button2" to="." method="_on_button_2_pressed"]
-[connection signal="pressed" from="VBoxContainer/Button3" to="." method="_on_button_3_pressed"]
+[connection signal="pressed" from="VBoxContainer/Controlls" to="." method="_on_controlls_pressed"]
+[connection signal="pressed" from="VBoxContainer/Back" to="." method="_on_back_pressed"]
