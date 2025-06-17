@@ -99,7 +99,7 @@ func shatter() -> void:
 
 
 func _on_DeleteTimer_timeout() -> void:
-	get_parent().queue_free()
+	get_parent().get_parent().queue_free()
 
 
 func _draw() -> void:

@@ -9,6 +9,13 @@ extends CharacterBody2D
 # Isso evita com que a animação não seja carregada
 @onready var anim: AnimatedSprite2D = $anim
 
+signal healthChanged()
+@export var health : int = 100
+var damageAreas
+var knockback : Vector2
+var knockbackDuration : float
+
+
 var speed := 150.0
 
 const jump_speed = -300.0
@@ -50,6 +57,13 @@ var dashDuration := 0.5 # Duração do DASH
 
 # Verifica se o jogador está totalmente parado
 var idle = false
+
+func _ready() -> void:
+	damageAreas = get_tree().get_nodes_in_group("damage")
+	
+	if damageAreas.size() != 0:
+		for area in damageAreas:
+			area.body_entered.connect(takeDamage.bind(area))
 
 # Processo executado a CADA FRAME possível do jogo
 func _physics_process(delta: float) -> void:
@@ -111,12 +125,20 @@ func _physics_process(delta: float) -> void:
 		downdown()
 
 	dev_tool()
-	player_movement()
+	
+	if knockbackDuration > 0:
+		velocity = knockback
+		knockbackDuration -= delta
+		if 0 > knockbackDuration:
+			knockback = Vector2.ZERO
+	else:
+		player_movement()
 	move_and_slide()
 
 func player_movement():
 	# Pega o INPUT da direção do jogador e com isso, o movimenta pelo cenário
 	var direction := Input.get_axis("move_left", "move_right")
+	
 	if isDashing or isStomping:
 		return
 	
@@ -218,3 +240,15 @@ func _on_dash_cooldown_timeout() -> void:
 
 func _on_stomp_cooldown_timeout() -> void:
 	stompReloading = false # Replace with function body.
+	
+func takeDamage(body : Node2D, area : Area2D):
+	if body == self:
+		health -= area.damage
+		healthChanged.emit()
+		if health <= 0:
+			get_tree().change_scene_to_file("res://gui/menu/main_menu.tscn")
+
+func applyKnockback(direction : int, force : Vector2, duration : float):
+	knockbackDuration = duration
+	knockback = direction * force
+	

@@ -5,7 +5,8 @@ extends StaticBody2D
 @onready var shard_emitter: ShardEmitter = $Sprite2D/ShardEmitter
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
+	set_collision_layer_value(2, false)
+	$Area2D.set_collision_mask_value(1, false)
 	shard_emitter.config()
 	shard_emitter.shatter()
-	collision_shape_2d.queue_free()
 	
