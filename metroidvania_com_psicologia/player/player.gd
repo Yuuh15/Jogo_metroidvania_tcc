@@ -12,6 +12,9 @@ extends CharacterBody2D
 signal healthChanged()
 @export var health : int = 100
 var damageAreas
+var knockback : Vector2
+var knockbackDuration : float
+
 
 var speed := 150.0
 
@@ -122,13 +125,20 @@ func _physics_process(delta: float) -> void:
 		downdown()
 
 	dev_tool()
-
-	player_movement()
+	
+	if knockbackDuration > 0:
+		velocity = knockback
+		knockbackDuration -= delta
+		if 0 > knockbackDuration:
+			knockback = Vector2.ZERO
+	else:
+		player_movement()
 	move_and_slide()
 
 func player_movement():
 	# Pega o INPUT da direção do jogador e com isso, o movimenta pelo cenário
 	var direction := Input.get_axis("move_left", "move_right")
+	
 	if isDashing or isStomping:
 		return
 	
@@ -237,3 +247,8 @@ func takeDamage(body : Node2D, area : Area2D):
 		healthChanged.emit()
 		if health <= 0:
 			get_tree().change_scene_to_file("res://gui/menu/main_menu.tscn")
+
+func applyKnockback(direction : int, force : Vector2, duration : float):
+	knockbackDuration = duration
+	knockback = direction * force
+	

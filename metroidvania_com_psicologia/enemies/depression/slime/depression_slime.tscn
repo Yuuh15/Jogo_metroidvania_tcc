@@ -85,7 +85,7 @@ script/source = "extends \"res://componentes/hurt_box.gd\"
 "
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0j8vl"]
-radius = 2.0
+radius = 3.0
 height = 20.0
 
 [node name="depression-slime" type="CharacterBody2D"]

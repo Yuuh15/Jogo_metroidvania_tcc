@@ -62,5 +62,7 @@ func canWalk() -> bool:
 
 
 func _on_hurt_box_body_entered(body: Node2D) -> void:
-	var direction = -1 if sprite.flip_h else 1
-	player.velocity.x = 1000 * direction
+	if body.name == "player":
+		var direction = -1 if sprite.flip_h else 1
+		var force = Vector2(500, 0)
+		body.applyKnockback(direction, force, 0.2)
