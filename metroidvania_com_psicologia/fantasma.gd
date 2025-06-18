@@ -15,8 +15,7 @@ func _ready():
 	patrol_points = [
 		global_position,
 		global_position + Vector2(200, 0),
-		global_position + Vector2(200, 100),
-		global_position + Vector2(0, 100)
+		global_position + Vector2(100, 0),
 	]
 	
 	# Configure and start shooting timer
@@ -43,7 +42,6 @@ func patrol_movement(delta):
 
 func shoot():
 	var instance = projectile.instantiate()
-	instance.dir = rotation
 	instance.spawnPos = global_position
 	instance.spawnRot = rotation
 	instance.zdex = z_index - 1

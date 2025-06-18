@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://ds6h1b7wat4s5"]
+[gd_scene load_steps=19 format=3 uid="uid://besthe13sfm0e"]
 
 [ext_resource type="Script" uid="uid://djsqjqom1mp0l" path="res://fantasma.gd" id="1_mkdhj"]
 [ext_resource type="Texture2D" uid="uid://df0wimk0vesay" path="res://assets/inimigo_fantasma_depressao/fantasma atacando.png" id="1_w0qjp"]
@@ -111,15 +111,16 @@ animations = [{
 radius = 11.0
 height = 34.0
 
-[node name="fantasma" type="CharacterBody2D"]
+[node name="fantasma" type="CharacterBody2D" groups=["enemies"]]
 script = ExtResource("1_mkdhj")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_vro25")
 animation = &"atacando"
 frame_progress = 0.0690161
-script = ExtResource("1_mkdhj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
 shape = SubResource("CapsuleShape2D_mkdhj")
+
+[node name="Timer" type="Timer" parent="."]

@@ -1,6 +1,5 @@
 extends CharacterBody2D
 # TODO:
-# 4 - Fazer o STOMP ser habilidade coletável
 # 8 - Fazer com que o inventário possa dar split nos itens
 # 9 - Fazer com que os itens coletados no jogo apareçam no Inventário
 # 10 (Opcional) - Adicionar animações (Tweening) no itens
@@ -13,43 +12,29 @@ extends CharacterBody2D
 @export var Jump_Buffer_Time: float = 0.1
 
 var speed := 150.0
-
 const jump_speed = -300.0
-
 const jump_cutoff = 0.5
 # Estabelece o número máximo de Pulos Máximos do jogador
 # De início, o número de pulos máximos é 1
 var maxJumps = 1
 var jump_buffer: bool = false
-
 var doubleJump := false
-
 var isStomping := false
-
 var isJumping := false
-
 var isDashing := false
 
 # Verifica se o jogador possui os poderes abaixo:
 var dash = false
-
 var tearDown := false
-
 var timeWarp := false
-
 var timeFactor = 0.5 # Fator padrão de tempo (Metade do tempo)
-
 var timeWarpActivated = false
 
 # Recarga das Habilidades:
 var twReloading = false
-
 var dashReloading = false
-
 var stompReloading = false
-
 var dashSpeed := 450.0 # Velocidade do DASH
-
 var dashDuration := 0.5 # Duração do DASH
 
 # Verifica se o jogador está totalmente parado

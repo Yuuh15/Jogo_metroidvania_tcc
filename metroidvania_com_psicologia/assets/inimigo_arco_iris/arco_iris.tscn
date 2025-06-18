@@ -1,6 +1,6 @@
 [gd_scene load_steps=25 format=3 uid="uid://ckbeyxh2mm5iu"]
 
-[ext_resource type="Script" uid="uid://sjmcqcepgd6h" path="res://arco_iris.gd" id="1_wl3f3"]
+[ext_resource type="Script" path="res://arco_iris.gd" id="1_wl3f3"]
 [ext_resource type="Texture2D" uid="uid://dduy0s6d2ptif" path="res://assets/inimigo_arco_iris/arco iris depressão atacando.png" id="2_tkioc"]
 [ext_resource type="Texture2D" uid="uid://dhcuf1m3ox53h" path="res://assets/inimigo_arco_iris/lazer de agua ataque v2.png" id="3_15nk2"]
 [ext_resource type="Texture2D" uid="uid://c1g45yuqr3ac3" path="res://assets/inimigo_arco_iris/arco iris depressão parado.png" id="4_fif8q"]

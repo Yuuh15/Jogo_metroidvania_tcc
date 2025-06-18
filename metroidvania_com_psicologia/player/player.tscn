@@ -1,6 +1,6 @@
 [gd_scene load_steps=25 format=3 uid="uid://bnel1u2etfiwm"]
 
-[ext_resource type="Script" uid="uid://c7iym60m2yo4b" path="res://player.gd" id="1_rpygr"]
+[ext_resource type="Script" uid="uid://di1rfdifcs7rw" path="res://player.gd" id="1_rpygr"]
 [ext_resource type="Texture2D" uid="uid://vcr7c1tfpq2u" path="res://assets/player/dash-mid-air.png" id="2_g6k8r"]
 [ext_resource type="Texture2D" uid="uid://dfkenf16iboyf" path="res://assets/SAM 64x64/Sam_Parado_64x.png" id="3_g6k8r"]
 [ext_resource type="Texture2D" uid="uid://clyyjw4fgfx1g" path="res://assets/SAM 64x64/Sam_Pulando_64x.png" id="4_boad6"]
@@ -158,9 +158,8 @@ script = ExtResource("1_rpygr")
 position = Vector2(5.68434e-14, -7.08)
 scale = Vector2(0.38, 0.3775)
 sprite_frames = SubResource("SpriteFrames_lbo0b")
-animation = &"dash_midair"
+animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.0680613
 
 [node name="collisionShape" type="CollisionShape2D" parent="."]
 position = Vector2(0, -7)
