@@ -10,8 +10,8 @@ config_version=5
 
 [application]
 
-config/name="TCC Panda"
-run/main_scene="res://levels/test_level.tscn"
+config/name="The Mind (TCC Version)"
+run/main_scene="uid://cutjuuoqdkn4h"
 config/features=PackedStringArray("4.4", "Forward Plus")
 boot_splash/bg_color=Color(0, 0, 0, 1)
 config/icon="res://icon.svg"

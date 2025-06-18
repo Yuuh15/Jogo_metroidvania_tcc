@@ -1,0 +1,150 @@
+[gd_scene load_steps=20 format=3 uid="uid://bs142q3whn5qa"]
+
+[ext_resource type="Script" uid="uid://mrd4xvmbpeot" path="res://enemies/depression/slime/depression_slime.gd" id="1_0to1k"]
+[ext_resource type="Texture2D" uid="uid://bvjwksv7dkr5g" path="res://enemies/depression/slime/sprite/gosma depressiva parada.png" id="1_d3t7g"]
+[ext_resource type="Texture2D" uid="uid://dmbc4srkktimy" path="res://enemies/depression/slime/sprite/gosma depressiva atacando.png" id="3_wqjqj"]
+[ext_resource type="Script" uid="uid://dv26duycoykqb" path="res://scripts/state-machine-controller.gd" id="3_x4mbx"]
+[ext_resource type="Script" uid="uid://n72t1rkwfmg4" path="res://enemies/depression/slime/states/patrol.gd" id="4_ipp72"]
+[ext_resource type="Script" uid="uid://epdp0k0us1qw" path="res://enemies/depression/slime/states/follow.gd" id="5_ipp72"]
+[ext_resource type="PackedScene" uid="uid://bb0nk86d7xdgp" path="res://componentes/hurt_box.tscn" id="7_0j8vl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0to1k"]
+atlas = ExtResource("1_d3t7g")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vr8kv"]
+atlas = ExtResource("1_d3t7g")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x4mbx"]
+atlas = ExtResource("1_d3t7g")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ipp72"]
+atlas = ExtResource("1_d3t7g")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0j8vl"]
+atlas = ExtResource("3_wqjqj")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3tucb"]
+atlas = ExtResource("3_wqjqj")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_102uf"]
+atlas = ExtResource("3_wqjqj")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oo5vg"]
+atlas = ExtResource("3_wqjqj")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wqjqj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0to1k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vr8kv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x4mbx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ipp72")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0j8vl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3tucb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_102uf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oo5vg")
+}],
+"loop": true,
+"name": &"follow",
+"speed": 7.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0j8vl"]
+size = Vector2(17, 31)
+
+[sub_resource type="GDScript" id="GDScript_0j8vl"]
+script/source = "extends \"res://componentes/hurt_box.gd\"
+"
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0j8vl"]
+radius = 3.0
+height = 20.0
+
+[node name="depression-slime" type="CharacterBody2D"]
+collision_layer = 8
+collision_mask = 3
+script = ExtResource("1_0to1k")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_wqjqj")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2.5, 0.5)
+shape = SubResource("RectangleShape2D_0j8vl")
+
+[node name="StateMachineController" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("3_x4mbx")
+initial_state = NodePath("Patrol")
+metadata/_custom_type_script = "uid://dv26duycoykqb"
+
+[node name="Patrol" type="Node" parent="StateMachineController" node_paths=PackedStringArray("enemy")]
+script = ExtResource("4_ipp72")
+enemy = NodePath("../..")
+metadata/_custom_type_script = "uid://l6eq8yklu062"
+
+[node name="Follow" type="Node" parent="StateMachineController" node_paths=PackedStringArray("enemy")]
+script = ExtResource("5_ipp72")
+enemy = NodePath("../..")
+metadata/_custom_type_script = "uid://l6eq8yklu062"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="vision" type="RayCast2D" parent="."]
+position = Vector2(0, 5)
+target_position = Vector2(80, 0)
+
+[node name="TrailTimer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[node name="trail" type="Marker2D" parent="."]
+position = Vector2(-14, 16)
+
+[node name="walk" type="RayCast2D" parent="."]
+position = Vector2(17, 0)
+target_position = Vector2(0, 23)
+collision_mask = 2
+
+[node name="HurtBox" parent="." instance=ExtResource("7_0j8vl")]
+script = SubResource("GDScript_0j8vl")
+damage = 15
+
+[node name="hurtBoxShape" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(12, 5)
+shape = SubResource("CapsuleShape2D_0j8vl")
+debug_color = Color(0.970763, 0, 0.452533, 0.42)
+
+[connection signal="timeout" from="Timer" to="StateMachineController/Follow" method="_on_timer_timeout"]
+[connection signal="timeout" from="TrailTimer" to="." method="_on_trail_timer_timeout"]
+[connection signal="body_entered" from="HurtBox" to="." method="_on_hurt_box_body_entered"]
