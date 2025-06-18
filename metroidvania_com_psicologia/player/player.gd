@@ -1,5 +1,6 @@
 extends CharacterBody2D
 # TODO:
+# 4 - Fazer o STOMP ser habilidade coletável
 # 8 - Fazer com que o inventário possa dar split nos itens
 # 9 - Fazer com que os itens coletados no jogo apareçam no Inventário
 # 10 (Opcional) - Adicionar animações (Tweening) no itens
@@ -8,37 +9,61 @@ extends CharacterBody2D
 # Isso evita com que a animação não seja carregada
 @onready var anim: AnimatedSprite2D = $anim
 
-@export_category("Movement Parameters")
-@export var Jump_Buffer_Time: float = 0.1
+signal healthChanged()
+@export var health : int = 100
+var damageAreas
+var knockback : Vector2
+var knockbackDuration : float
+
 
 var speed := 150.0
+
 const jump_speed = -300.0
+
 const jump_cutoff = 0.5
 # Estabelece o número máximo de Pulos Máximos do jogador
 # De início, o número de pulos máximos é 1
 var maxJumps = 1
-var jump_buffer: bool = false
+
 var doubleJump := false
+
 var isStomping := false
+
 var isJumping := false
+
 var isDashing := false
 
 # Verifica se o jogador possui os poderes abaixo:
 var dash = false
+
 var tearDown := false
+
 var timeWarp := false
+
 var timeFactor = 0.5 # Fator padrão de tempo (Metade do tempo)
+
 var timeWarpActivated = false
 
 # Recarga das Habilidades:
 var twReloading = false
+
 var dashReloading = false
+
 var stompReloading = false
+
 var dashSpeed := 450.0 # Velocidade do DASH
+
 var dashDuration := 0.5 # Duração do DASH
 
 # Verifica se o jogador está totalmente parado
 var idle = false
+
+func _ready() -> void:
+	damageAreas = get_tree().get_nodes_in_group("damage")
+	
+	if damageAreas.size() != 0:
+		for area in damageAreas:
+			area.body_entered.connect(takeDamage.bind(area))
 
 # Processo executado a CADA FRAME possível do jogo
 func _physics_process(delta: float) -> void:
@@ -54,8 +79,6 @@ func _physics_process(delta: float) -> void:
 		velocity.y = 0
 		isJumping = false
 		isStomping = false
-		if jump_buffer:
-			Jump()
 	
 	if is_on_wall():
 		anim.play("idle")
@@ -68,12 +91,9 @@ func _physics_process(delta: float) -> void:
 		await slow_motion()
 
 	# Verifica a tecla de pulo
-	if Input.is_action_pressed("jump"):
-		if is_on_floor():
-			Jump()
-		else:
-			jump_buffer = true	
-			get_tree().create_timer(Jump_Buffer_Time).timeout.connect(on_jump_buffer_timeout)
+	if Input.is_action_pressed("jump") and is_on_floor():
+		isJumping = true # Atualiza o verificador de pulo
+		velocity.y = jump_speed # Utiliza velocidade para não "teleportar" o jogador para cima
 
 	# Permite o Pulo Duplo, se liberado
 	if Input.is_action_just_pressed("jump") and not is_on_floor() and not isDashing and maxJumps > 1:
@@ -105,12 +125,20 @@ func _physics_process(delta: float) -> void:
 		downdown()
 
 	dev_tool()
-	player_movement()
+	
+	if knockbackDuration > 0:
+		velocity = knockback
+		knockbackDuration -= delta
+		if 0 > knockbackDuration:
+			knockback = Vector2.ZERO
+	else:
+		player_movement()
 	move_and_slide()
 
 func player_movement():
 	# Pega o INPUT da direção do jogador e com isso, o movimenta pelo cenário
 	var direction := Input.get_axis("move_left", "move_right")
+	
 	if isDashing or isStomping:
 		return
 	
@@ -213,9 +241,14 @@ func _on_dash_cooldown_timeout() -> void:
 func _on_stomp_cooldown_timeout() -> void:
 	stompReloading = false # Replace with function body.
 	
-func Jump()-> void:
-		velocity.y = jump_speed # Utiliza velocidade para não "teleportar" o jogador para cima
-		isJumping = true # Atualiza o verificador de pulo
+func takeDamage(body : Node2D, area : Area2D):
+	if body == self:
+		health -= area.damage
+		healthChanged.emit()
+		if health <= 0:
+			get_tree().change_scene_to_file("res://gui/menu/main_menu.tscn")
 
-func on_jump_buffer_timeout() ->  void:
-	jump_buffer = false
+func applyKnockback(direction : int, force : Vector2, duration : float):
+	knockbackDuration = duration
+	knockback = direction * force
+	
