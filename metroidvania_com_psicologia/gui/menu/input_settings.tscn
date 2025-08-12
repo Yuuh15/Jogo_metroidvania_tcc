@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://dqaca14u5yfdd"]
+[gd_scene load_steps=5 format=3 uid="uid://dqaca14u5yfdd"]
 
 [ext_resource type="Script" uid="uid://ws8xd6xtsn6x" path="res://gui/menu/scripts/input_settings.gd" id="1_y6l0d"]
 [ext_resource type="PackedScene" uid="uid://cmhkbknvy1y8v" path="res://gui/menu/input_button.tscn" id="2_u4tk5"]
+[ext_resource type="PackedScene" uid="uid://crywe2ehy1e1a" path="res://gui/menu/effect/switch_input.tscn" id="3_7oxwx"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6k22c"]
 bg_color = Color(0, 0.470588, 0.635294, 1)
@@ -83,6 +84,8 @@ text = "Configuração Padrão"
 layout_mode = 2
 focus_mode = 0
 text = "Voltar"
+
+[node name="SwitchInput" parent="." instance=ExtResource("3_7oxwx")]
 
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Botão_Padrão" to="." method="_on_botão_padrão_pressed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]

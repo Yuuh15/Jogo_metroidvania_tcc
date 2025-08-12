@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://c8ax3u5ckj3ct"]
+
+[ext_resource type="AudioStream" uid="uid://cgovjlcneh3ch" path="res://gui/menu/effect/select.wav" id="1_sc6ji"]
+
+[node name="Switch" type="AudioStreamPlayer"]
+stream = ExtResource("1_sc6ji")
+volume_db = -17.802

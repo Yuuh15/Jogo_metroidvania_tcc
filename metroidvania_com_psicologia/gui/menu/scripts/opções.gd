@@ -1,5 +1,8 @@
 extends Control
 
+func _ready() -> void:
+	for button in $VBoxContainer.get_children():
+		button.connect("mouse_entered", $Switch.play)
 
 func _on_controlls_pressed() -> void:
 	get_tree().change_scene_to_file("res://gui/menu/input_settings.tscn")

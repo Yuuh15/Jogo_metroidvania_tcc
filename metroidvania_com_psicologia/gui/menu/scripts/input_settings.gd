@@ -18,6 +18,14 @@ var input_actions = {
 
 func _ready() -> void:
 	_create_action_list()
+	for button in $PanelContainer/MarginContainer/VBoxContainer.get_children():
+		if button is Button:
+			button.connect("mouse_entered", $SwitchInput.play)
+			
+	for button in $PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/ActionList.get_children():
+		if button is Button:
+			button.connect("mouse_entered", $SwitchInput.play)
+	
 
 func _create_action_list():
 	InputMap.load_from_project_settings()  # Recarrega mapeamento base
