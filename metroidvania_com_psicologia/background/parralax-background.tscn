@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://d3dyo1f0naxcw"]
+
+[ext_resource type="Texture2D" uid="uid://s4lewx0en1yx" path="res://assets/parallax/tijolo paralax.png" id="1_5c2dt"]
+[ext_resource type="Texture2D" uid="uid://dlwnxw3m5o5u1" path="res://assets/parallax/paralax particulas.png" id="2_bxqgf"]
+
+[node name="background" type="Node2D"]
+z_index = -10
+
+[node name="Tijolo" type="Parallax2D" parent="."]
+repeat_size = Vector2(640, 320)
+repeat_times = 7
+
+[node name="Sprite2D" type="Sprite2D" parent="Tijolo"]
+modulate = Color(0.41598, 0.41598, 0.41598, 1)
+position = Vector2(320, -184)
+scale = Vector2(2, 2)
+texture = ExtResource("1_5c2dt")
+
+[node name="particulas" type="Parallax2D" parent="."]
+scroll_scale = Vector2(1.1, 1)
+scroll_offset = Vector2(88, -16)
+repeat_size = Vector2(640, 320)
+repeat_times = 7
+
+[node name="Sprite2D" type="Sprite2D" parent="particulas"]
+modulate = Color(1, 0, 1, 1)
+position = Vector2(320, -184)
+scale = Vector2(2, 2)
+texture = ExtResource("2_bxqgf")
