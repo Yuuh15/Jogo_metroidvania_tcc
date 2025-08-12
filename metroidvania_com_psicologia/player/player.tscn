@@ -1,10 +1,10 @@
 [gd_scene load_steps=24 format=3 uid="uid://bnel1u2etfiwm"]
 
 [ext_resource type="Script" uid="uid://di1rfdifcs7rw" path="res://player/player.gd" id="1_g6k8r"]
-[ext_resource type="Texture2D" uid="uid://dfkenf16iboyf" path="res://assets/SAM 64x64/Sam_Parado_64x.png" id="3_g6k8r"]
-[ext_resource type="Texture2D" uid="uid://clyyjw4fgfx1g" path="res://assets/SAM 64x64/Sam_Pulando_64x.png" id="4_boad6"]
+[ext_resource type="Texture2D" uid="uid://cfaa73frplp4t" path="res://player/SAM 64x64/Sam_Parado_64x.png" id="3_g6k8r"]
+[ext_resource type="Texture2D" uid="uid://bkih0h52pwmmn" path="res://player/SAM 64x64/Sam_Pulando_64x.png" id="4_boad6"]
 [ext_resource type="AudioStream" uid="uid://cfi8wr3tlrm1p" path="res://player/jump.wav" id="5_qjkh3"]
-[ext_resource type="Texture2D" uid="uid://do3n6qf4mx41k" path="res://assets/SAM 64x64/Sam_Andando_64x.png" id="5_rgyib"]
+[ext_resource type="Texture2D" uid="uid://diu5eer1w8l52" path="res://player/SAM 64x64/Sam_Andando_64x.png" id="5_rgyib"]
 [ext_resource type="AudioStream" uid="uid://d38rp2crk4yt5" path="res://player/hitHurt.wav" id="6_g6k8r"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yw30f"]

@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://ha16dk4ski05" path="res://tileset/tile-set demo v4.png" id="5_paa45"]
 [ext_resource type="PackedScene" uid="uid://csjknbnqj11pi" path="res://items/stomp/stop_jump.tscn" id="6_e7anx"]
 [ext_resource type="PackedScene" uid="uid://bcdcroi4twh5k" path="res://teste/plataforma_teste.tscn" id="6_paa45"]
-[ext_resource type="PackedScene" uid="uid://ckbeyxh2mm5iu" path="res://assets/inimigo_arco_iris/arco_iris.tscn" id="7_axl34"]
+[ext_resource type="PackedScene" uid="uid://ckbeyxh2mm5iu" path="res://enemies/inimigo_arco_iris/arco_iris.tscn" id="7_axl34"]
 [ext_resource type="PackedScene" uid="uid://m0w2uklh55yb" path="res://items/dash/dash.tscn" id="7_ur00s"]
 [ext_resource type="PackedScene" uid="uid://besthe13sfm0e" path="res://fantasma.tscn" id="8_8hjdj"]
 [ext_resource type="PackedScene" uid="uid://o0o06ki3ajpk" path="res://misc/killzone.tscn" id="8_wndkh"]

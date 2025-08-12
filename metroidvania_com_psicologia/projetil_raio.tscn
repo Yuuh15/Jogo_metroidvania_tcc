@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://5wt7vrrhek3c"]
 
 [ext_resource type="Script" uid="uid://saojdvqijfi" path="res://projetil_raio.gd" id="1_41fs0"]
-[ext_resource type="Texture2D" uid="uid://dhcuf1m3ox53h" path="res://assets/inimigo_arco_iris/lazer de agua ataque v2.png" id="1_ogcjb"]
+[ext_resource type="Texture2D" uid="uid://dhcuf1m3ox53h" path="res://enemies/inimigo_arco_iris/lazer de agua ataque v2.png" id="1_ogcjb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jafyh"]
 atlas = ExtResource("1_ogcjb")
