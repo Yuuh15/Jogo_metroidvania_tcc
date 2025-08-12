@@ -9,8 +9,11 @@ extends CharacterBody2D
 @onready var anim: AnimatedSprite2D = $anim
 
 
+
 @export_category("Movement Parameters")
 @export var Jump_Buffer_Time: float = 0.1
+@onready var jumpAudio: AudioStreamPlayer = $Jump
+@onready var hurtAudio: AudioStreamPlayer = $hurt
 
 signal healthChanged()
 @export var health : int = 100
@@ -239,6 +242,8 @@ func _on_stomp_cooldown_timeout() -> void:
 func Jump()-> void:
 		velocity.y = jump_speed # Utiliza velocidade para não "teleportar" o jogador para cima
 		isJumping = true # Atualiza o verificador de pulo
+		jumpAudio.play()
+		
 
 func on_jump_buffer_timeout() ->  void:
 	jump_buffer = false
@@ -247,6 +252,7 @@ func takeDamage(body : Node2D, area : Area2D):
 	if body == self:
 		health -= area.damage
 		healthChanged.emit()
+		hurtAudio.play()
 		if health <= 0:
 			get_tree().change_scene_to_file("res://gui/menu/main_menu.tscn")
 

@@ -169,7 +169,7 @@ shape = SubResource("RectangleShape2D_wndkh")
 position = Vector2(31, -28)
 
 [node name="player" parent="." instance=ExtResource("2_cd0bw")]
-position = Vector2(134, -14)
+position = Vector2(2560, -304)
 
 [node name="depression-slime" parent="." instance=ExtResource("15_0vv12")]
 position = Vector2(2394, -304)
