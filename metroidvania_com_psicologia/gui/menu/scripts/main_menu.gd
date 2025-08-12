@@ -1,11 +1,8 @@
 extends Control
 
-
-
 func _ready():
-	pass
-	
-	
+	for button in $VBoxContainer.get_children():
+		button.connect("mouse_entered", $Switch.play)
 	
 func _process(delta):
 	pass

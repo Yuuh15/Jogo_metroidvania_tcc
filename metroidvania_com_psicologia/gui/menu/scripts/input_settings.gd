@@ -2,6 +2,7 @@ extends Control
 
 @onready var input_button_scene = preload("res://gui/menu/input_button.tscn")
 @onready var action_list: VBoxContainer = $PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/ActionList
+@onready var jump: AudioStreamPlayer = $Jump
 
 var is_remapping = false
 var action_to_remap = null
@@ -18,6 +19,16 @@ var input_actions = {
 
 func _ready() -> void:
 	_create_action_list()
+	for button in $PanelContainer/MarginContainer/VBoxContainer.get_children():
+		if button is Button:
+			button.connect("mouse_entered", $SwitchInput.play)
+			
+			
+	for button in $PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/ActionList.get_children():
+		if button is Button:
+			button.connect("mouse_entered", $SwitchInput.play)
+			
+	
 
 func _create_action_list():
 	InputMap.load_from_project_settings()  # Recarrega mapeamento base

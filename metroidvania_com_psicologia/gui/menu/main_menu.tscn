@@ -1,8 +1,9 @@
-[gd_scene load_steps=17 format=3 uid="uid://cutjuuoqdkn4h"]
+[gd_scene load_steps=18 format=3 uid="uid://cutjuuoqdkn4h"]
 
 [ext_resource type="Script" uid="uid://cm7487iox8ffl" path="res://gui/menu/scripts/main_menu.gd" id="1_88dmf"]
 [ext_resource type="Texture2D" uid="uid://dk2y2c7dfwmmr" path="res://gui/menu/img/botão com mouse.png" id="2_bd8gm"]
 [ext_resource type="Texture2D" uid="uid://dilcxp31wi5xv" path="res://gui/menu/img/Botão menu.png" id="3_ybyo8"]
+[ext_resource type="PackedScene" uid="uid://c8ax3u5ckj3ct" path="res://gui/menu/effect/switch.tscn" id="4_iho07"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pfblw"]
 bg_color = Color(1.54018e-06, 0.471645, 0.634196, 1)
@@ -144,6 +145,8 @@ theme_override_font_sizes/font_size = 61
 text = "The Mind"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Switch" parent="." instance=ExtResource("4_iho07")]
 
 [connection signal="pressed" from="VBoxContainer/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="VBoxContainer/Options" to="." method="_on_options_pressed"]
