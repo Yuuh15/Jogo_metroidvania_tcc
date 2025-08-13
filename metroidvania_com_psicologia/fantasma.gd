@@ -29,10 +29,10 @@ func _physics_process(delta):
 
 func patrol_movement(delta):
 	var target_position = patrol_points[current_patrol_index]
-	var directionX = global_position.directionX_to(target_position)
+	var direction = global_position.direction_to(target_position)
 	
 	# Move towards target point
-	velocity = directionX * patrol_speed
+	velocity = direction * patrol_speed
 	move_and_slide()
 	
 	# Check if reached current target

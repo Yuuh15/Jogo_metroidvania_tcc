@@ -28,8 +28,8 @@ func _ready():
 	add_to_group("player")
 	collision_layer = 1
 	# Initialize the timer
-	$directionXTimer.wait_time = choose([1.5, 2.0, 2.5])
-	$directionXTimer.start()
+	$directionTimer.wait_time = choose([1.5, 2.0, 2.5])
+	$directionTimer.start()
 	
 	# Setup detection area (must exist in your scene)
 	$DetectionArea.body_entered.connect(_on_detection_area_body_entered)
@@ -46,7 +46,7 @@ func _physics_process(delta):
 func move(delta):
 	if is_chase && player_ref:
 		# CHASE LOGIC: Move toward player
-		dir = global_position.directionX_to(player_ref.global_position)
+		dir = global_position.direction_to(player_ref.global_position)
 		velocity = dir * SPEED
 	elif is_roaming:
 		# ROAMING LOGIC: Move in random directionX

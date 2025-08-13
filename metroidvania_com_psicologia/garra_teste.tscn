@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bnel1u2etfiwm" path="res://player/player.tscn" id="7_8ebcn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8ebcn"]
-size = Vector2(20, 128)
+size = Vector2(7, 127)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vsep3"]
 texture = ExtResource("1_gxn12")
@@ -115,12 +115,12 @@ sources/7 = SubResource("TileSetAtlasSource_hbs2i")
 
 [node name="Garra_teste" type="Node2D"]
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Grippable1" type="Area2D" parent="."]
 position = Vector2(134, -14)
 script = ExtResource("1_ra16i")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-365, -18)
+[node name="GrippableArea" type="CollisionShape2D" parent="Grippable1"]
+position = Vector2(-358.5, -17.5)
 shape = SubResource("RectangleShape2D_8ebcn")
 
 [node name="map" type="Node" parent="."]
@@ -139,7 +139,7 @@ tile_set = SubResource("TileSet_f3t1h")
 position = Vector2(2904, -265)
 
 [node name="player" parent="map" instance=ExtResource("7_8ebcn")]
-position = Vector2(115, -13)
+position = Vector2(-151, 21)
 
-[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
-[connection signal="body_exited" from="Area2D" to="Area2D" method="_on_body_exited"]
+[connection signal="body_entered" from="Grippable1" to="Grippable1" method="_on_body_entered"]
+[connection signal="body_exited" from="Grippable1" to="Grippable1" method="_on_body_exited"]

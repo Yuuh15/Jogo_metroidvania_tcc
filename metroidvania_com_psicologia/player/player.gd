@@ -59,7 +59,6 @@ func _ready() -> void:
 
 # Processo executado a CADA FRAME possível do jogo
 func _physics_process(delta: float) -> void:
-	
 	# Adiciona a gravidade - Padrão: 980.0 px/s
 	if !is_on_floor() and !isDashing and !grip_wall:
 		velocity += get_gravity() * delta # Velocidade de gravidade do projeto (Padrão) * Frames possíveis
@@ -136,12 +135,17 @@ func player_movement():
 	# Pega o INPUT da direção do jogador e com isso, o movimenta pelo cenário
 	var directionX := Input.get_axis("move_left", "move_right")
 	var directionY := Input.get_axis("crouch", "jump")
-	
-	if isDashing or isStomping:
-		return
-	
 	if grip_wall:
-		velocity.y += directionY * 250 * -1
+		if directionX and Input.is_action_just_pressed("jump"):
+			velocity.x += 200 * directionX
+			
+		if directionY == 0 and directionX == 0:
+			velocity.y += 15
+		velocity.y += directionY * 150 * -1
+		
+	
+	if isDashing or isStomping or grip_wall:
+		return
 	
 	elif directionX and !isStomping and !grip_wall:
 		if !timeWarpActivated:
@@ -170,7 +174,7 @@ func player_movement():
 				anim.play("moving") # Toca a animação de Mover, porém espelhada
 		
 		# Flip Animação:
-		elif timeWarpActivated and not isDashing and not isJumping:
+		elif timeWarpActivated and not isDashing and not isJumping and !grip_wall:
 			if directionX > 0:
 				anim.flip_h = false # Olhando para a direita
 				anim.play("running") # Toca a animação de Correr
