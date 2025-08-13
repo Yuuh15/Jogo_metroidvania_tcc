@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://c7fis7bne66wy"]
+
+[ext_resource type="Script" uid="uid://1wfd80l0pbxg" path="res://garra.gd" id="1_8y2yx"]
+
+[node name="Grippable1" type="Area2D"]
+script = ExtResource("1_8y2yx")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

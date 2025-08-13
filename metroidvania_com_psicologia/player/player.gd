@@ -4,8 +4,6 @@ extends CharacterBody2D
 # 9 - Fazer com que os itens coletados no jogo apareçam no Inventário
 # 10 (Opcional) - Adicionar animações (Tweening) no itens
 
-var grip_wall := false
-
 # Faz com que o AnimatedSprite2D esteja sempre pronto para uso em qualquer parte do código
 # Isso evita com que a animação não seja carregada
 @onready var anim: AnimatedSprite2D = $anim
@@ -37,8 +35,9 @@ var isDashing := false
 var dash = false
 var tearDown := false
 var timeWarp := false
-var timeFactor = 0.5 # Fator padrão de tempo (Metade do tempo)
-var timeWarpActivated = false
+var timeFactor := 0.5 # Fator padrão de tempo (Metade do tempo)
+var timeWarpActivated := false
+var claws := false
 
 # Recarga das Habilidades:
 var twReloading = false
@@ -49,6 +48,9 @@ var dashDuration := 0.5 # Duração do DASH
 
 # Verifica se o jogador está totalmente parado
 var idle = false
+
+# Verifica se o jogador está preso na parede pelas garras
+var grip_wall := false
 
 func _ready() -> void:
 	damageAreas = get_tree().get_nodes_in_group("damage")
@@ -226,12 +228,14 @@ func dev_tool():
 		timeWarp = true
 		tearDown = true
 		dash = true
-		print("Double Jump; Time Warp; Tear Down; Dash desbloqueado!")
+		claws = true
+		print("Double Jump; Time Warp; Tear Down; Dash; Garra desbloqueado!")
 		
 		print("- Double Jump = Pule no AR!")
 		print("- Time Warp = Pressione L para diminuir o FLUXO TEMPORAL")
 		print("- Tear Down = Dê um ataque DESCENDENTE e ESMAGADOR!")
 		print("- Lightspeed = AVANCE na velocidade da LUZ!")
+		print("- Garra = Agarre-se na esperança e saia do fundo do poço! (Permite grudar na parede.)")
 		
 func downdown():
 	print("Testando o DOWNDOWN...")
