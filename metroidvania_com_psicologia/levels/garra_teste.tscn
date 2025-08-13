@@ -14,7 +14,7 @@
 size = Vector2(7, 127)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iqd51"]
-size = Vector2(11, 341)
+size = Vector2(10.5, 341)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vsep3"]
 texture = ExtResource("2_iqd51")
@@ -127,7 +127,7 @@ position = Vector2(-358.5, -17.5)
 shape = SubResource("RectangleShape2D_omf64")
 
 [node name="G_A2" type="CollisionShape2D" parent="Grippable1"]
-position = Vector2(1336, -278.5)
+position = Vector2(1335.75, -278.5)
 shape = SubResource("RectangleShape2D_iqd51")
 
 [node name="map" type="Node" parent="."]
