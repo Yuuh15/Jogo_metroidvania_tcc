@@ -4,6 +4,8 @@ extends CharacterBody2D
 # 9 - Fazer com que os itens coletados no jogo apareçam no Inventário
 # 10 (Opcional) - Adicionar animações (Tweening) no itens
 
+var grip_wall := false
+
 # Faz com que o AnimatedSprite2D esteja sempre pronto para uso em qualquer parte do código
 # Isso evita com que a animação não seja carregada
 @onready var anim: AnimatedSprite2D = $anim
@@ -59,10 +61,10 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	
 	# Adiciona a gravidade - Padrão: 980.0 px/s
-	if not is_on_floor() and not isDashing:
+	if !is_on_floor() and !isDashing and !grip_wall:
 		velocity += get_gravity() * delta # Velocidade de gravidade do projeto (Padrão) * Frames possíveis
 
-	if not is_on_floor() and isDashing:
+	if not is_on_floor() and isDashing or grip_wall:
 		velocity.y = 0 # Zera a velocidade Y do jogador
 	
 	if is_on_floor():
@@ -113,8 +115,8 @@ func _physics_process(delta: float) -> void:
 		$dashTimer.start() # Duração do DASH: 0.25 segundos
 		$dashCooldown.start() # Recarga de 2 segundos
 		
-		var direction = Input.get_axis("move_left", "move_right")
-		velocity.x = direction * dashSpeed
+		var directionX = Input.get_axis("move_left", "move_right")
+		velocity.x = directionX * dashSpeed
 		
 	if Input.is_action_just_pressed("downdown"):
 		downdown()
@@ -132,21 +134,26 @@ func _physics_process(delta: float) -> void:
 
 func player_movement():
 	# Pega o INPUT da direção do jogador e com isso, o movimenta pelo cenário
-	var direction := Input.get_axis("move_left", "move_right")
+	var directionX := Input.get_axis("move_left", "move_right")
+	var directionY := Input.get_axis("crouch", "jump")
 	
 	if isDashing or isStomping:
 		return
 	
-	elif direction and !isStomping:
+	if grip_wall:
+		velocity.y += directionY * 250 * -1
+	
+	elif directionX and !isStomping and !grip_wall:
 		if !timeWarpActivated:
 			idle = false
-			velocity.x = direction * speed
+			velocity.x = directionX * speed
 		else:
 			idle = false
-			velocity.x = direction * speed * 2
+			velocity.x = directionX * speed * 2
 	
 	elif velocity.y != 0:
 		idle = false
+		velocity.x *= 0.8
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
 		idle = true
@@ -154,42 +161,43 @@ func player_movement():
 
 	# Detecta movimentação para mudar o sprite
 	if not idle:
-		if not timeWarpActivated and not isDashing and not isJumping:
-			if direction > 0:
+		if not timeWarpActivated and not isDashing and not isJumping and !grip_wall:
+			if directionX > 0:
 				anim.flip_h = false # Olhando para a direita
 				anim.play("moving") # Toca a animação de Mover
-			elif direction < 0:
+			elif directionX < 0:
 				anim.flip_h = true # Olhando para a esquerda
 				anim.play("moving") # Toca a animação de Mover, porém espelhada
 		
-		elif timeWarpActivated and not isJumping and not isDashing:
-			if direction > 0:
+		# Flip Animação:
+		elif timeWarpActivated and not isDashing and not isJumping:
+			if directionX > 0:
 				anim.flip_h = false # Olhando para a direita
 				anim.play("running") # Toca a animação de Correr
-			elif direction < 0:
+			elif directionX < 0:
 				anim.flip_h = true # Olhando para a esquerda
 				anim.play("running") # Toca a animação de Correr, porém espelhada
 			
 		elif isJumping and not isDashing:
-			if direction > 0:
+			if directionX > 0:
 				anim.flip_h = false # Olhando para a direita
-			elif direction < 0:
+			elif directionX < 0:
 				anim.flip_h = true # Olhando para a esquerda
 			
 			anim.play("jump") # Personagem Pulando
 			
 		else:
-			if direction > 0:
+			if directionX > 0:
 				anim.flip_h = false # Olhando para a direita
 				anim.play("dash_midair") # Personagem Dashando
-			elif direction < 0:
+			elif directionX < 0:
 				anim.flip_h = true # Olhando para a esquerda
 				anim.play("dash_midair") # Personagem Dashando
 			
 	elif idle and not isJumping:
 		anim.play("idle") # Caso nenhuma das animações acima seja executada, entrará em estado "inerte"
 	
-	anim.speed_scale = direction * 1.5
+	anim.speed_scale = directionX * 1.5
 
 func slow_motion(duration: float = 5):
 	timeWarpActivated = true
@@ -250,7 +258,7 @@ func takeDamage(body : Node2D, area : Area2D):
 		if health <= 0:
 			get_tree().change_scene_to_file("res://gui/menu/main_menu.tscn")
 
-func applyKnockback(direction : int, force : Vector2, duration : float):
+func applyKnockback(directionX : int, force : Vector2, duration : float):
 	knockbackDuration = duration
-	knockback = direction * force
+	knockback = directionX * force
 	

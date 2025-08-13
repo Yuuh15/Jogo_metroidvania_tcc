@@ -3,7 +3,7 @@ extends CharacterBody2D
 @export var speed = 300  # Increased for better visibility
 @export var max_lifetime = 3.0  # Maximum time before auto-destruction
 
-var direction: Vector2 = Vector2.UP  # Default direction
+var directionX: Vector2 = Vector2.UP  # Default directionX
 var spawnPos: Vector2
 var spawnRot: float
 var zdex: int
@@ -17,7 +17,7 @@ var lifetime = 0.0
 
 func _ready():
 	global_position = spawnPos
-	global_rotation = direction.angle()  # Set rotation based on direction
+	global_rotation = directionX.angle()  # Set rotation based on directionX
 	z_index = zdex
 	
 	# Disable collision briefly to avoid self-collision
@@ -36,7 +36,7 @@ func _physics_process(delta):
 		return
 	
 	# Movement
-	velocity = direction * speed
+	velocity = directionX * speed
 	move_and_slide()
 	
 

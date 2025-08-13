@@ -90,9 +90,9 @@ func shatter() -> void:
 	randomize()
 	get_parent().self_modulate.a = 0
 	for s in shards:
-		var direction = Vector2.UP.rotated(randf_range(0, 2*PI))
+		var directionX = Vector2.UP.rotated(randf_range(0, 2*PI))
 		var impulse = randf_range(min_impulse, max_impulse)
-		s.apply_central_impulse(direction * impulse)
+		s.apply_central_impulse(directionX * impulse)
 		s.get_node("CollisionPolygon2D").disabled = false
 		s.show()
 	$DeleteTimer.start(lifetime)
