@@ -51,6 +51,9 @@ var idle = false
 
 # Verifica se o jogador está preso na parede pelas garras
 var grip_wall := false
+# Guarda a última direção do jogador ao sair do chão
+var gDirection = 0.0
+var saveLastPositionInGround = false
 
 func _ready() -> void:
 	damageAreas = get_tree().get_nodes_in_group("damage")
@@ -89,17 +92,17 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("jump"):
 		if is_on_floor():
 			Jump()
-		else:
+		if !is_on_floor() and !grip_wall:
 			jump_buffer = true	
 			get_tree().create_timer(Jump_Buffer_Time).timeout.connect(on_jump_buffer_timeout)
 
 	# Permite o Pulo Duplo, se liberado
-	if Input.is_action_just_pressed("jump") and not is_on_floor() and not isDashing and maxJumps > 1:
+	if Input.is_action_just_pressed("jump") and !is_on_floor() and !isDashing and !grip_wall and maxJumps > 1:
 		isJumping = true
 		velocity.y = jump_speed * 0.9 # Indica que o segundo pulo será menor
 		maxJumps = 0 # Zera o contador de pulos máximos para garantir que o jogador não irá sair voando
 
-	if Input.is_action_just_released("jump") and velocity.y < 0:
+	if Input.is_action_just_released("jump") and !grip_wall and velocity.y < 0:
 		velocity.y *= jump_cutoff  # Reduz a velocidade do pulo
 	
 	# Detecta a ação de STOMPAR
@@ -124,6 +127,7 @@ func _physics_process(delta: float) -> void:
 
 	dev_tool()
 	
+	print(gDirection)
 	if knockbackDuration > 0:
 		velocity = knockback
 		knockbackDuration -= delta
@@ -137,13 +141,28 @@ func player_movement():
 	# Pega o INPUT da direção do jogador e com isso, o movimenta pelo cenário
 	var directionX := Input.get_axis("move_left", "move_right")
 	var directionY := Input.get_axis("crouch", "jump")
+	
+	# Permite salvar a última direção no chão:
+	if Input.is_action_just_pressed("jump"):
+		saveLastPositionInGround = true
+	
+	# Guarda última direção:
+	if saveLastPositionInGround and directionX != 0 and is_on_floor():
+		gDirection = directionX * -1
+		saveLastPositionInGround = false
+	elif Input.is_action_just_pressed("jump"):
+		gDirection = gDirection * -1
+		
+	# Garras da Esperança:
 	if grip_wall:
-		if directionX and Input.is_action_just_pressed("jump"):
-			velocity.x += 200 * directionX
+		if Input.is_action_just_pressed("jump"):
 			
-		if directionY == 0 and directionX == 0:
+			velocity.x += 350 * gDirection
+			velocity.y += jump_speed
+			
+			
+		if directionX == 0:
 			velocity.y += 15
-		velocity.y += directionY * 150 * -1
 		
 	
 	if isDashing or isStomping or grip_wall:
