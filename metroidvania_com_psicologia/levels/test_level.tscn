@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=4 uid="uid://co8e3r47x3lmq"]
+[gd_scene load_steps=27 format=4 uid="uid://co8e3r47x3lmq"]
 
 [ext_resource type="Texture2D" uid="uid://bllm7pssgvr1t" path="res://levels/tile/tileset-PLACE-HOLDER.png" id="1_8nelv"]
 [ext_resource type="Texture2D" uid="uid://di7repnlatj4v" path="res://levels/tile/background-PLACE-HOLDER.png" id="1_aeujl"]
@@ -17,6 +17,12 @@
 [ext_resource type="PackedScene" uid="uid://bs142q3whn5qa" path="res://enemies/depression/slime/depression_slime.tscn" id="15_0vv12"]
 [ext_resource type="PackedScene" uid="uid://c6b5wiedlbj1y" path="res://gui/healthBar/health_bar.tscn" id="16_o5yuq"]
 [ext_resource type="PackedScene" uid="uid://d3dyo1f0naxcw" path="res://background/parralax-background.tscn" id="17_wjuib"]
+
+[sub_resource type="GDScript" id="GDScript_wjuib"]
+script/source = "extends Node2D
+
+func _ready() -> void:
+	pass"
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tlucr"]
 texture = ExtResource("1_aeujl")
@@ -123,6 +129,7 @@ sources/7 = SubResource("TileSetAtlasSource_8hjdj")
 size = Vector2(2557, 31)
 
 [node name="Test-level" type="Node2D"]
+script = SubResource("GDScript_wjuib")
 
 [node name="map" type="Node" parent="."]
 

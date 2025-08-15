@@ -55,7 +55,7 @@ var idle = false
 var config = ConfigFile.new()
 
 func _ready() -> void:
-	loadSave()
+	#loadSave()
 	damageAreas = get_tree().get_nodes_in_group("damage")
 	
 	if damageAreas.size() != 0:
@@ -265,10 +265,11 @@ func applyKnockback(direction : int, force : Vector2, duration : float):
 	knockback = direction * force
 	
 func save():
-	config.set_value("player", "pos", position)
-	config.save("res://saveTest/player.cfg")
-	print("Posição do jogador salva")
-
+	#config.set_value("player", "pos", position)
+	#config.save("res://saveTest/player.cfg")
+	#print("Posição do jogador salva")
+	pass
+	
 func loadSave():
 	if config.load("res://saveTest/player.cfg") == OK:
 		position = config.get_value("player", "pos")
