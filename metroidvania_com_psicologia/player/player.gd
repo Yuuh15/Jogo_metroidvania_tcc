@@ -266,11 +266,11 @@ func applyKnockback(direction : int, force : Vector2, duration : float):
 	
 func save():
 	#config.set_value("player", "pos", position)
-	#config.save("res://saveTest/player.cfg")
+	#config.save("user://player.cfg")
 	#print("Posição do jogador salva")
 	pass
 	
 func loadSave():
-	if config.load("res://saveTest/player.cfg") == OK:
+	if config.load("user://player.cfg") == OK:
 		position = config.get_value("player", "pos")
 		print("Posição do jogador carregada")

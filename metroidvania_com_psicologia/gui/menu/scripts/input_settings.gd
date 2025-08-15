@@ -10,13 +10,7 @@ var remapping_button = null
 var config = ConfigFile.new()
 
 # Lista de ações personalizadas com nomes amigáveis
-var input_actions = {
-	"jump": "Pular",
-	"move_left": "Esquerda",
-	"move_right": "Direita",
-	"use_power": "Poderes",
-	"time_warp": "Distorção temporal"
-}
+var input_actions = GameManager.getInputActions()
 
 func _ready() -> void:
 	_create_action_list()
@@ -82,7 +76,7 @@ func _save_input_config():
 		var events = InputMap.action_get_events(action)
 		config.set_value("inputs", action, events)
 			
-	config.save("res://saveTest/inputs.cfg")
+	config.save("user://inputs.cfg")
 	print("Salvo")
 	
 func _on_back_pressed() -> void:
