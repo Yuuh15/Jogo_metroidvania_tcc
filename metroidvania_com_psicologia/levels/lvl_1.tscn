@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=4 uid="uid://bjnma6o33emg7"]
+[gd_scene load_steps=8 format=4 uid="uid://c68yd0t3pln0s"]
 
 [ext_resource type="PackedScene" uid="uid://mpe4ophwvn2b" path="res://tileset/chaov2/tile_map_layer_depression.tscn" id="1_1lxr2"]
 [ext_resource type="PackedScene" uid="uid://d3dyo1f0naxcw" path="res://background/parralax-background.tscn" id="2_x3lfk"]

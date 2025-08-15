@@ -3,7 +3,7 @@ extends Control
 func _ready():
 	for button in $VBoxContainer.get_children():
 		button.connect("mouse_entered", $Switch.play)
-	
+		
 func _process(delta):
 	pass
 
