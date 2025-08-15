@@ -51,7 +51,11 @@ var dashDuration := 0.5 # Duração do DASH
 # Verifica se o jogador está totalmente parado
 var idle = false
 
+# Variável que acessa os arquivos de salvemento
+var config = ConfigFile.new()
+
 func _ready() -> void:
+	loadSave()
 	damageAreas = get_tree().get_nodes_in_group("damage")
 	
 	if damageAreas.size() != 0:
@@ -260,3 +264,12 @@ func applyKnockback(direction : int, force : Vector2, duration : float):
 	knockbackDuration = duration
 	knockback = direction * force
 	
+func save():
+	config.set_value("player", "pos", position)
+	config.save("res://saveTest/player.cfg")
+	print("Posição do jogador salva")
+
+func loadSave():
+	if config.load("res://saveTest/player.cfg") == OK:
+		position = config.get_value("player", "pos")
+		print("Posição do jogador carregada")
