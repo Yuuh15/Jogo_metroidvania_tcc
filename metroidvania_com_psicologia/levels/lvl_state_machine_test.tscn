@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=4 uid="uid://bfowlm40c1lfi"]
+
+[ext_resource type="PackedScene" uid="uid://mpe4ophwvn2b" path="res://tileset/chaov2/tile_map_layer_depression.tscn" id="1_2jqv4"]
+[ext_resource type="PackedScene" uid="uid://d3dyo1f0naxcw" path="res://background/parralax-background.tscn" id="2_4yswx"]
+[ext_resource type="PackedScene" uid="uid://2vnhb0nwnhqp" path="res://sam/sam.tscn" id="3_w7ih7"]
+[ext_resource type="PackedScene" uid="uid://c01ekom3u1ga5" path="res://sam/playerCamera.tscn" id="4_4yswx"]
+
+[node name="lvl_stateMachineTest" type="Node2D"]
+
+[node name="TileMapLayerDepression" parent="." instance=ExtResource("1_2jqv4")]
+tile_map_data = PackedByteArray("AAD3/wAAAQABAAAAAAD4/wAAAQABAAAAAAD5/wAAAQABAAAAAAD6/wAAAQABAAAAAAD7/wAAAQABAAAAAAD8/wAAAQABAAAAAAD9/wAAAQABAAAAAAD+/wAAAQABAAAAAAD//wAAAQABAAAAAAAAAAAAAQABAAAAAAABAAAAAQABAAAAAAACAAAAAQABAAAAAAADAAAAAQABAAAAAAAEAAAAAQABAAAAAAAFAAAAAQABAAAAAAALAAAAAQABAAAAAAAKAAAAAQABAAAAAAAJAAAAAQABAAAAAAAIAAAAAQABAAAAAAAHAAAAAQABAAAAAAAGAAAAAQABAAAAAAA=")
+
+[node name="background" parent="." instance=ExtResource("2_4yswx")]
+
+[node name="Sam" parent="." instance=ExtResource("3_w7ih7")]
+position = Vector2(-1, -14)
+
+[node name="PlayerCamera" parent="Sam" instance=ExtResource("4_4yswx")]
+position = Vector2(1, 12)

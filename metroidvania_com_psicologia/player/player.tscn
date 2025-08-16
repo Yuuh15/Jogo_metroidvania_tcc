@@ -1,8 +1,9 @@
-[gd_scene load_steps=24 format=3 uid="uid://bnel1u2etfiwm"]
+[gd_scene load_steps=25 format=3 uid="uid://bnel1u2etfiwm"]
 
 [ext_resource type="Script" uid="uid://di1rfdifcs7rw" path="res://player/player.gd" id="1_g6k8r"]
 [ext_resource type="Texture2D" uid="uid://cfaa73frplp4t" path="res://interfaces/SAM 64x64/Sam_Parado_64x.png" id="3_g6k8r"]
 [ext_resource type="Texture2D" uid="uid://bkih0h52pwmmn" path="res://interfaces/SAM 64x64/Sam_Pulando_64x.png" id="4_boad6"]
+[ext_resource type="PackedScene" uid="uid://c01ekom3u1ga5" path="res://sam/playerCamera.tscn" id="5_boad6"]
 [ext_resource type="AudioStream" uid="uid://cfi8wr3tlrm1p" path="res://player/jump.wav" id="5_qjkh3"]
 [ext_resource type="Texture2D" uid="uid://diu5eer1w8l52" path="res://interfaces/SAM 64x64/Sam_Andando_64x.png" id="5_rgyib"]
 [ext_resource type="AudioStream" uid="uid://d38rp2crk4yt5" path="res://player/hitHurt.wav" id="6_g6k8r"]
@@ -152,20 +153,15 @@ script = ExtResource("1_g6k8r")
 position = Vector2(5.68434e-14, -7.08)
 scale = Vector2(0.38, 0.3775)
 sprite_frames = SubResource("SpriteFrames_lbo0b")
-animation = &"dash_midair"
+animation = &"running"
 autoplay = "idle"
 
 [node name="collisionShape" type="CollisionShape2D" parent="."]
 position = Vector2(0, -7)
 shape = SubResource("CapsuleShape2D_ebec5")
 
-[node name="camera2D" type="Camera2D" parent="."]
+[node name="camera2D" parent="." instance=ExtResource("5_boad6")]
 position = Vector2(0, -3)
-zoom = Vector2(3, 3)
-process_callback = 0
-limit_bottom = 50000
-limit_smoothed = true
-position_smoothing_enabled = true
 
 [node name="dashTimer" type="Timer" parent="."]
 wait_time = 0.25
