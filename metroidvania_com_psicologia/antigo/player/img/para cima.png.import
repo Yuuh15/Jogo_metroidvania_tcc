@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dfkenf16iboyf"
-path="res://.godot/imported/Sam_Parado_64x.png-3128bbb9241b881352b38c34c27f5956.ctex"
+uid="uid://cf450cvhsq6ud"
+path="res://.godot/imported/para cima.png-5382bfb9bce871b508f57c17203262ee.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/SAM 64x64/Sam_Parado_64x.png"
-dest_files=["res://.godot/imported/Sam_Parado_64x.png-3128bbb9241b881352b38c34c27f5956.ctex"]
+source_file="res://antigo/player/img/para cima.png"
+dest_files=["res://.godot/imported/para cima.png-5382bfb9bce871b508f57c17203262ee.ctex"]
 
 [params]
 

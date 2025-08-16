@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://coeormaq4erws"
-path="res://.godot/imported/direita.png-49f5f10839b64fece3fb590f5a45ac87.ctex"
+uid="uid://do3n6qf4mx41k"
+path="res://.godot/imported/Sam_Andando_64x.png-2fd4ef817a7c741aaa5d0ebcc5718069.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player/img/direita.png"
-dest_files=["res://.godot/imported/direita.png-49f5f10839b64fece3fb590f5a45ac87.ctex"]
+source_file="res://player/sprites/Sam_Andando_64x.png"
+dest_files=["res://.godot/imported/Sam_Andando_64x.png-2fd4ef817a7c741aaa5d0ebcc5718069.ctex"]
 
 [params]
 

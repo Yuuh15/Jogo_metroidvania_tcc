@@ -20,7 +20,9 @@ func _ready() -> void:
 static func getInputActions() -> Dictionary[String, String]:
 	return {
 		"jump": "Pular",
+		"move_up": "Cima",
 		"move_left": "Esquerda",
+		"move_down": "Baixo",
 		"move_right": "Direita",
 		"use_power": "Poderes",
 		"time_warp": "Distorção temporal"

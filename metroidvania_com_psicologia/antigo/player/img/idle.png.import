@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://0w4p88ma62ek"
-path="res://.godot/imported/para baixo.png-c1a7164347b35f18722d496bcfe350a4.ctex"
+uid="uid://brydwky6scu4d"
+path="res://.godot/imported/idle.png-d06d91c9527a90952bae1636616482aa.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player/img/para baixo.png"
-dest_files=["res://.godot/imported/para baixo.png-c1a7164347b35f18722d496bcfe350a4.ctex"]
+source_file="res://antigo/player/img/idle.png"
+dest_files=["res://.godot/imported/idle.png-d06d91c9527a90952bae1636616482aa.ctex"]
 
 [params]
 

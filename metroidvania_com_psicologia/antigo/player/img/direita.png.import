@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bwvljr7q5ceh4"
-path="res://.godot/imported/esquerda.png-00cb128a58f9c6f76ddbcc1b3e751512.ctex"
+uid="uid://coeormaq4erws"
+path="res://.godot/imported/direita.png-b6eb14636c7c2fc82d31298e7c3392fc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player/img/esquerda.png"
-dest_files=["res://.godot/imported/esquerda.png-00cb128a58f9c6f76ddbcc1b3e751512.ctex"]
+source_file="res://antigo/player/img/direita.png"
+dest_files=["res://.godot/imported/direita.png-b6eb14636c7c2fc82d31298e7c3392fc.ctex"]
 
 [params]
 

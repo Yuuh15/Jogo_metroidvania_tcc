@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://do3n6qf4mx41k"
-path="res://.godot/imported/Sam_Andando_64x.png-af0470be9b230d3b65b34c05e18abfc5.ctex"
+uid="uid://cpaisen6jyv8h"
+path="res://.godot/imported/direita-move.png-fda7c90c1f86b775fa957dac2a690683.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/SAM 64x64/Sam_Andando_64x.png"
-dest_files=["res://.godot/imported/Sam_Andando_64x.png-af0470be9b230d3b65b34c05e18abfc5.ctex"]
+source_file="res://antigo/player/img/direita-move.png"
+dest_files=["res://.godot/imported/direita-move.png-fda7c90c1f86b775fa957dac2a690683.ctex"]
 
 [params]
 

@@ -1,8 +1,7 @@
-[gd_scene load_steps=27 format=4 uid="uid://co8e3r47x3lmq"]
+[gd_scene load_steps=28 format=4 uid="uid://co8e3r47x3lmq"]
 
 [ext_resource type="Texture2D" uid="uid://bllm7pssgvr1t" path="res://levels/tile/tileset-PLACE-HOLDER.png" id="1_8nelv"]
 [ext_resource type="Texture2D" uid="uid://di7repnlatj4v" path="res://levels/tile/background-PLACE-HOLDER.png" id="1_aeujl"]
-[ext_resource type="PackedScene" uid="uid://bnel1u2etfiwm" path="res://player/player.tscn" id="2_cd0bw"]
 [ext_resource type="Texture2D" uid="uid://vvnloco0jh08" path="res://tileset/tile-set demo (2).png" id="3_ly3hx"]
 [ext_resource type="PackedScene" uid="uid://dsjvp2jcex54l" path="res://items/double_jump/double_jump.tscn" id="4_4l2q7"]
 [ext_resource type="Texture2D" uid="uid://rm2pebjn368u" path="res://tileset/tile-set demo v3.png" id="4_wkb0e"]
@@ -17,6 +16,8 @@
 [ext_resource type="PackedScene" uid="uid://bs142q3whn5qa" path="res://enemies/depression/slime/depression_slime.tscn" id="15_0vv12"]
 [ext_resource type="PackedScene" uid="uid://c6b5wiedlbj1y" path="res://gui/healthBar/health_bar.tscn" id="16_o5yuq"]
 [ext_resource type="PackedScene" uid="uid://d3dyo1f0naxcw" path="res://background/parralax-background.tscn" id="17_wjuib"]
+[ext_resource type="PackedScene" uid="uid://2vnhb0nwnhqp" path="res://player/player.tscn" id="17_xag4j"]
+[ext_resource type="PackedScene" uid="uid://c01ekom3u1ga5" path="res://player/playerCamera.tscn" id="18_xag4j"]
 
 [sub_resource type="GDScript" id="GDScript_wjuib"]
 script/source = "extends Node2D
@@ -175,9 +176,6 @@ shape = SubResource("RectangleShape2D_wndkh")
 [node name="arcoIris" parent="." instance=ExtResource("7_axl34")]
 position = Vector2(31, -28)
 
-[node name="player" parent="." instance=ExtResource("2_cd0bw")]
-position = Vector2(2560, -304)
-
 [node name="depression-slime" parent="." instance=ExtResource("15_0vv12")]
 position = Vector2(2394, -304)
 
@@ -196,6 +194,11 @@ offset_left = 16.0
 offset_top = 16.0
 offset_right = 116.0
 offset_bottom = 21.0
-target = NodePath("../../player")
+target = NodePath("../../Player")
 
 [node name="background" parent="." instance=ExtResource("17_wjuib")]
+
+[node name="Player" parent="." instance=ExtResource("17_xag4j")]
+position = Vector2(199, -33)
+
+[node name="PlayerCamera" parent="Player" instance=ExtResource("18_xag4j")]

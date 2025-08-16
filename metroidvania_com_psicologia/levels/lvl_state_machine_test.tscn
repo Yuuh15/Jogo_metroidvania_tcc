@@ -1,9 +1,12 @@
-[gd_scene load_steps=5 format=4 uid="uid://bfowlm40c1lfi"]
+[gd_scene load_steps=8 format=4 uid="uid://bfowlm40c1lfi"]
 
 [ext_resource type="PackedScene" uid="uid://mpe4ophwvn2b" path="res://tileset/chaov2/tile_map_layer_depression.tscn" id="1_2jqv4"]
 [ext_resource type="PackedScene" uid="uid://d3dyo1f0naxcw" path="res://background/parralax-background.tscn" id="2_4yswx"]
-[ext_resource type="PackedScene" uid="uid://2vnhb0nwnhqp" path="res://sam/sam.tscn" id="3_w7ih7"]
-[ext_resource type="PackedScene" uid="uid://c01ekom3u1ga5" path="res://sam/playerCamera.tscn" id="4_4yswx"]
+[ext_resource type="PackedScene" uid="uid://2vnhb0nwnhqp" path="res://player/player.tscn" id="3_w7ih7"]
+[ext_resource type="PackedScene" uid="uid://c01ekom3u1ga5" path="res://player/playerCamera.tscn" id="4_4yswx"]
+[ext_resource type="PackedScene" uid="uid://m0w2uklh55yb" path="res://items/dash/dash.tscn" id="5_w7ih7"]
+[ext_resource type="PackedScene" uid="uid://csjknbnqj11pi" path="res://items/stomp/stop_jump.tscn" id="6_pw76p"]
+[ext_resource type="PackedScene" uid="uid://msq8my3k82h6" path="res://items/time_warp/time_changer.tscn" id="7_5qfkr"]
 
 [node name="lvl_stateMachineTest" type="Node2D"]
 
@@ -17,3 +20,12 @@ position = Vector2(-1, -14)
 
 [node name="PlayerCamera" parent="Sam" instance=ExtResource("4_4yswx")]
 position = Vector2(1, 12)
+
+[node name="dash" parent="." instance=ExtResource("5_w7ih7")]
+position = Vector2(59, -8)
+
+[node name="stop_jump" parent="." instance=ExtResource("6_pw76p")]
+position = Vector2(-65, -7)
+
+[node name="time_changer" parent="." instance=ExtResource("7_5qfkr")]
+position = Vector2(-30, -9)

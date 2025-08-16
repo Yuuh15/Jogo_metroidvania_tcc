@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://clyyjw4fgfx1g"
-path="res://.godot/imported/Sam_Pulando_64x.png-1dbaaf4f9eff82534bcc6f6e705ced9f.ctex"
+uid="uid://bwvljr7q5ceh4"
+path="res://.godot/imported/esquerda.png-2ed5847fc18c54b32de33a6a9ee1fef6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/SAM 64x64/Sam_Pulando_64x.png"
-dest_files=["res://.godot/imported/Sam_Pulando_64x.png-1dbaaf4f9eff82534bcc6f6e705ced9f.ctex"]
+source_file="res://antigo/player/img/esquerda.png"
+dest_files=["res://.godot/imported/esquerda.png-2ed5847fc18c54b32de33a6a9ee1fef6.ctex"]
 
 [params]
 
