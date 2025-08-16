@@ -64,11 +64,13 @@ func _physics_process(delta: float) -> void:
 		knockbackDuration -= delta
 		if 0 > knockbackDuration:
 			knockback = Vector2.ZERO
-	
+
 	move_and_slide()
 	
 func applyGravity(delta : float):
-	if not is_on_floor():
+	if is_on_floor():
+		airJumps = maxAirJumps
+	else:
 		velocity += get_gravity() * delta
 
 func _on_debug_timeout() -> void:
