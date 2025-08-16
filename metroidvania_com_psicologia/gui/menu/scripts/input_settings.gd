@@ -7,23 +7,17 @@ extends Control
 var is_remapping = false
 var action_to_remap = null
 var remapping_button = null
+var config = ConfigFile.new()
 
 # Lista de ações personalizadas com nomes amigáveis
-var input_actions = {
-	"jump": "Pular",
-	"move_left": "Esquerda",
-	"move_right": "Direita",
-	"use_power": "Poderes",
-	"time_warp": "Distorção temporal"
-}
+var input_actions = GameManager.getInputActions()
 
 func _ready() -> void:
 	_create_action_list()
 	for button in $PanelContainer/MarginContainer/VBoxContainer.get_children():
 		if button is Button:
 			button.connect("mouse_entered", $SwitchInput.play)
-			
-			
+
 	for button in $PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/ActionList.get_children():
 		if button is Button:
 			button.connect("mouse_entered", $SwitchInput.play)
@@ -31,7 +25,6 @@ func _ready() -> void:
 	
 
 func _create_action_list():
-	InputMap.load_from_project_settings()  # Recarrega mapeamento base
 	for item in action_list.get_children():
 		item.queue_free()
 
@@ -79,20 +72,18 @@ func _update_action_list(button, event):
 	button.find_child("LabelInput").text = event.as_text().trim_suffix(" (Physical)")
 
 func _save_input_config():
-	var config = ConfigFile.new()
-
 	for action in input_actions:
 		var events = InputMap.action_get_events(action)
-		if events.size() > 0 and events[0] is InputEventKey:
-			var event = events[0] as InputEventKey
-			config.set_value("inputs", action, event.keycode)
-
-	config.save("user://input.cfg")
-
+		config.set_value("inputs", action, events)
+			
+	config.save("user://inputs.cfg")
+	print("Salvo")
 	
 func _on_back_pressed() -> void:
 	get_tree().change_scene_to_file("res://gui/menu/opções.tscn")
 
 
 func _on_botão_padrão_pressed() -> void:
-	_create_action_list()
+	InputMap.load_from_project_settings()
+	_save_input_config()
+	_create_action_list()	

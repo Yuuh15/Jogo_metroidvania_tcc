@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://brydwky6scu4d"
-path="res://.godot/imported/idle.png-764ffad81cbcd5dc0d79729f522fc0b0.ctex"
+uid="uid://dfkenf16iboyf"
+path="res://.godot/imported/Sam_Parado_64x.png-f4c235e30875680eaf865c20e3065dc6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player/img/idle.png"
-dest_files=["res://.godot/imported/idle.png-764ffad81cbcd5dc0d79729f522fc0b0.ctex"]
+source_file="res://player/sprites/Sam_Parado_64x.png"
+dest_files=["res://.godot/imported/Sam_Parado_64x.png-f4c235e30875680eaf865c20e3065dc6.ctex"]
 
 [params]
 

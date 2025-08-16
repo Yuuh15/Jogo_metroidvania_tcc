@@ -8,7 +8,7 @@ var followSpeed : int = 100
 
 var speed : int
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
-@onready var player: CharacterBody2D = $"../player"
+@onready var player: CharacterBody2D = $"../Player"
 @onready var ray_cast_2d: RayCast2D = $vision
 var trail = preload("res://enemies/depression/slime/trail/trail.tscn")
 @onready var trailPos: Marker2D = $trail
@@ -62,7 +62,7 @@ func canWalk() -> bool:
 
 
 func _on_hurt_box_body_entered(body: Node2D) -> void:
-	if body.name == "player":
+	if body is Player:
 		var direction = -1 if sprite.flip_h else 1
 		var force = Vector2(500, 0)
 		body.applyKnockback(direction, force, 0.2)

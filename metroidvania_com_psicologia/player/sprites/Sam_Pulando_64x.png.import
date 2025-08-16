@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cf450cvhsq6ud"
-path="res://.godot/imported/para cima.png-9d1d48e35c6e350dcca111efb8e346db.ctex"
+uid="uid://clyyjw4fgfx1g"
+path="res://.godot/imported/Sam_Pulando_64x.png-1fb3e0b1862f1cffd9e3d2ca4bf21854.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player/img/para cima.png"
-dest_files=["res://.godot/imported/para cima.png-9d1d48e35c6e350dcca111efb8e346db.ctex"]
+source_file="res://player/sprites/Sam_Pulando_64x.png"
+dest_files=["res://.godot/imported/Sam_Pulando_64x.png-1fb3e0b1862f1cffd9e3d2ca4bf21854.ctex"]
 
 [params]
 

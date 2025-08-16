@@ -67,7 +67,7 @@ func choose(array):
 
 # Player detection functions
 func _on_detection_area_body_entered(body):
-	if body.is_in_group("player"):  # Make sure player is in "player" group
+	if body is Player: 
 		player_ref = body
 		is_chase = true
 		is_roaming = false

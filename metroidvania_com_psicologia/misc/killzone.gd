@@ -1,7 +1,7 @@
 extends Area2D
 
 func _on_body_entered(body: Node2D) -> void:
-	if body is CharacterBody2D:
+	if body is Player:
 		print("You died!")
 		Engine.time_scale = 1
 		$Timer.start()

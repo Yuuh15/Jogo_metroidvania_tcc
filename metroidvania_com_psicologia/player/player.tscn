@@ -1,94 +1,76 @@
-[gd_scene load_steps=24 format=3 uid="uid://bnel1u2etfiwm"]
+[gd_scene load_steps=26 format=3 uid="uid://2vnhb0nwnhqp"]
 
-[ext_resource type="Script" uid="uid://di1rfdifcs7rw" path="res://player/player.gd" id="1_g6k8r"]
-[ext_resource type="Texture2D" uid="uid://cfaa73frplp4t" path="res://player/SAM 64x64/Sam_Parado_64x.png" id="3_g6k8r"]
-[ext_resource type="Texture2D" uid="uid://bkih0h52pwmmn" path="res://player/SAM 64x64/Sam_Pulando_64x.png" id="4_boad6"]
+[ext_resource type="Script" uid="uid://cxwo6iykdp5rv" path="res://player/player.gd" id="1_2sfht"]
+[ext_resource type="Texture2D" uid="uid://dfkenf16iboyf" path="res://player/sprites/Sam_Parado_64x.png" id="1_3pu38"]
+[ext_resource type="Texture2D" uid="uid://clyyjw4fgfx1g" path="res://player/sprites/Sam_Pulando_64x.png" id="2_q3i6w"]
+[ext_resource type="Texture2D" uid="uid://do3n6qf4mx41k" path="res://player/sprites/Sam_Andando_64x.png" id="3_42fb3"]
+[ext_resource type="Script" uid="uid://dv26duycoykqb" path="res://scripts/state-machine-controller.gd" id="4_42fb3"]
 [ext_resource type="AudioStream" uid="uid://cfi8wr3tlrm1p" path="res://player/jump.wav" id="5_qjkh3"]
-[ext_resource type="Texture2D" uid="uid://diu5eer1w8l52" path="res://player/SAM 64x64/Sam_Andando_64x.png" id="5_rgyib"]
 [ext_resource type="AudioStream" uid="uid://d38rp2crk4yt5" path="res://player/hitHurt.wav" id="6_g6k8r"]
+[ext_resource type="Script" uid="uid://q73oaypbeup0" path="res://player/states/idle.gd" id="6_k3a0e"]
+[ext_resource type="Script" uid="uid://ddcsl88sibfwq" path="res://player/states/running.gd" id="7_k3a0e"]
+[ext_resource type="Script" uid="uid://ce6u4e75xpbc1" path="res://player/states/jump.gd" id="8_n3yqn"]
+[ext_resource type="Script" uid="uid://jrml8fgb4dtx" path="res://player/states/dash.gd" id="9_vwjo1"]
+[ext_resource type="Script" uid="uid://cln1ydxw421ep" path="res://player/states/stomp.gd" id="10_swvrg"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_yw30f"]
-atlas = ExtResource("3_g6k8r")
-region = Rect2(192, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hg6s5"]
-atlas = ExtResource("3_g6k8r")
+[sub_resource type="AtlasTexture" id="AtlasTexture_2sfht"]
+atlas = ExtResource("1_3pu38")
 region = Rect2(0, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_8t03j"]
-atlas = ExtResource("3_g6k8r")
+[sub_resource type="AtlasTexture" id="AtlasTexture_k3a0e"]
+atlas = ExtResource("1_3pu38")
 region = Rect2(64, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_2ieo8"]
-atlas = ExtResource("3_g6k8r")
+[sub_resource type="AtlasTexture" id="AtlasTexture_n3yqn"]
+atlas = ExtResource("1_3pu38")
 region = Rect2(128, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_tqiix"]
-atlas = ExtResource("3_g6k8r")
+[sub_resource type="AtlasTexture" id="AtlasTexture_vwjo1"]
+atlas = ExtResource("1_3pu38")
 region = Rect2(192, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_e7oew"]
-atlas = ExtResource("4_boad6")
+[sub_resource type="AtlasTexture" id="AtlasTexture_swvrg"]
+atlas = ExtResource("2_q3i6w")
 region = Rect2(0, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_c35mf"]
-atlas = ExtResource("4_boad6")
+[sub_resource type="AtlasTexture" id="AtlasTexture_uh55g"]
+atlas = ExtResource("2_q3i6w")
 region = Rect2(64, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_65viv"]
-atlas = ExtResource("4_boad6")
+[sub_resource type="AtlasTexture" id="AtlasTexture_to1x8"]
+atlas = ExtResource("2_q3i6w")
 region = Rect2(128, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_x7c3f"]
-atlas = ExtResource("4_boad6")
+[sub_resource type="AtlasTexture" id="AtlasTexture_krmwc"]
+atlas = ExtResource("2_q3i6w")
 region = Rect2(192, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_bjvpn"]
-atlas = ExtResource("5_rgyib")
+[sub_resource type="AtlasTexture" id="AtlasTexture_g6io6"]
+atlas = ExtResource("3_42fb3")
 region = Rect2(64, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_s7qer"]
-atlas = ExtResource("5_rgyib")
+[sub_resource type="AtlasTexture" id="AtlasTexture_c1arc"]
+atlas = ExtResource("3_42fb3")
 region = Rect2(128, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_g4c7l"]
-atlas = ExtResource("5_rgyib")
+[sub_resource type="AtlasTexture" id="AtlasTexture_p6bdf"]
+atlas = ExtResource("3_42fb3")
 region = Rect2(192, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_qjkh3"]
-atlas = ExtResource("5_rgyib")
-region = Rect2(64, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_g6k8r"]
-atlas = ExtResource("5_rgyib")
-region = Rect2(128, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_boad6"]
-atlas = ExtResource("5_rgyib")
-region = Rect2(192, 0, 64, 64)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_lbo0b"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_0pucg"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_yw30f")
-}],
-"loop": true,
-"name": &"dash_midair",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hg6s5")
+"texture": SubResource("AtlasTexture_2sfht")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_8t03j")
+"texture": SubResource("AtlasTexture_k3a0e")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_2ieo8")
+"texture": SubResource("AtlasTexture_n3yqn")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_tqiix")
+"texture": SubResource("AtlasTexture_vwjo1")
 }],
 "loop": true,
 "name": &"idle",
@@ -96,16 +78,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_e7oew")
+"texture": SubResource("AtlasTexture_swvrg")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_c35mf")
+"texture": SubResource("AtlasTexture_uh55g")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_65viv")
+"texture": SubResource("AtlasTexture_to1x8")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_x7c3f")
+"texture": SubResource("AtlasTexture_krmwc")
 }],
 "loop": true,
 "name": &"jump",
@@ -113,76 +95,87 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_bjvpn")
+"texture": SubResource("AtlasTexture_g6io6")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_s7qer")
+"texture": SubResource("AtlasTexture_c1arc")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_g4c7l")
-}],
-"loop": true,
-"name": &"moving",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_qjkh3")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_g6k8r")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_boad6")
+"texture": SubResource("AtlasTexture_p6bdf")
 }],
 "loop": true,
 "name": &"running",
 "speed": 8.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ebec5"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xlp3g"]
 radius = 7.0
 height = 24.0
 
-[node name="player" type="CharacterBody2D"]
-collision_mask = 14
-script = ExtResource("1_g6k8r")
+[node name="Player" type="CharacterBody2D"]
+collision_mask = 30
+script = ExtResource("1_2sfht")
 
-[node name="anim" type="AnimatedSprite2D" parent="."]
-position = Vector2(5.68434e-14, -7.08)
-scale = Vector2(0.38, 0.3775)
-sprite_frames = SubResource("SpriteFrames_lbo0b")
-animation = &"dash_midair"
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.38, 0.38)
+sprite_frames = SubResource("SpriteFrames_0pucg")
+animation = &"idle"
 autoplay = "idle"
 
 [node name="collisionShape" type="CollisionShape2D" parent="."]
-position = Vector2(0, -7)
-shape = SubResource("CapsuleShape2D_ebec5")
+shape = SubResource("CapsuleShape2D_xlp3g")
 
-[node name="camera2D" type="Camera2D" parent="."]
-position = Vector2(0, -3)
-zoom = Vector2(3, 3)
-process_callback = 0
-limit_bottom = 50000
-limit_smoothed = true
-position_smoothing_enabled = true
+[node name="StateMachineController" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("4_42fb3")
+initial_state = NodePath("Idle")
+metadata/_custom_type_script = "uid://dv26duycoykqb"
 
-[node name="dashTimer" type="Timer" parent="."]
+[node name="Idle" type="Node" parent="StateMachineController"]
+script = ExtResource("6_k3a0e")
+metadata/_custom_type_script = "uid://l6eq8yklu062"
+
+[node name="Running" type="Node" parent="StateMachineController"]
+script = ExtResource("7_k3a0e")
+metadata/_custom_type_script = "uid://l6eq8yklu062"
+
+[node name="Jump" type="Node" parent="StateMachineController"]
+script = ExtResource("8_n3yqn")
+metadata/_custom_type_script = "uid://l6eq8yklu062"
+
+[node name="Dash" type="Node" parent="StateMachineController"]
+script = ExtResource("9_vwjo1")
+metadata/_custom_type_script = "uid://l6eq8yklu062"
+
+[node name="Duration" type="Timer" parent="StateMachineController/Dash"]
 wait_time = 0.25
+one_shot = true
 
-[node name="dashCooldown" type="Timer" parent="."]
-wait_time = 3.0
+[node name="Cooldown" type="Timer" parent="StateMachineController/Dash"]
+one_shot = true
 
-[node name="stompCooldown" type="Timer" parent="."]
+[node name="Stomp" type="Node" parent="StateMachineController"]
+script = ExtResource("10_swvrg")
+metadata/_custom_type_script = "uid://l6eq8yklu062"
+
+[node name="Cooldown" type="Timer" parent="StateMachineController/Stomp"]
 wait_time = 0.5
+one_shot = true
+
+[node name="Debug" type="Timer" parent="."]
+
+[node name="TimeWarpDuration" type="Timer" parent="."]
+wait_time = 2.5
+one_shot = true
 
 [node name="Jump" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_qjkh3")
 volume_db = -11.243
 
-[node name="hurt" type="AudioStreamPlayer" parent="."]
+[node name="Hurt" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_g6k8r")
 
-[connection signal="timeout" from="dashTimer" to="." method="_on_dash_timer_timeout"]
-[connection signal="timeout" from="dashCooldown" to="." method="_on_dash_cooldown_timeout"]
-[connection signal="timeout" from="stompCooldown" to="." method="_on_stomp_cooldown_timeout"]
+[connection signal="timeout" from="StateMachineController/Dash/Duration" to="StateMachineController/Dash" method="_on_duration_timeout"]
+[connection signal="timeout" from="StateMachineController/Dash/Cooldown" to="StateMachineController/Dash" method="_on_cooldown_timeout"]
+[connection signal="timeout" from="StateMachineController/Stomp/Cooldown" to="StateMachineController/Stomp" method="_on_cooldown_timeout"]
+[connection signal="timeout" from="Debug" to="." method="_on_debug_timeout"]
+[connection signal="timeout" from="TimeWarpDuration" to="." method="_on_time_warp_duration_timeout"]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cpaisen6jyv8h"
-path="res://.godot/imported/direita-move.png-e73f20ca40ddeb90ee6d27518f60c275.ctex"
+uid="uid://0w4p88ma62ek"
+path="res://.godot/imported/para baixo.png-6eed1d93ebed44a73478487c1dafa471.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player/img/direita-move.png"
-dest_files=["res://.godot/imported/direita-move.png-e73f20ca40ddeb90ee6d27518f60c275.ctex"]
+source_file="res://antigo/player/img/para baixo.png"
+dest_files=["res://.godot/imported/para baixo.png-6eed1d93ebed44a73478487c1dafa471.ctex"]
 
 [params]
 

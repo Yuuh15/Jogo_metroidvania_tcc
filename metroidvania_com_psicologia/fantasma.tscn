@@ -1,9 +1,9 @@
 [gd_scene load_steps=19 format=3 uid="uid://besthe13sfm0e"]
 
-[ext_resource type="Script" uid="uid://djsqjqom1mp0l" path="res://fantasma.gd" id="1_mkdhj"]
-[ext_resource type="Texture2D" uid="uid://df0wimk0vesay" path="res://enemies/inimigo_fantasma_depressao/fantasma atacando.png" id="1_w0qjp"]
-[ext_resource type="Texture2D" uid="uid://cb3fs50le842k" path="res://enemies/inimigo_fantasma_depressao/fantasma morrendo.png" id="2_mkdhj"]
-[ext_resource type="Texture2D" uid="uid://b5uw3453bfwcc" path="res://enemies/inimigo_fantasma_depressao/fantasma parado.png" id="3_v5tm2"]
+[ext_resource type="Script" path="res://fantasma.gd" id="1_mkdhj"]
+[ext_resource type="Texture2D" uid="uid://df0wimk0vesay" path="res://assets/inimigo_fantasma_depressao/fantasma atacando.png" id="1_w0qjp"]
+[ext_resource type="Texture2D" uid="uid://cb3fs50le842k" path="res://assets/inimigo_fantasma_depressao/fantasma morrendo.png" id="2_mkdhj"]
+[ext_resource type="Texture2D" uid="uid://b5uw3453bfwcc" path="res://assets/inimigo_fantasma_depressao/fantasma parado.png" id="3_v5tm2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1proa"]
 atlas = ExtResource("1_w0qjp")
