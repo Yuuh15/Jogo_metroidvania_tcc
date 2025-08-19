@@ -2,8 +2,9 @@ class_name Player
 extends CharacterBody2D
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
-@onready var hurt: AudioStreamPlayer = $Hurt
-@onready var jump: AudioStreamPlayer = $Jump
+@onready var hurt: AudioStreamPlayer = $Sounds/Hurt
+@onready var jump: AudioStreamPlayer = $Sounds/Jump
+@onready var highJump: AudioStreamPlayer = $Sounds/HighJump
 
 var directionX : float
 var directionY : float

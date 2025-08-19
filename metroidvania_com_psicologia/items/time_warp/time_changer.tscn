@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://msq8my3k82h6"]
+[gd_scene load_steps=14 format=3 uid="uid://msq8my3k82h6"]
 
 [ext_resource type="Texture2D" uid="uid://bo87yfyt1ln7f" path="res://items/time_warp/clock-1.png" id="1_synsv"]
 [ext_resource type="Script" uid="uid://51bb6q1fm8ca" path="res://items/time_warp/time_changer.gd" id="1_whftq"]
@@ -9,6 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://ckv2pq0tjlf68" path="res://items/time_warp/clock-6.png" id="6_ot3os"]
 [ext_resource type="Texture2D" uid="uid://btqmf4gvqgp71" path="res://items/time_warp/clock-7.png" id="7_jxa75"]
 [ext_resource type="Texture2D" uid="uid://dqj8b8xpd34c2" path="res://items/time_warp/clock-8.png" id="8_qbv78"]
+[ext_resource type="AudioStream" uid="uid://d3nfbjff8ukis" path="res://audios/clock-tick.mp3" id="10_kfofg"]
+[ext_resource type="AudioStream" uid="uid://ds7ewplm3mc2p" path="res://audios/powerAcquired.wav" id="11_3171h"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_6kodb"]
 animations = [{
@@ -61,5 +63,15 @@ collision_layer = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="playerDetection"]
 position = Vector2(-1, 0)
 shape = SubResource("CircleShape2D_85on2")
+
+[node name="obj_sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_kfofg")
+volume_db = -6.0
+autoplay = true
+max_distance = 500.0
+
+[node name="collect" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_3171h")
+volume_db = -8.0
 
 [connection signal="body_shape_entered" from="playerDetection" to="." method="_on_player_detection_body_shape_entered"]

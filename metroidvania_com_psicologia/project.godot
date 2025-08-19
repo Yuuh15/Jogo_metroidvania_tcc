@@ -13,7 +13,7 @@ config_version=5
 config/name="The Mind (TCC Version)"
 run/main_scene="uid://cutjuuoqdkn4h"
 config/features=PackedStringArray("4.4", "Forward Plus")
-boot_splash/bg_color=Color(0, 0, 0, 1)
+boot_splash/bg_color=Color(0.3736, 0.548189, 0.761563, 1)
 config/icon="res://icon.svg"
 
 [autoload]
@@ -114,5 +114,3 @@ downdown={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
-rendering_device/driver="d3d12"
-rendering_device/driver.windows="d3d12"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://2vnhb0nwnhqp"]
+[gd_scene load_steps=28 format=3 uid="uid://2vnhb0nwnhqp"]
 
 [ext_resource type="Script" uid="uid://cxwo6iykdp5rv" path="res://player/player.gd" id="1_2sfht"]
 [ext_resource type="Texture2D" uid="uid://dfkenf16iboyf" path="res://player/sprites/Sam_Parado_64x.png" id="1_3pu38"]
@@ -12,6 +12,8 @@
 [ext_resource type="Script" uid="uid://ce6u4e75xpbc1" path="res://player/states/jump.gd" id="8_n3yqn"]
 [ext_resource type="Script" uid="uid://jrml8fgb4dtx" path="res://player/states/dash.gd" id="9_vwjo1"]
 [ext_resource type="Script" uid="uid://cln1ydxw421ep" path="res://player/states/stomp.gd" id="10_swvrg"]
+[ext_resource type="AudioStream" uid="uid://3laecupg6aud" path="res://audios/dash.mp3" id="13_yllr7"]
+[ext_resource type="AudioStream" uid="uid://d332igum7mhtr" path="res://audios/highJump.wav" id="14_kb6p2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2sfht"]
 atlas = ExtResource("1_3pu38")
@@ -167,12 +169,22 @@ one_shot = true
 wait_time = 2.5
 one_shot = true
 
-[node name="Jump" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_qjkh3")
-volume_db = -11.243
+[node name="Sounds" type="Node" parent="."]
 
-[node name="Hurt" type="AudioStreamPlayer" parent="."]
+[node name="Hurt" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("6_g6k8r")
+
+[node name="Jump" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("5_qjkh3")
+volume_db = -12.0
+
+[node name="Dash" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("13_yllr7")
+volume_db = -10.0
+
+[node name="HighJump" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("14_kb6p2")
+volume_db = -12.0
 
 [connection signal="timeout" from="StateMachineController/Dash/Duration" to="StateMachineController/Dash" method="_on_duration_timeout"]
 [connection signal="timeout" from="StateMachineController/Dash/Cooldown" to="StateMachineController/Dash" method="_on_cooldown_timeout"]
