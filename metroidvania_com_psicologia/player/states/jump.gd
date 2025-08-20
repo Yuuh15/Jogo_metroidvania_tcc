@@ -33,5 +33,4 @@ func physics_process(delta: float) -> void:
 		
 	else:
 		player.velocity.x = player.SPEED * player.directionX
-		
 	player.applyGravity(delta)
