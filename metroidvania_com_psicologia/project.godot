@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 
 GameManager="*res://scripts/gameManager.gd"
 AudioPlayer="*res://global/scenes/audio_player.tscn"
+AudioSettings="*res://gui/menu/audio_settings.tscn"
 
 [display]
 
@@ -115,3 +116,5 @@ downdown={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+rendering_device/driver="d3d12"
+rendering_device/driver.windows="d3d12"

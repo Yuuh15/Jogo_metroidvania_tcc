@@ -6,6 +6,7 @@ func _ready() -> void:
 
 func _on_audio_pressed() -> void:
 	get_tree().change_scene_to_file("res://gui/menu/audio_settings.tscn")
+	
 
 func _on_controlls_pressed() -> void:
 	get_tree().change_scene_to_file("res://gui/menu/input_settings.tscn")
