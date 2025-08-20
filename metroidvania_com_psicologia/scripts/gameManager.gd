@@ -17,7 +17,7 @@ func _ready() -> void:
 		print("Nenhum save de inputs encontrado")
 
 	
-static func getInputActions() -> Dictionary[String, String]:
+func getInputActions() -> Dictionary[String, String]:
 	return {
 		"jump": "Pular",
 		"move_up": "Cima",

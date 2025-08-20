@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://k10if43vhaw2"]
+
+[ext_resource type="Script" uid="uid://b6rxcigq3j0dl" path="res://gui/saveText/save_text.gd" id="1_3b8p1"]
+
+[node name="SaveText" type="Label"]
+anchors_preset = -1
+anchor_right = 0.994
+anchor_bottom = 0.989
+offset_left = 1202.0
+offset_top = 696.0
+offset_right = 7.67993
+offset_bottom = 6.91998
+size_flags_horizontal = 4
+text = "Jogo salvo"
+horizontal_alignment = 2
+vertical_alignment = 2
+script = ExtResource("1_3b8p1")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

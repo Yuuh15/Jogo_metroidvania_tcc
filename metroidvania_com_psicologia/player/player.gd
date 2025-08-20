@@ -2,6 +2,7 @@ class_name Player
 extends CharacterBody2D
 
 var config = ConfigFile.new()
+var text = preload("res://gui/saveText/save_text.tscn")
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var hurt: AudioStreamPlayer = $Hurt
@@ -96,6 +97,8 @@ func applyKnockback(direction : int, force : Vector2, duration : float):
 func save():
 	config.set_value("player", "pos", position)
 	config.save("user://player.cfg")
+	var t = text.instantiate() as Label
+	get_parent().get_node("CanvasLayer").add_child(t)
 	print("Posição do jogador salva")
 	
 func loadSave():

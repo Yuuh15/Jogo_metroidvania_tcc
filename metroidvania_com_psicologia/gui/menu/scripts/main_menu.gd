@@ -8,7 +8,7 @@ func _process(delta):
 	pass
 
 func _on_start_pressed() -> void:
-	get_tree().change_scene_to_file("res://levels/test_level.tscn")
+	get_tree().change_scene_to_file("res://levels/lvl_1.tscn")
 
 
 func _on_options_pressed() -> void:

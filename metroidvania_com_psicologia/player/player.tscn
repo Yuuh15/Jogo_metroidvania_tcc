@@ -112,7 +112,7 @@ animations = [{
 radius = 7.0
 height = 24.0
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_mask = 30
 script = ExtResource("1_2sfht")
 
@@ -175,7 +175,7 @@ volume_db = -11.243
 stream = ExtResource("6_g6k8r")
 
 [node name="Save" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 20.0
 autostart = true
 
 [connection signal="timeout" from="StateMachineController/Dash/Duration" to="StateMachineController/Dash" method="_on_duration_timeout"]
