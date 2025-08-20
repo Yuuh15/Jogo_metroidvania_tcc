@@ -1,6 +1,8 @@
 class_name Player
 extends CharacterBody2D
 
+var config = ConfigFile.new()
+
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var hurt: AudioStreamPlayer = $Hurt
 @onready var jump: AudioStreamPlayer = $Jump
@@ -29,7 +31,7 @@ var knockback : Vector2
 var knockbackDuration : float
 
 func _ready() -> void:
-	#loadSave()
+	loadSave()
 	damageAreas = get_tree().get_nodes_in_group("damage")
 	airJumps = maxAirJumps
 	
@@ -90,3 +92,13 @@ func takeDamage(body : Node2D, area : Area2D):
 func applyKnockback(direction : int, force : Vector2, duration : float):
 	knockbackDuration = duration
 	knockback = direction * force
+	
+func save():
+	config.set_value("player", "pos", position)
+	config.save("user://player.cfg")
+	print("Posição do jogador salva")
+	
+func loadSave():
+	if config.load("user://player.cfg") == OK:
+		position = config.get_value("player", "pos")
+		print("Posição do jogador carregada")

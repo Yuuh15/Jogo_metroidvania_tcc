@@ -1,8 +1,8 @@
-[gd_scene load_steps=8 format=4 uid="uid://c68yd0t3pln0s"]
+[gd_scene load_steps=8 format=4 uid="uid://bjnma6o33emg7"]
 
 [ext_resource type="PackedScene" uid="uid://mpe4ophwvn2b" path="res://tileset/chaov2/tile_map_layer_depression.tscn" id="1_1lxr2"]
 [ext_resource type="PackedScene" uid="uid://d3dyo1f0naxcw" path="res://background/parralax-background.tscn" id="2_x3lfk"]
-[ext_resource type="PackedScene" uid="uid://bnel1u2etfiwm" path="res://antigo/player/player.tscn" id="3_odbgv"]
+[ext_resource type="PackedScene" uid="uid://bnel1u2etfiwm" path="res://player/player.tscn" id="3_odbgv"]
 [ext_resource type="PackedScene" uid="uid://c6b5wiedlbj1y" path="res://gui/healthBar/health_bar.tscn" id="4_x3lfk"]
 [ext_resource type="PackedScene" uid="uid://bs142q3whn5qa" path="res://enemies/depression/slime/depression_slime.tscn" id="5_odbgv"]
 [ext_resource type="PackedScene" uid="uid://o0o06ki3ajpk" path="res://misc/killzone.tscn" id="6_fmrvw"]
