@@ -1,9 +1,11 @@
-[gd_scene load_steps=18 format=3 uid="uid://cutjuuoqdkn4h"]
+[gd_scene load_steps=20 format=3 uid="uid://cutjuuoqdkn4h"]
 
 [ext_resource type="Script" uid="uid://cm7487iox8ffl" path="res://gui/menu/scripts/main_menu.gd" id="1_88dmf"]
 [ext_resource type="Texture2D" uid="uid://dk2y2c7dfwmmr" path="res://gui/menu/img/botão com mouse.png" id="2_bd8gm"]
+[ext_resource type="FontFile" uid="uid://cgswncuhvcmy6" path="res://fonts/PixelifySans-VariableFont_wght.ttf" id="2_t7ymk"]
 [ext_resource type="Texture2D" uid="uid://dilcxp31wi5xv" path="res://gui/menu/img/Botão menu.png" id="3_ybyo8"]
 [ext_resource type="PackedScene" uid="uid://c8ax3u5ckj3ct" path="res://gui/menu/effect/switch.tscn" id="4_iho07"]
+[ext_resource type="AudioStream" uid="uid://8wuo13ue5vf7" path="res://audios/select.wav" id="6_m5wff"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pfblw"]
 bg_color = Color(1.54018e-06, 0.471645, 0.634196, 1)
@@ -83,48 +85,55 @@ grow_vertical = 2
 theme_override_constants/separation = 9
 
 [node name="Start" type="Button" parent="VBoxContainer"]
+texture_filter = 2
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 30
+theme_override_fonts/font = ExtResource("2_t7ymk")
+theme_override_font_sizes/font_size = 50
 theme_override_styles/focus = SubResource("StyleBoxEmpty_06t4h")
 theme_override_styles/hover = SubResource("StyleBoxTexture_ch3q6")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_bd8gm")
 theme_override_styles/normal = SubResource("StyleBoxTexture_ybyo8")
-text = "iniciar"
+text = "INICIAR"
 
 [node name="Options" type="Button" parent="VBoxContainer"]
+texture_filter = 2
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 30
+theme_override_fonts/font = ExtResource("2_t7ymk")
+theme_override_font_sizes/font_size = 50
 theme_override_styles/focus = SubResource("StyleBoxEmpty_ybyo8")
 theme_override_styles/hover = SubResource("StyleBoxTexture_jeejk")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_vorps")
 theme_override_styles/normal = SubResource("StyleBoxTexture_w0ptl")
-text = "opções"
+text = "OPÇÕES"
 
 [node name="Exit" type="Button" parent="VBoxContainer"]
+texture_filter = 2
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 30
+theme_override_fonts/font = ExtResource("2_t7ymk")
+theme_override_font_sizes/font_size = 50
 theme_override_styles/focus = SubResource("StyleBoxEmpty_ch3q6")
 theme_override_styles/hover = SubResource("StyleBoxTexture_mtuy6")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_wy7ae")
 theme_override_styles/normal = SubResource("StyleBoxTexture_va2a1")
-text = "sair"
+text = "SAIR"
 
 [node name="Label" type="Label" parent="."]
+texture_filter = 2
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -139,14 +148,16 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/paragraph_spacing = 0
-theme_override_constants/shadow_offset_x = 0
-theme_override_constants/shadow_offset_y = 5
-theme_override_font_sizes/font_size = 61
-text = "The Mind"
+theme_override_constants/shadow_offset_x = -2
+theme_override_constants/shadow_offset_y = 3
+theme_override_fonts/font = ExtResource("2_t7ymk")
+theme_override_font_sizes/font_size = 100
+text = "THE MIND"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Switch" parent="." instance=ExtResource("4_iho07")]
+stream = ExtResource("6_m5wff")
 
 [connection signal="pressed" from="VBoxContainer/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="VBoxContainer/Options" to="." method="_on_options_pressed"]

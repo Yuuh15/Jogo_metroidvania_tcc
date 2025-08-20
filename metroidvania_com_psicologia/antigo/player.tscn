@@ -1,0 +1,193 @@
+[gd_scene load_steps=28 format=3 uid="uid://c1ufbcrdqb6fc"]
+
+[ext_resource type="Script" uid="uid://cxwo6iykdp5rv" path="res://player/player.gd" id="1_2sfht"]
+[ext_resource type="Texture2D" uid="uid://dfkenf16iboyf" path="res://player/sprites/Sam_Parado_64x.png" id="1_3pu38"]
+[ext_resource type="Texture2D" uid="uid://clyyjw4fgfx1g" path="res://player/sprites/Sam_Pulando_64x.png" id="2_q3i6w"]
+[ext_resource type="Texture2D" uid="uid://do3n6qf4mx41k" path="res://player/sprites/Sam_Andando_64x.png" id="3_42fb3"]
+[ext_resource type="Script" uid="uid://dv26duycoykqb" path="res://scripts/state-machine-controller.gd" id="4_42fb3"]
+[ext_resource type="AudioStream" uid="uid://cfi8wr3tlrm1p" path="res://player/jump.wav" id="5_qjkh3"]
+[ext_resource type="AudioStream" uid="uid://d38rp2crk4yt5" path="res://player/hitHurt.wav" id="6_g6k8r"]
+[ext_resource type="Script" uid="uid://q73oaypbeup0" path="res://player/states/idle.gd" id="6_k3a0e"]
+[ext_resource type="Script" uid="uid://ddcsl88sibfwq" path="res://player/states/running.gd" id="7_k3a0e"]
+[ext_resource type="Script" uid="uid://ce6u4e75xpbc1" path="res://player/states/jump.gd" id="8_n3yqn"]
+[ext_resource type="Script" uid="uid://jrml8fgb4dtx" path="res://player/states/dash.gd" id="9_vwjo1"]
+[ext_resource type="Script" uid="uid://cln1ydxw421ep" path="res://player/states/stomp.gd" id="10_swvrg"]
+[ext_resource type="AudioStream" uid="uid://3laecupg6aud" path="res://audios/dash.mp3" id="13_yllr7"]
+[ext_resource type="AudioStream" uid="uid://d332igum7mhtr" path="res://audios/highJump.wav" id="14_kb6p2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2sfht"]
+atlas = ExtResource("1_3pu38")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k3a0e"]
+atlas = ExtResource("1_3pu38")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n3yqn"]
+atlas = ExtResource("1_3pu38")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vwjo1"]
+atlas = ExtResource("1_3pu38")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_swvrg"]
+atlas = ExtResource("2_q3i6w")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uh55g"]
+atlas = ExtResource("2_q3i6w")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_to1x8"]
+atlas = ExtResource("2_q3i6w")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_krmwc"]
+atlas = ExtResource("2_q3i6w")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g6io6"]
+atlas = ExtResource("3_42fb3")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c1arc"]
+atlas = ExtResource("3_42fb3")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p6bdf"]
+atlas = ExtResource("3_42fb3")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0pucg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2sfht")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k3a0e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n3yqn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vwjo1")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_swvrg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uh55g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_to1x8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_krmwc")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g6io6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c1arc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p6bdf")
+}],
+"loop": true,
+"name": &"running",
+"speed": 8.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xlp3g"]
+radius = 7.0
+height = 24.0
+
+[node name="Player" type="CharacterBody2D"]
+collision_mask = 30
+script = ExtResource("1_2sfht")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.38, 0.38)
+sprite_frames = SubResource("SpriteFrames_0pucg")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="collisionShape" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_xlp3g")
+
+[node name="StateMachineController" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("4_42fb3")
+initial_state = NodePath("Idle")
+metadata/_custom_type_script = "uid://dv26duycoykqb"
+
+[node name="Idle" type="Node" parent="StateMachineController"]
+script = ExtResource("6_k3a0e")
+metadata/_custom_type_script = "uid://l6eq8yklu062"
+
+[node name="Running" type="Node" parent="StateMachineController"]
+script = ExtResource("7_k3a0e")
+metadata/_custom_type_script = "uid://l6eq8yklu062"
+
+[node name="Jump" type="Node" parent="StateMachineController"]
+script = ExtResource("8_n3yqn")
+metadata/_custom_type_script = "uid://l6eq8yklu062"
+
+[node name="Dash" type="Node" parent="StateMachineController"]
+script = ExtResource("9_vwjo1")
+metadata/_custom_type_script = "uid://l6eq8yklu062"
+
+[node name="Duration" type="Timer" parent="StateMachineController/Dash"]
+wait_time = 0.25
+one_shot = true
+
+[node name="Cooldown" type="Timer" parent="StateMachineController/Dash"]
+one_shot = true
+
+[node name="Stomp" type="Node" parent="StateMachineController"]
+script = ExtResource("10_swvrg")
+metadata/_custom_type_script = "uid://l6eq8yklu062"
+
+[node name="Cooldown" type="Timer" parent="StateMachineController/Stomp"]
+wait_time = 0.5
+one_shot = true
+
+[node name="Debug" type="Timer" parent="."]
+
+[node name="TimeWarpDuration" type="Timer" parent="."]
+wait_time = 2.5
+one_shot = true
+
+[node name="Sounds" type="Node" parent="."]
+
+[node name="Hurt" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("6_g6k8r")
+
+[node name="Jump" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("5_qjkh3")
+volume_db = -12.0
+
+[node name="Dash" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("13_yllr7")
+volume_db = -10.0
+
+[node name="HighJump" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("14_kb6p2")
+volume_db = -12.0
+
+[connection signal="timeout" from="StateMachineController/Dash/Duration" to="StateMachineController/Dash" method="_on_duration_timeout"]
+[connection signal="timeout" from="StateMachineController/Dash/Cooldown" to="StateMachineController/Dash" method="_on_cooldown_timeout"]
+[connection signal="timeout" from="StateMachineController/Stomp/Cooldown" to="StateMachineController/Stomp" method="_on_cooldown_timeout"]
+[connection signal="timeout" from="Debug" to="." method="_on_debug_timeout"]
+[connection signal="timeout" from="TimeWarpDuration" to="." method="_on_time_warp_duration_timeout"]

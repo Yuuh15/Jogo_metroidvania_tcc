@@ -1,0 +1,92 @@
+[gd_scene load_steps=7 format=3 uid="uid://c3sex3an53o0y"]
+
+[ext_resource type="FontFile" uid="uid://cgswncuhvcmy6" path="res://fonts/PixelifySans-VariableFont_wght.ttf" id="1_5esm2"]
+[ext_resource type="Script" uid="uid://c3n877vwqht61" path="res://gui/menu/scripts/audio_settings.gd" id="1_m0jua"]
+[ext_resource type="PackedScene" uid="uid://c8ax3u5ckj3ct" path="res://gui/menu/effect/switch.tscn" id="3_151wy"]
+[ext_resource type="AudioStream" uid="uid://8wuo13ue5vf7" path="res://audios/select.wav" id="4_4unfa"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gxxfm"]
+bg_color = Color(0, 0.470588, 0.635294, 1)
+
+[sub_resource type="GDScript" id="GDScript_151wy"]
+script/source = "extends HSlider
+"
+
+[node name="audio_settings" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_m0jua")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_gxxfm")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -376.0
+offset_top = -238.0
+offset_right = 380.0
+offset_bottom = 297.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_5esm2")
+text = "Volume:"
+
+[node name="HSlider" type="HSlider" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1.5
+step = 0.01
+script = SubResource("GDScript_151wy")
+
+[node name="ActionList" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="DefaultButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+focus_mode = 0
+theme_override_fonts/font = ExtResource("1_5esm2")
+text = "Configuração Padrão"
+
+[node name="Back" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+theme_override_fonts/font = ExtResource("1_5esm2")
+text = "Salvar e Voltar"
+
+[node name="Switch" parent="." instance=ExtResource("3_151wy")]
+stream = ExtResource("4_4unfa")
+
+[connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/HSlider" to="." method="_on_h_slider_value_changed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/DefaultButton" to="." method="_on_default_button_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]

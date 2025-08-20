@@ -4,13 +4,14 @@ extends State
 var jump_speed = -300
 
 func enter():
-	player.jump.play()
 	player.sprite.play("jump")
 	if player.is_on_floor():
 		player.velocity.y = jump_speed
+		player.jump.play() # Toca o som de pulo normal
 	elif player.airJumps > 0:
 		player.velocity.y = jump_speed * 0.9
 		player.airJumps -= 1
+		player.highJump.play()
 func physics_process(delta: float) -> void:
 	if Input.is_action_just_released("jump") && player.velocity.y < 0:
 		player.velocity.y = jump_speed / 4
@@ -18,6 +19,7 @@ func physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("jump") && player.airJumps > 0:
 		player.velocity.y = jump_speed * 0.9
 		player.airJumps -= 1
+		player.highJump.play()
 		
 	elif player.is_on_floor():
 		Transitioned.emit(self, "idle")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://bnel1u2etfiwm"]
+[gd_scene load_steps=28 format=3 uid="uid://cg4up2guckhol"]
 
 [ext_resource type="Script" uid="uid://cxwo6iykdp5rv" path="res://player/player.gd" id="1_2sfht"]
 [ext_resource type="Texture2D" uid="uid://dfkenf16iboyf" path="res://player/sprites/Sam_Parado_64x.png" id="1_3pu38"]
@@ -7,11 +7,13 @@
 [ext_resource type="Script" uid="uid://dv26duycoykqb" path="res://scripts/state-machine-controller.gd" id="4_42fb3"]
 [ext_resource type="AudioStream" uid="uid://cfi8wr3tlrm1p" path="res://player/jump.wav" id="5_qjkh3"]
 [ext_resource type="AudioStream" uid="uid://d38rp2crk4yt5" path="res://player/hitHurt.wav" id="6_g6k8r"]
-[ext_resource type="Script" path="res://player/states/idle.gd" id="6_k3a0e"]
-[ext_resource type="Script" path="res://player/states/running.gd" id="7_k3a0e"]
-[ext_resource type="Script" path="res://player/states/jump.gd" id="8_n3yqn"]
-[ext_resource type="Script" path="res://player/states/dash.gd" id="9_vwjo1"]
-[ext_resource type="Script" path="res://player/states/stomp.gd" id="10_swvrg"]
+[ext_resource type="Script" uid="uid://q73oaypbeup0" path="res://player/states/idle.gd" id="6_k3a0e"]
+[ext_resource type="Script" uid="uid://ddcsl88sibfwq" path="res://player/states/running.gd" id="7_k3a0e"]
+[ext_resource type="Script" uid="uid://ce6u4e75xpbc1" path="res://player/states/jump.gd" id="8_n3yqn"]
+[ext_resource type="Script" uid="uid://jrml8fgb4dtx" path="res://player/states/dash.gd" id="9_vwjo1"]
+[ext_resource type="Script" uid="uid://cln1ydxw421ep" path="res://player/states/stomp.gd" id="10_swvrg"]
+[ext_resource type="AudioStream" uid="uid://3laecupg6aud" path="res://audios/dash.mp3" id="13_kb6p2"]
+[ext_resource type="AudioStream" uid="uid://d332igum7mhtr" path="res://audios/highJump.wav" id="14_wodsf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2sfht"]
 atlas = ExtResource("1_3pu38")
@@ -112,7 +114,7 @@ animations = [{
 radius = 7.0
 height = 24.0
 
-[node name="Player" type="CharacterBody2D" groups=["player"]]
+[node name="Player" type="CharacterBody2D"]
 collision_mask = 30
 script = ExtResource("1_2sfht")
 
@@ -177,6 +179,23 @@ stream = ExtResource("6_g6k8r")
 [node name="Save" type="Timer" parent="."]
 wait_time = 20.0
 autostart = true
+
+[node name="Sounds" type="Node" parent="."]
+
+[node name="Hurt" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("6_g6k8r")
+
+[node name="Jump" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("5_qjkh3")
+volume_db = -12.0
+
+[node name="Dash" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("13_kb6p2")
+volume_db = -10.0
+
+[node name="HighJump" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("14_wodsf")
+volume_db = -12.0
 
 [connection signal="timeout" from="StateMachineController/Dash/Duration" to="StateMachineController/Dash" method="_on_duration_timeout"]
 [connection signal="timeout" from="StateMachineController/Dash/Cooldown" to="StateMachineController/Dash" method="_on_cooldown_timeout"]

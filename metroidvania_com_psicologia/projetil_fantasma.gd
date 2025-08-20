@@ -13,7 +13,7 @@ var lifetime = 0.0
 # Node references
 @onready var hitbox = $Area2D
 @onready var collision_shape = $Area2D/CollisionShape2D
-@onready var sprite = $Sprite2D  # Add a Sprite2D for visual feedback
+@onready var sprite = $AnimatedSprite2D  # Add a Sprite2D for visual feedback
 
 func _ready():
 	global_position = spawnPos

@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dqaca14u5yfdd"]
+[gd_scene load_steps=7 format=3 uid="uid://dqaca14u5yfdd"]
 
 [ext_resource type="Script" uid="uid://ws8xd6xtsn6x" path="res://gui/menu/scripts/input_settings.gd" id="1_y6l0d"]
 [ext_resource type="PackedScene" uid="uid://cmhkbknvy1y8v" path="res://gui/menu/input_button.tscn" id="2_u4tk5"]
-[ext_resource type="PackedScene" uid="uid://crywe2ehy1e1a" path="res://gui/menu/effect/switch_input.tscn" id="3_7oxwx"]
+[ext_resource type="FontFile" uid="uid://cgswncuhvcmy6" path="res://fonts/PixelifySans-VariableFont_wght.ttf" id="3_hb3vm"]
+[ext_resource type="PackedScene" uid="uid://c8ax3u5ckj3ct" path="res://gui/menu/effect/switch.tscn" id="4_55ow1"]
+[ext_resource type="AudioStream" uid="uid://8wuo13ue5vf7" path="res://audios/select.wav" id="5_vkjha"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6k22c"]
 bg_color = Color(0, 0.470588, 0.635294, 1)
@@ -59,33 +61,42 @@ size_flags_horizontal = 3
 
 [node name="InputButton" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/ActionList" instance=ExtResource("2_u4tk5")]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_hb3vm")
 
 [node name="InputButton2" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/ActionList" instance=ExtResource("2_u4tk5")]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_hb3vm")
 
 [node name="InputButton3" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/ActionList" instance=ExtResource("2_u4tk5")]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_hb3vm")
 
 [node name="InputButton4" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/ActionList" instance=ExtResource("2_u4tk5")]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_hb3vm")
 
 [node name="InputButton5" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/ActionList" instance=ExtResource("2_u4tk5")]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_hb3vm")
 
 [node name="InputButton6" parent="PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/ActionList" instance=ExtResource("2_u4tk5")]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_hb3vm")
 
 [node name="Botão_Padrão" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 focus_mode = 0
+theme_override_fonts/font = ExtResource("3_hb3vm")
 text = "Configuração Padrão"
 
 [node name="Back" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 focus_mode = 0
-text = "Voltar"
+theme_override_fonts/font = ExtResource("3_hb3vm")
+text = "Salvar e Voltar"
 
-[node name="SwitchInput" parent="." instance=ExtResource("3_7oxwx")]
+[node name="SwitchInput" parent="." instance=ExtResource("4_55ow1")]
+stream = ExtResource("5_vkjha")
 
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Botão_Padrão" to="." method="_on_botão_padrão_pressed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]

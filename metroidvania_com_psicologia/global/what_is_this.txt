@@ -1,0 +1,2 @@
+A pasta "global" servirá para guardar scripts com blocos de código que precisarão ser carregados em QUALQUER
+outra cena ou script. Só isso!

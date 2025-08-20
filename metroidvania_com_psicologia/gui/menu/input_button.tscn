@@ -1,4 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://cmhkbknvy1y8v"]
+[gd_scene load_steps=5 format=3 uid="uid://cmhkbknvy1y8v"]
+
+[ext_resource type="FontFile" uid="uid://cgswncuhvcmy6" path="res://fonts/PixelifySans-VariableFont_wght.ttf" id="1_w00dy"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_db1ue"]
 
@@ -37,6 +39,7 @@ layout_mode = 2
 [node name="LabelAction" type="Label" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 mouse_filter = 1
+theme_override_fonts/font = ExtResource("1_w00dy")
 text = "ACTION NAME"
 vertical_alignment = 1
 
@@ -48,5 +51,6 @@ mouse_filter = 1
 [node name="LabelInput" type="Label" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 mouse_filter = 1
+theme_override_fonts/font = ExtResource("1_w00dy")
 text = "INPUT KEY"
 vertical_alignment = 1
