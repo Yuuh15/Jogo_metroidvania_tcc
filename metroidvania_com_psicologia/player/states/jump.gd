@@ -8,7 +8,7 @@ func enter():
 	if player.is_on_floor():
 		player.velocity.y = jump_speed
 		player.jump.play() # Toca o som de pulo normal
-	elif player.airJumps > 0:
+	elif player.airJumps > 0 && Input.is_action_just_pressed("jump"):
 		player.velocity.y = jump_speed * 0.9
 		player.airJumps -= 1
 		player.highJump.play()
@@ -33,5 +33,4 @@ func physics_process(delta: float) -> void:
 		
 	else:
 		player.velocity.x = player.SPEED * player.directionX
-		
 	player.applyGravity(delta)

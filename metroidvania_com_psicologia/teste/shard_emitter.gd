@@ -23,7 +23,7 @@ const SHARD = preload("res://teste/shard.tscn")
 var triangles = []
 var shards = []
 
-func config() -> void:
+func _ready() -> void:
 	$DeleteTimer.timeout.connect(_on_DeleteTimer_timeout)
 	
 	if get_parent() is Sprite2D:
@@ -61,6 +61,7 @@ func config() -> void:
 
 			var shard = SHARD.instantiate()
 			shard.position = center
+			shard.gravity_scale = 0
 			shard.hide()
 			shards.append(shard)
 
@@ -90,6 +91,7 @@ func shatter() -> void:
 	randomize()
 	get_parent().self_modulate.a = 0
 	for s in shards:
+		s.gravity_scale = 1.0
 		var direction = Vector2.UP.rotated(randf_range(0, 2*PI))
 		var impulse = randf_range(min_impulse, max_impulse)
 		s.apply_central_impulse(direction * impulse)
