@@ -1,27 +1,12 @@
-[gd_scene load_steps=13 format=3 uid="uid://c3sex3an53o0y"]
+[gd_scene load_steps=10 format=3 uid="uid://c3sex3an53o0y"]
 
 [ext_resource type="FontFile" uid="uid://cgswncuhvcmy6" path="res://fonts/PixelifySans-VariableFont_wght.ttf" id="1_5esm2"]
 [ext_resource type="Script" uid="uid://c3n877vwqht61" path="res://gui/menu/scripts/audio_settings.gd" id="1_m0jua"]
-[ext_resource type="Shader" uid="uid://4xfcmwbgytvo" path="res://gui/menu/scripts/particulas.gdshader" id="2_qp1l6"]
+[ext_resource type="StyleBox" uid="uid://bpgk4scifo53n" path="res://gui/menu/shaders/menuTexture.tres" id="2_8nsd6"]
+[ext_resource type="Material" uid="uid://bwlpotuibx16t" path="res://gui/menu/shaders/menuShader.tres" id="2_qp1l6"]
 [ext_resource type="Texture2D" uid="uid://dq6yfu3naj301" path="res://gui/menu/img/particulas-fundo-menu.png" id="3_8nsd6"]
 [ext_resource type="PackedScene" uid="uid://c8ax3u5ckj3ct" path="res://gui/menu/effect/switch.tscn" id="3_151wy"]
 [ext_resource type="AudioStream" uid="uid://8wuo13ue5vf7" path="res://audios/select.wav" id="4_4unfa"]
-
-[sub_resource type="Gradient" id="Gradient_mf7o6"]
-colors = PackedColorArray(0.184314, 0.219608, 0.596078, 1, 0.196078, 0.705882, 0.352941, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_xaqmf"]
-gradient = SubResource("Gradient_mf7o6")
-fill_to = Vector2(1, 1)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qrwym"]
-texture = SubResource("GradientTexture2D_xaqmf")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_h7if4"]
-shader = ExtResource("2_qp1l6")
-shader_parameter/direction = Vector2(-1, -1)
-shader_parameter/speed = 0.15
-shader_parameter/transparency = 0.45
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_h4ckv"]
 texture = ExtResource("3_8nsd6")
@@ -46,12 +31,12 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_qrwym")
+theme_override_styles/panel = ExtResource("2_8nsd6")
 metadata/_edit_use_anchors_ = true
 
 [node name="Particles" type="Panel" parent="."]
 texture_repeat = 2
-material = SubResource("ShaderMaterial_h7if4")
+material = ExtResource("2_qp1l6")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

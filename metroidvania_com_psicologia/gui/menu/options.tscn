@@ -1,29 +1,14 @@
-[gd_scene load_steps=24 format=3 uid="uid://bylnvutdpamas"]
+[gd_scene load_steps=21 format=3 uid="uid://bylnvutdpamas"]
 
 [ext_resource type="Script" uid="uid://btu6yrs1o2gi0" path="res://gui/menu/scripts/opções.gd" id="1_12uyd"]
-[ext_resource type="Shader" uid="uid://4xfcmwbgytvo" path="res://gui/menu/scripts/particulas.gdshader" id="2_hyomx"]
+[ext_resource type="StyleBox" uid="uid://bpgk4scifo53n" path="res://gui/menu/shaders/menuTexture.tres" id="2_6focj"]
+[ext_resource type="Material" uid="uid://bwlpotuibx16t" path="res://gui/menu/shaders/menuShader.tres" id="2_hyomx"]
 [ext_resource type="FontFile" uid="uid://cgswncuhvcmy6" path="res://fonts/PixelifySans-VariableFont_wght.ttf" id="2_q6fm1"]
 [ext_resource type="Texture2D" uid="uid://dq6yfu3naj301" path="res://gui/menu/img/particulas-fundo-menu.png" id="3_6focj"]
 [ext_resource type="Texture2D" uid="uid://dk2y2c7dfwmmr" path="res://gui/menu/img/botão com mouse.png" id="3_8ydq0"]
 [ext_resource type="Texture2D" uid="uid://dilcxp31wi5xv" path="res://gui/menu/img/Botão menu.png" id="4_hyomx"]
 [ext_resource type="PackedScene" uid="uid://c8ax3u5ckj3ct" path="res://gui/menu/effect/switch.tscn" id="5_6focj"]
 [ext_resource type="AudioStream" uid="uid://8wuo13ue5vf7" path="res://audios/select.wav" id="6_q6fm1"]
-
-[sub_resource type="Gradient" id="Gradient_h0tj4"]
-colors = PackedColorArray(0.184314, 0.219608, 0.596078, 1, 0.196078, 0.705882, 0.352941, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_8f3c0"]
-gradient = SubResource("Gradient_h0tj4")
-fill_to = Vector2(1, 1)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ingiq"]
-texture = SubResource("GradientTexture2D_8f3c0")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_u40f7"]
-shader = ExtResource("2_hyomx")
-shader_parameter/direction = Vector2(-1, -1)
-shader_parameter/speed = 0.15
-shader_parameter/transparency = 0.45
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_b5d6l"]
 texture = ExtResource("3_6focj")
@@ -73,12 +58,12 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_ingiq")
+theme_override_styles/panel = ExtResource("2_6focj")
 metadata/_edit_use_anchors_ = true
 
 [node name="Particles" type="Panel" parent="."]
 texture_repeat = 2
-material = SubResource("ShaderMaterial_u40f7")
+material = ExtResource("2_hyomx")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

@@ -1,8 +1,8 @@
 shader_type canvas_item;
 
 uniform vec2 direction;
-uniform float speed : hint_range(0.0, 3.0, 0.05);
-uniform float transparency : hint_range(0.0, 1.0, 0.05) = 0.0;
+uniform float speed : hint_range(0.0, 3.0, 0.05) = 0.15;
+uniform float transparency : hint_range(0.0, 1.0, 0.05) = 0.45;
 
 void fragment() {
 	vec2 scroll = vec2(TIME * direction.x * speed, TIME * direction.y * speed);
