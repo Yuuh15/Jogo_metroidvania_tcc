@@ -19,3 +19,4 @@ func _on_h_slider_value_changed(value: float) -> void:
 	var config = ConfigFile.new()
 	config.set_value("audio", "masterVolume", value)
 	config.save("user://audio.cfg")
+	GameManager.volumeValue = value
