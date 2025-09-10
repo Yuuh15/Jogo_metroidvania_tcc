@@ -94,7 +94,7 @@ func shatter() -> void:
 		s.gravity_scale = 1.0
 		var direction = Vector2.UP.rotated(randf_range(0, 2*PI))
 		var impulse = randf_range(min_impulse, max_impulse)
-		s.apply_central_impulse(directionX * impulse)
+		s.apply_central_impulse(direction * impulse)
 		s.get_node("CollisionPolygon2D").disabled = false
 		s.show()
 	$DeleteTimer.start(lifetime)

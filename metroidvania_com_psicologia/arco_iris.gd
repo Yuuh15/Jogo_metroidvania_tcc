@@ -24,12 +24,11 @@ signal player_detected
 signal player_lost
 
 func _ready():
-	
 	add_to_group("player")
 	collision_layer = 1
 	# Initialize the timer
-	$directionTimer.wait_time = choose([1.5, 2.0, 2.5])
-	$directionTimer.start()
+	$DirectionTimer.wait_time = choose([1.5, 2.0, 2.5])
+	$DirectionTimer.start()
 	
 	# Setup detection area (must exist in your scene)
 	$DetectionArea.body_entered.connect(_on_detection_area_body_entered)
@@ -58,8 +57,8 @@ func _on_directionX_timer_timeout() -> void:
 	if !is_chase && is_roaming:
 		# Only change directionX when roaming
 		dir = choose([Vector2.RIGHT, Vector2.LEFT])
-	$directionXTimer.wait_time = choose([0.5, 1.0, 1.2])
-	$directionXTimer.start()
+	$directionTimer.wait_time = choose([0.5, 1.0, 1.2])
+	$directionTimer.start()
 
 func choose(array):
 	array.shuffle()
