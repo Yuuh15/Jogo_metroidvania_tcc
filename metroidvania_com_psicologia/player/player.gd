@@ -32,6 +32,9 @@ var damageAreas
 var knockback : Vector2
 var knockbackDuration : float
 
+# verifica se o jogador pode salvar
+var canSave : bool = false
+
 func _ready() -> void:
 	loadSave()
 	damageAreas = get_tree().get_nodes_in_group("damage")
@@ -96,7 +99,7 @@ func applyKnockback(direction : int, force : Vector2, duration : float):
 	knockback = direction * force
 	
 func save():
-	# salva
+	# salva a posição e a cena atual
 	config.set_value("player", "pos", position)
 	config.set_value("player", "scene", get_parent().scene_file_path)
 	config.save("user://player.cfg")
@@ -113,5 +116,3 @@ func loadSave():
 		if scene == get_parent().scene_file_path:
 			position = config.get_value("player", "pos")
 			print("Posição do jogador carregada")
-			print(scene)
-			print(position)

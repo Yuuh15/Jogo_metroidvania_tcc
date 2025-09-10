@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://bjnma6o33emg7"]
+[gd_scene load_steps=10 format=4 uid="uid://bjnma6o33emg7"]
 
 [ext_resource type="PackedScene" uid="uid://mpe4ophwvn2b" path="res://tileset/chaov2/tile_map_layer_depression.tscn" id="1_1lxr2"]
 [ext_resource type="PackedScene" uid="uid://d3dyo1f0naxcw" path="res://background/parralax-background.tscn" id="2_x3lfk"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cg4up2guckhol" path="res://player/player.tscn" id="6_bcf81"]
 [ext_resource type="PackedScene" uid="uid://o0o06ki3ajpk" path="res://misc/killzone.tscn" id="6_fmrvw"]
 [ext_resource type="PackedScene" uid="uid://c01ekom3u1ga5" path="res://player/playerCamera.tscn" id="7_bcf81"]
+[ext_resource type="PackedScene" uid="uid://b13xlg8v5v8yf" path="res://teste/save_point.tscn" id="8_f6t8j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bcf81"]
 size = Vector2(61, 84)
@@ -52,3 +53,9 @@ shape = SubResource("RectangleShape2D_bcf81")
 position = Vector2(72, -24)
 
 [node name="PlayerCamera" parent="Player" instance=ExtResource("7_bcf81")]
+
+[node name="SavePoint" parent="." instance=ExtResource("8_f6t8j")]
+position = Vector2(336, 0)
+
+[node name="SavePoint2" parent="." instance=ExtResource("8_f6t8j")]
+position = Vector2(1640, 0)

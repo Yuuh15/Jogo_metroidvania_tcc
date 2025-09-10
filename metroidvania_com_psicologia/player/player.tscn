@@ -178,7 +178,6 @@ stream = ExtResource("6_g6k8r")
 
 [node name="Save" type="Timer" parent="."]
 wait_time = 20.0
-autostart = true
 
 [node name="Sounds" type="Node" parent="."]
 

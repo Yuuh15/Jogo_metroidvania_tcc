@@ -10,6 +10,9 @@ func physics_process(delta):
 	if player.directionX != 0:
 		Transitioned.emit(self, "running")
 		
+	elif player.canSave && Input.is_action_just_pressed("move_up"):
+		player.save()
+		
 	elif Input.is_action_just_pressed("jump") || !player.is_on_floor():
 		Transitioned.emit(self, "jump")
 	
@@ -19,6 +22,7 @@ func physics_process(delta):
 		
 		elif player.dash:
 			Transitioned.emit(self, "dash")
-			
+	
+	
 	player.velocity.x = move_toward(player.velocity.x,0, player.SPEED)
 	player.applyGravity(delta)
