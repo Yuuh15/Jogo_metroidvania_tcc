@@ -13,9 +13,9 @@ func enter():
 
 func physics_process(delta: float):
 	if enemy.canWalk():
-		enemy.direction = 1 if enemy.global_position.x < enemy.player.global_position.x else -1
+		enemy.directionX = 1 if enemy.global_position.x < enemy.player.global_position.x else -1
 	else:
-		enemy.direction = -enemy.direction
+		enemy.directionX = -enemy.directionX
 		Transitioned.emit(self, "patrol")
 	
 	if ray_cast_2d.is_colliding():

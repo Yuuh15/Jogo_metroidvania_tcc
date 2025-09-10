@@ -35,6 +35,12 @@ var knockbackDuration : float
 # verifica se o jogador pode salvar
 var canSave : bool = false
 
+# Verifica se o jogador está preso na parede pelas garras
+var grip_wall := false
+# Guarda a última direção do jogador ao sair do chão
+var gDirection = 0.0
+var saveLastPositionInGround = false
+
 func _ready() -> void:
 	loadSave()
 	damageAreas = get_tree().get_nodes_in_group("damage")
@@ -94,9 +100,9 @@ func takeDamage(body : Node2D, area : Area2D):
 		if health <= 0:
 			get_tree().change_scene_to_file("res://gui/menu/main_menu.tscn")
 
-func applyKnockback(direction : int, force : Vector2, duration : float):
+func applyKnockback(directionX : int, force : Vector2, duration : float):
 	knockbackDuration = duration
-	knockback = direction * force
+	knockback = directionX * force
 	
 func save():
 	# salva a posição e a cena atual

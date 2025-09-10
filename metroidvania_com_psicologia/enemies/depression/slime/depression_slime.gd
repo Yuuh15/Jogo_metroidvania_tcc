@@ -16,7 +16,7 @@ var trail = preload("res://enemies/depression/slime/trail/trail.tscn")
 @onready var hurt_box_shape: CollisionShape2D = $HurtBox/hurtBoxShape
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 
-var direction := 1
+var directionX := 1
 
 func _ready() -> void:
 	if patrolPoints == null or patrolPoints.get_children().size() != 2:
@@ -27,7 +27,7 @@ func _ready() -> void:
 		points.sort()
 
 func _physics_process(delta: float) -> void:
-	if direction == 1:
+	if directionX == 1:
 		sprite.flip_h = false
 		ray_cast_2d.target_position.x = 80
 		trailPos.position.x = -14
@@ -45,7 +45,7 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 	
-	velocity.x = direction * speed
+	velocity.x = directionX * speed
 	move_and_slide()
 
 
@@ -65,4 +65,4 @@ func _on_hurt_box_body_entered(body: Node2D) -> void:
 	if body is Player:
 		var direction = -1 if sprite.flip_h else 1
 		var force = Vector2(500, 0)
-		body.applyKnockback(direction, force, 0.2)
+		body.applyKnockback(directionX, force, 0.2)
