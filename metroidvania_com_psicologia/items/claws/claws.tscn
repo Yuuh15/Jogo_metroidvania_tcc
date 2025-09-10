@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://cu1636428kvds"]
+
+[ext_resource type="Script" uid="uid://bogudh5fo3eu7" path="res://items/claws/claws.gd" id="1_3shsa"]
+[ext_resource type="Texture2D" uid="uid://ci18ipjw5j7fq" path="res://items/claws/claws.png" id="2_5yv7b"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3shsa"]
+radius = 11.3562
+height = 49.418
+
+[node name="claws" type="Node2D"]
+script = ExtResource("1_3shsa")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_5yv7b")
+
+[node name="playerDetection" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="playerDetection"]
+position = Vector2(1, 1)
+rotation = 0.750492
+shape = SubResource("CapsuleShape2D_3shsa")
+
+[connection signal="body_shape_entered" from="playerDetection" to="." method="_on_player_detection_body_shape_entered"]

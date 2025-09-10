@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://cg4up2guckhol"]
+[gd_scene load_steps=28 format=3 uid="uid://bnel1u2etfiwm"]
 
 [ext_resource type="Script" uid="uid://cxwo6iykdp5rv" path="res://player/player.gd" id="1_2sfht"]
 [ext_resource type="Texture2D" uid="uid://dfkenf16iboyf" path="res://player/sprites/Sam_Parado_64x.png" id="1_3pu38"]
@@ -168,13 +168,6 @@ one_shot = true
 [node name="TimeWarpDuration" type="Timer" parent="."]
 wait_time = 2.5
 one_shot = true
-
-[node name="Jump" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_qjkh3")
-volume_db = -11.243
-
-[node name="Hurt" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("6_g6k8r")
 
 [node name="Save" type="Timer" parent="."]
 wait_time = 20.0

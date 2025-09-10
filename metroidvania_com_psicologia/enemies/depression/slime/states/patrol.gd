@@ -10,8 +10,8 @@ func enter():
 	$"../../TrailTimer".wait_time = 0.1
 	
 func physics_process(_delta : float):
-	if (enemy.points[0] >= enemy.global_position.x and enemy.direction == -1) or (enemy.points[1] <= enemy.global_position.x and enemy.direction == 1):
-		enemy.direction = -enemy.direction
+	if (enemy.points[0] >= enemy.global_position.x and enemy.directionX == -1) or (enemy.points[1] <= enemy.global_position.x and enemy.directionX == 1):
+		enemy.directionX = -enemy.directionX
 	
 	if ray_cast_2d.is_colliding():
 		Transitioned.emit(self, "follow")
