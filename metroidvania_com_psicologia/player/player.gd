@@ -96,13 +96,22 @@ func applyKnockback(direction : int, force : Vector2, duration : float):
 	knockback = direction * force
 	
 func save():
+	# salva
 	config.set_value("player", "pos", position)
+	config.set_value("player", "scene", get_parent().scene_file_path)
 	config.save("user://player.cfg")
+	
+	# cria um texto de salvamento
 	var t = text.instantiate() as Label
 	get_parent().get_node("CanvasLayer").add_child(t)
 	print("Posição do jogador salva")
 	
 func loadSave():
+	# carrega a posição do jogador
 	if config.load("user://player.cfg") == OK:
-		position = config.get_value("player", "pos")
-		print("Posição do jogador carregada")
+		var scene = config.get_value("player", "scene")
+		if scene == get_parent().scene_file_path:
+			position = config.get_value("player", "pos")
+			print("Posição do jogador carregada")
+			print(scene)
+			print(position)
