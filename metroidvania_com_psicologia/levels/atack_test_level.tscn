@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=4 uid="uid://bxvqjrd0alcu0"]
+
+[ext_resource type="PackedScene" uid="uid://mpe4ophwvn2b" path="res://tileset/chaov2/tile_map_layer_depression.tscn" id="1_4j6wp"]
+[ext_resource type="PackedScene" uid="uid://d3dyo1f0naxcw" path="res://background/parralax-background.tscn" id="1_ak4df"]
+[ext_resource type="PackedScene" uid="uid://cvm5q4uu0opm2" path="res://player/playerCamera.tscn" id="4_47kpu"]
+[ext_resource type="PackedScene" uid="uid://bnel1u2etfiwm" path="res://player/player.tscn" id="4_ak4df"]
+
+[node name="attackTestLevel" type="Node2D"]
+
+[node name="background" parent="." instance=ExtResource("1_ak4df")]
+
+[node name="TileMapLayerDepression" parent="." instance=ExtResource("1_4j6wp")]
+tile_map_data = PackedByteArray("AAD8/wAAAQABAAAAAAD9/wAAAQABAAAAAAD+/wAAAQABAAAAAAD//wAAAQABAAAAAAAAAAAAAQABAAAAAAABAAAAAQABAAAAAAACAAAAAQABAAAAAAADAAAAAQABAAAAAAAEAAAAAQABAAAAAAAFAAAAAQABAAAAAAAGAAAAAQABAAAAAAAHAAAAAQABAAAAAAAIAAAAAQABAAAAAAAJAAAAAQABAAAAAAAKAAAAAQABAAAAAAALAAAAAQABAAAAAAAMAAAAAQABAAAAAAANAAAAAQABAAAAAAAOAAAAAQABAAAAAAAPAAAAAQABAAAAAAAQAAAAAQABAAAAAAD6/wAAAQABAAAAAAD5/wAAAQABAAAAAAD7/wAAAQABAAAAAAD4/wAAAQABAAAAAAD3/wAAAQABAAAAAAD2/wAAAQABAAAAAAD1/wAAAQABAAAAAAARAAAAAQABAAAAAAASAAAAAQABAAAAAAATAAAAAQABAAAAAAA=")
+
+[node name="Player" parent="." instance=ExtResource("4_ak4df")]
+position = Vector2(-6, -13)
+
+[node name="PlayerCamera" parent="Player" instance=ExtResource("4_47kpu")]

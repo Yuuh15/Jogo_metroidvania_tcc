@@ -191,12 +191,12 @@ position = Vector2(102, 9)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="HealthBar" parent="CanvasLayer" node_paths=PackedStringArray("target") instance=ExtResource("16_o5yuq")]
+[node name="HealthBar" parent="CanvasLayer" node_paths=PackedStringArray("player") instance=ExtResource("16_o5yuq")]
 offset_left = 16.0
 offset_top = 16.0
 offset_right = 116.0
 offset_bottom = 21.0
-target = NodePath("../../Player")
+player = NodePath("../../Player")
 
 [node name="background" parent="." instance=ExtResource("17_wjuib")]
 

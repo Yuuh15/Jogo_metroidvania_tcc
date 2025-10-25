@@ -1,10 +1,14 @@
 extends ProgressBar
 
-@export var target : CharacterBody2D
+@export var player : Player
 
 func _ready() -> void:
-	target.healthChanged.connect(healthUpdate)
+	# Espera o player carregar para continuar
+	while !player.hurt_box:
+		await get_tree().process_frame
+		
+	player.hurt_box.healthChanged.connect(healthUpdate)
 	healthUpdate()
-
+	
 func healthUpdate():
-	value = target.health
+	value = player.hurt_box.health

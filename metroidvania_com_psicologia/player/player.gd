@@ -8,6 +8,9 @@ var text = preload("res://gui/saveText/save_text.tscn")
 @onready var hurt: AudioStreamPlayer = $Sounds/Hurt
 @onready var jump: AudioStreamPlayer = $Sounds/Jump
 @onready var highJump: AudioStreamPlayer = $Sounds/HighJump
+@onready var attackShape: CollisionShape2D = $AnimatedSprite2D/HitBox/CollisionShape2D
+@onready var hurt_box: HurtBox = $HurtBox
+
 
 var directionX : float
 var directionY : float
@@ -24,11 +27,6 @@ var dash = false
 var stomp = false
 var timeWarp = false
 
-# vida
-signal healthChanged()
-@export var health : int = 100
-var damageAreas
-
 var knockback : Vector2
 var knockbackDuration : float
 
@@ -41,20 +39,18 @@ var grip_wall := false
 var gDirection = 0.0
 var saveLastPositionInGround = false
 
+
 func _ready() -> void:
 	loadSave()
-	damageAreas = get_tree().get_nodes_in_group("damage")
 	airJumps = maxAirJumps
+	#damageAreas = get_tree().get_nodes_in_group("damage")
+	#if damageAreas.size() > 0:
+		#for area in damageAreas:
+			#area.area_entered.connect(takeDamage.bind(area.damage))
 	
-	if damageAreas.size() != 0:
-		for area in damageAreas:
-			area.body_entered.connect(takeDamage.bind(area))
-
 func _process(delta: float) -> void:
-	if directionX > 0:
-		sprite.flip_h = false
-	elif directionX < 0:
-		sprite.flip_h = true
+	if directionX:
+		sprite.scale.x = directionX * 0.38
 	
 func _physics_process(delta: float) -> void:
 	directionX = Input.get_axis("move_left", "move_right")
@@ -92,13 +88,10 @@ func _on_debug_timeout() -> void:
 func _on_time_warp_duration_timeout() -> void:
 	Engine.time_scale = 1
 	
-func takeDamage(body : Node2D, area : Area2D):
-	if body == self:
-		health -= area.damage
-		healthChanged.emit()
-		hurt.play()
-		if health <= 0:
-			get_tree().change_scene_to_file("res://gui/menu/main_menu.tscn")
+func takeDamage():
+	hurt.play()
+	if hurt_box.health <= 0:
+		get_tree().change_scene_to_file("res://gui/menu/main_menu.tscn")
 
 func applyKnockback(directionX : int, force : Vector2, duration : float):
 	knockbackDuration = duration

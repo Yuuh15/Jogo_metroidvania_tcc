@@ -3,7 +3,6 @@ extends State
 @export var enemy : CharacterBody2D
 @onready var sprite : AnimatedSprite2D = $"../../AnimatedSprite2D"
 @onready var timer: Timer = $"../../Timer"
-@onready var ray_cast_2d: RayCast2D = $"../../vision"
 
 func enter():
 	sprite.play("follow")
@@ -18,8 +17,9 @@ func physics_process(delta: float):
 		enemy.directionX = -enemy.directionX
 		Transitioned.emit(self, "patrol")
 	
-	if ray_cast_2d.is_colliding():
+	if enemy.ray_cast_2d.is_colliding():
 		timer.start()
 		
 func _on_timer_timeout() -> void:
 	Transitioned.emit(self, "patrol")
+	

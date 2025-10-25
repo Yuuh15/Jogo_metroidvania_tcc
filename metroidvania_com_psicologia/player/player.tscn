@@ -1,19 +1,48 @@
-[gd_scene load_steps=28 format=3 uid="uid://bnel1u2etfiwm"]
+[gd_scene load_steps=41 format=3 uid="uid://bnel1u2etfiwm"]
 
 [ext_resource type="Script" uid="uid://cxwo6iykdp5rv" path="res://player/player.gd" id="1_2sfht"]
 [ext_resource type="Texture2D" uid="uid://dfkenf16iboyf" path="res://player/sprites/Sam_Parado_64x.png" id="1_3pu38"]
 [ext_resource type="Texture2D" uid="uid://clyyjw4fgfx1g" path="res://player/sprites/Sam_Pulando_64x.png" id="2_q3i6w"]
 [ext_resource type="Texture2D" uid="uid://do3n6qf4mx41k" path="res://player/sprites/Sam_Andando_64x.png" id="3_42fb3"]
 [ext_resource type="Script" uid="uid://dv26duycoykqb" path="res://scripts/state-machine-controller.gd" id="4_42fb3"]
+[ext_resource type="Texture2D" uid="uid://cip10md4ocajo" path="res://player/sprites/Sam_Atacando_64x.png" id="5_c35mf"]
 [ext_resource type="AudioStream" uid="uid://cfi8wr3tlrm1p" path="res://player/jump.wav" id="5_qjkh3"]
+[ext_resource type="Texture2D" uid="uid://2fywfs44h35e" path="res://player/sprites/Sam_Atacando2_64x.png" id="6_65viv"]
 [ext_resource type="AudioStream" uid="uid://d38rp2crk4yt5" path="res://player/hitHurt.wav" id="6_g6k8r"]
 [ext_resource type="Script" uid="uid://q73oaypbeup0" path="res://player/states/idle.gd" id="6_k3a0e"]
 [ext_resource type="Script" uid="uid://ddcsl88sibfwq" path="res://player/states/running.gd" id="7_k3a0e"]
 [ext_resource type="Script" uid="uid://ce6u4e75xpbc1" path="res://player/states/jump.gd" id="8_n3yqn"]
 [ext_resource type="Script" uid="uid://jrml8fgb4dtx" path="res://player/states/dash.gd" id="9_vwjo1"]
 [ext_resource type="Script" uid="uid://cln1ydxw421ep" path="res://player/states/stomp.gd" id="10_swvrg"]
+[ext_resource type="Script" uid="uid://drc4nrds68s6h" path="res://player/states/attack.gd" id="12_e7oew"]
 [ext_resource type="AudioStream" uid="uid://3laecupg6aud" path="res://audios/dash.mp3" id="13_kb6p2"]
 [ext_resource type="AudioStream" uid="uid://d332igum7mhtr" path="res://audios/highJump.wav" id="14_wodsf"]
+[ext_resource type="Script" uid="uid://txrfqgoe07ub" path="res://componentes/hurt_box.gd" id="15_wodsf"]
+[ext_resource type="Script" uid="uid://btkgo3hwg7i8v" path="res://componentes/hit_Box.gd" id="16_32hag"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c35mf"]
+atlas = ExtResource("5_c35mf")
+region = Rect2(0, 0, 85, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_65viv"]
+atlas = ExtResource("5_c35mf")
+region = Rect2(85, 0, 85, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x7c3f"]
+atlas = ExtResource("5_c35mf")
+region = Rect2(170, 0, 85, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bjvpn"]
+atlas = ExtResource("6_65viv")
+region = Rect2(0, 0, 85, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s7qer"]
+atlas = ExtResource("6_65viv")
+region = Rect2(85, 0, 85, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g4c7l"]
+atlas = ExtResource("6_65viv")
+region = Rect2(170, 0, 85, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2sfht"]
 atlas = ExtResource("1_3pu38")
@@ -63,6 +92,29 @@ region = Rect2(192, 0, 64, 64)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_c35mf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_65viv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x7c3f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bjvpn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s7qer")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g4c7l")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_2sfht")
 }, {
 "duration": 1.0,
@@ -110,9 +162,16 @@ animations = [{
 "speed": 8.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tqiix"]
+size = Vector2(17, 22)
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xlp3g"]
-radius = 7.0
-height = 24.0
+radius = 4.0
+height = 20.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_32hag"]
+radius = 5.0
+height = 18.0
 
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 30
@@ -121,10 +180,27 @@ script = ExtResource("1_2sfht")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.38, 0.38)
 sprite_frames = SubResource("SpriteFrames_0pucg")
-animation = &"idle"
+animation = &"attack"
 autoplay = "idle"
 
+[node name="HitBox" type="Area2D" parent="AnimatedSprite2D"]
+scale = Vector2(2.63158, 2.63158)
+collision_layer = 128
+collision_mask = 64
+script = ExtResource("16_32hag")
+damage = 35
+enemy = false
+metadata/_custom_type_script = "uid://btkgo3hwg7i8v"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/HitBox"]
+visible = false
+position = Vector2(11.5, 1)
+shape = SubResource("RectangleShape2D_tqiix")
+disabled = true
+debug_color = Color(0.808481, 0, 0.186273, 0.42)
+
 [node name="collisionShape" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
 shape = SubResource("CapsuleShape2D_xlp3g")
 
 [node name="StateMachineController" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
@@ -163,6 +239,10 @@ metadata/_custom_type_script = "uid://l6eq8yklu062"
 wait_time = 0.5
 one_shot = true
 
+[node name="Attack" type="Node" parent="StateMachineController"]
+script = ExtResource("12_e7oew")
+metadata/_custom_type_script = "uid://l6eq8yklu062"
+
 [node name="Debug" type="Timer" parent="."]
 
 [node name="TimeWarpDuration" type="Timer" parent="."]
@@ -189,9 +269,21 @@ volume_db = -10.0
 stream = ExtResource("14_wodsf")
 volume_db = -12.0
 
+[node name="HurtBox" type="Area2D" parent="."]
+collision_layer = 256
+collision_mask = 0
+script = ExtResource("15_wodsf")
+metadata/_custom_type_script = "uid://txrfqgoe07ub"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+shape = SubResource("CapsuleShape2D_32hag")
+debug_color = Color(0.115889, 0.678139, 0, 0.42)
+
+[connection signal="area_entered" from="AnimatedSprite2D/HitBox" to="." method="attack"]
 [connection signal="timeout" from="StateMachineController/Dash/Duration" to="StateMachineController/Dash" method="_on_duration_timeout"]
 [connection signal="timeout" from="StateMachineController/Dash/Cooldown" to="StateMachineController/Dash" method="_on_cooldown_timeout"]
 [connection signal="timeout" from="StateMachineController/Stomp/Cooldown" to="StateMachineController/Stomp" method="_on_cooldown_timeout"]
 [connection signal="timeout" from="Debug" to="." method="_on_debug_timeout"]
 [connection signal="timeout" from="TimeWarpDuration" to="." method="_on_time_warp_duration_timeout"]
 [connection signal="timeout" from="Save" to="." method="save"]
+[connection signal="healthChanged" from="HurtBox" to="." method="takeDamage"]
