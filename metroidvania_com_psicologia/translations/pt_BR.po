@@ -1,0 +1,34 @@
+# LANGUAGE translation for The Mind (TCC Version) for the following files:
+# res://gui/menu/main_menu.tscn
+#
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: The Mind (TCC Version)\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.8\n"
+
+#: gui/menu/main_menu.tscn
+msgid "INICIAR"
+msgstr "INICIAR"
+
+#: gui/menu/main_menu.tscn
+msgid "OPÇÕES"
+msgstr "OPÇÕES"
+
+#: gui/menu/main_menu.tscn
+msgid "SAIR"
+msgstr "SAIR"
+
+#: gui/menu/main_menu.tscn
+msgid "THE MIND"
+msgstr ""

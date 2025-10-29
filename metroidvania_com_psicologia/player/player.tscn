@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://bnel1u2etfiwm"]
+[gd_scene load_steps=29 format=3 uid="uid://cg4up2guckhol"]
 
 [ext_resource type="Script" uid="uid://cxwo6iykdp5rv" path="res://player/player.gd" id="1_2sfht"]
 [ext_resource type="Texture2D" uid="uid://dfkenf16iboyf" path="res://player/sprites/Sam_Parado_64x.png" id="1_3pu38"]
@@ -114,7 +114,23 @@ animations = [{
 radius = 7.0
 height = 24.0
 
-[node name="Player" type="CharacterBody2D"]
+[sub_resource type="GDScript" id="GDScript_kb6p2"]
+script/source = "extends Node
+
+# You can expose this to the editor to change the fly speed per-instance
+@export var fly_speed = -300.0
+
+# We need a reference to the body we are affecting (the player)
+@onready var character_body: CharacterBody2D = get_parent()
+
+func _physics_process(delta):
+	# This component only does one thing: check for the fly input
+	# and apply the velocity if the input is pressed.
+	if Input.is_action_pressed(\"jump\"):
+		character_body.velocity.y = fly_speed
+"
+
+[node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_mask = 30
 script = ExtResource("1_2sfht")
 
@@ -188,6 +204,9 @@ volume_db = -10.0
 [node name="HighJump" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("14_wodsf")
 volume_db = -12.0
+
+[node name="Fly" type="Node" parent="."]
+script = SubResource("GDScript_kb6p2")
 
 [connection signal="timeout" from="StateMachineController/Dash/Duration" to="StateMachineController/Dash" method="_on_duration_timeout"]
 [connection signal="timeout" from="StateMachineController/Dash/Cooldown" to="StateMachineController/Dash" method="_on_cooldown_timeout"]

@@ -1,6 +1,6 @@
-[gd_scene load_steps=25 format=3 uid="uid://ckbeyxh2mm5iu"]
+[gd_scene load_steps=27 format=3 uid="uid://ckbeyxh2mm5iu"]
 
-[ext_resource type="Script" uid="uid://sjmcqcepgd6h" path="res://arco_iris.gd" id="1_wl3f3"]
+[ext_resource type="Script" uid="uid://sjmcqcepgd6h" path="res://enemies/depression/fantasma/rainbow/arco_iris.gd" id="1_wl3f3"]
 [ext_resource type="Texture2D" uid="uid://dduy0s6d2ptif" path="res://assets/inimigo_arco_iris/arco iris depressão atacando.png" id="2_tkioc"]
 [ext_resource type="Texture2D" uid="uid://dhcuf1m3ox53h" path="res://assets/inimigo_arco_iris/lazer de agua ataque v2.png" id="3_15nk2"]
 [ext_resource type="Texture2D" uid="uid://c1g45yuqr3ac3" path="res://assets/inimigo_arco_iris/arco iris depressão parado.png" id="4_fif8q"]
@@ -22,22 +22,6 @@ region = Rect2(32, 0, 32, 32)
 atlas = ExtResource("2_tkioc")
 region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_k2wdt"]
-atlas = ExtResource("3_15nk2")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_myikl"]
-atlas = ExtResource("3_15nk2")
-region = Rect2(32, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_g7x1a"]
-atlas = ExtResource("3_15nk2")
-region = Rect2(64, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rqx8c"]
-atlas = ExtResource("3_15nk2")
-region = Rect2(96, 0, 32, 32)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_nb8dm"]
 atlas = ExtResource("4_fif8q")
 region = Rect2(0, 0, 32, 32)
@@ -52,6 +36,22 @@ region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x4eta"]
 atlas = ExtResource("4_fif8q")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k2wdt"]
+atlas = ExtResource("3_15nk2")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_myikl"]
+atlas = ExtResource("3_15nk2")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g7x1a"]
+atlas = ExtResource("3_15nk2")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rqx8c"]
+atlas = ExtResource("3_15nk2")
 region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_04l2r"]
@@ -86,25 +86,8 @@ animations = [{
 "texture": SubResource("AtlasTexture_sg4tf")
 }],
 "loop": true,
-"name": &"atacar_1",
+"name": &"attack",
 "speed": 4.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_k2wdt")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_myikl")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_g7x1a")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_rqx8c")
-}],
-"loop": true,
-"name": &"atacar_2",
-"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -121,7 +104,24 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle",
-"speed": 5.0
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k2wdt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_myikl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g7x1a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rqx8c")
+}],
+"loop": true,
+"name": &"laser",
+"speed": 4.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -138,7 +138,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"morte",
-"speed": 5.0
+"speed": 4.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wl3f3"]
@@ -147,7 +147,12 @@ size = Vector2(30, 24)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tkioc"]
 size = Vector2(171.5, 128)
 
-[node name="arcoIris" type="CharacterBody2D"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_tkioc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_15nk2"]
+atlas = SubResource("AtlasTexture_tkioc")
+
+[node name="arcoIris" type="CharacterBody2D" groups=["enemies"]]
 collision_layer = 3
 collision_mask = 3
 script = ExtResource("1_wl3f3")
@@ -155,7 +160,8 @@ script = ExtResource("1_wl3f3")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-3, 0)
 sprite_frames = SubResource("SpriteFrames_eqkjd")
-animation = &"atacar_1"
+animation = &"idle"
+autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-3, -3)
@@ -169,8 +175,20 @@ collision_layer = 16
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
-position = Vector2(-4, -4)
+position = Vector2(-3, -3)
 shape = SubResource("RectangleShape2D_tkioc")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2(-3, 0)
+target_position = Vector2(0, 600)
+collision_mask = 3
+
+[node name="LaserSprite" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_15nk2")
+
+[node name="LaserCooldown" type="Timer" parent="."]
+
+[node name="LaserDuration" type="Timer" parent="."]
 
 [connection signal="timeout" from="DirectionTimer" to="." method="_on_direction_timer_timeout"]
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]

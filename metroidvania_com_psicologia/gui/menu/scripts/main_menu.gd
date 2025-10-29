@@ -14,7 +14,7 @@ func _on_start_pressed() -> void:
 	var sceneToLoad = "res://levels/test_level.tscn"
 	if config.load("user://player.cfg") == OK:
 		sceneToLoad = config.get_value("player", "scene")
-	get_tree().change_scene_to_file(sceneToLoad)
+		get_tree().change_scene_to_file(sceneToLoad)
 
 func _on_options_pressed() -> void:
 	get_tree().change_scene_to_file("res://gui/menu/options.tscn")

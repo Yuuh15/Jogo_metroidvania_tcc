@@ -1,9 +1,9 @@
 [gd_scene load_steps=19 format=3 uid="uid://cpf8d3oc47g0g"]
 
-[ext_resource type="Script" uid="uid://ieyfljs0fj1c" path="res://projetil_fantasma.gd" id="1_67qkq"]
-[ext_resource type="Texture2D" uid="uid://doahbvlnjg71g" path="res://enemies/inimigo_fantasma_depressao/criando ataque.png" id="2_lae3g"]
-[ext_resource type="Texture2D" uid="uid://dfmrpheytgaaj" path="res://enemies/inimigo_fantasma_depressao/ataque explodindo.png" id="3_yvupo"]
-[ext_resource type="Texture2D" uid="uid://e0u8rilq2d7p" path="res://enemies/inimigo_fantasma_depressao/ataque voando.png" id="4_16d7y"]
+[ext_resource type="Script" uid="uid://ieyfljs0fj1c" path="res://enemies/depression/fantasma/projetil_fantasma.gd" id="1_67qkq"]
+[ext_resource type="Texture2D" uid="uid://doahbvlnjg71g" path="res://assets/inimigo_fantasma_depressao/criando ataque.png" id="2_lae3g"]
+[ext_resource type="Texture2D" uid="uid://dfmrpheytgaaj" path="res://assets/inimigo_fantasma_depressao/ataque explodindo.png" id="3_yvupo"]
+[ext_resource type="Texture2D" uid="uid://e0u8rilq2d7p" path="res://assets/inimigo_fantasma_depressao/ataque voando.png" id="4_16d7y"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2xu3c"]
 atlas = ExtResource("2_lae3g")
@@ -111,17 +111,16 @@ animations = [{
 radius = 11.0
 
 [node name="projetil_fantasma" type="CharacterBody2D" groups=["projectiles"]]
+collision_layer = 8
+collision_mask = 3
 script = ExtResource("1_67qkq")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_cf83c")
-animation = &"flying"
+animation = &"exploding"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, 0)
-shape = SubResource("CircleShape2D_63xrp")
-
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." groups=["projectiles"]]
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(-1, 0)
