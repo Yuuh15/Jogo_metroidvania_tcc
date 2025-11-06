@@ -38,6 +38,7 @@ var canSave : bool = false
 # Guarda a última direção do jogador ao sair do chão
 var gDirection = 0.0
 var saveLastPositionInGround = false
+var wallJumping = false
 
 func _ready() -> void:
 	loadSave()
@@ -48,14 +49,15 @@ func _ready() -> void:
 			#area.area_entered.connect(takeDamage.bind(area.damage))
 	
 func _process(delta: float) -> void:
-	if directionX:
+	if directionX and !wallJumping:
 		gDirection = directionX * -1
 		sprite.scale.x = directionX * 0.38
 	
 func _physics_process(delta: float) -> void:
-	directionX = Input.get_axis("move_left", "move_right")
-	directionY = Input.get_axis("move_up", "move_down")
-	
+	if !wallJumping:
+		directionX = Input.get_axis("move_left", "move_right")
+		directionY = Input.get_axis("move_up", "move_down")
+	print(wallJumping)
 	
 	if Input.is_action_just_pressed("time_warp") && timeWarp:
 		Engine.time_scale = 0.5
@@ -74,7 +76,10 @@ func _physics_process(delta: float) -> void:
 		knockbackDuration -= delta
 		if 0 > knockbackDuration:
 			knockback = Vector2.ZERO
-
+	
+	if wallJumping and !is_on_floor():
+		velocity.x = 100 * gDirection
+	
 	move_and_slide()
 	
 func applyGravity(delta : float):

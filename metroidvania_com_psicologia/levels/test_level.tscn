@@ -229,7 +229,7 @@ tile_map_data = PackedByteArray("AAAAAAIABQABAAAAAAABAAIABQABAAAAAAACAAIABQABAAA
 tile_set = SubResource("TileSet_ju12x")
 
 [node name="grippable_walls" type="TileMapLayer" parent="map"]
-tile_map_data = PackedByteArray("AADx//v/AQACAAEAAADx//z/AQACAAEAAADx//3/AQACAAEAAADx//7/AQACAAEAAADx////AQACAAEAAADx/wAAAQACAAEAAADx/wEAAQACAAEAAAA=")
+tile_map_data = PackedByteArray("AADx//v/AQACAAEAAADx//z/AQACAAEAAADx//3/AQACAAEAAADx//7/AQACAAEAAADx////AQACAAEAAADx/wAAAQACAAEAAADx/wEAAQACAAEAAAD1//r/AQAAAAEAAAD1//v/AQAAAAEAAAD1//z/AQAAAAEAAAD1//3/AQAAAAEAAAD1//7/AQAAAAEAAAD1////AQAAAAIAAAA=")
 tile_set = SubResource("TileSet_pgbyh")
 
 [node name="Plataforma-teste" parent="map" instance=ExtResource("6_paa45")]
