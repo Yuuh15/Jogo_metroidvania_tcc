@@ -1,13 +1,13 @@
-[gd_scene load_steps=41 format=3 uid="uid://bnel1u2etfiwm"]
+[gd_scene load_steps=42 format=3 uid="uid://bnel1u2etfiwm"]
 
 [ext_resource type="Script" uid="uid://cxwo6iykdp5rv" path="res://player/player.gd" id="1_2sfht"]
 [ext_resource type="Texture2D" uid="uid://dfkenf16iboyf" path="res://player/sprites/Sam_Parado_64x.png" id="1_3pu38"]
 [ext_resource type="Texture2D" uid="uid://clyyjw4fgfx1g" path="res://player/sprites/Sam_Pulando_64x.png" id="2_q3i6w"]
 [ext_resource type="Texture2D" uid="uid://do3n6qf4mx41k" path="res://player/sprites/Sam_Andando_64x.png" id="3_42fb3"]
+[ext_resource type="Texture2D" uid="uid://c6w8fj68qdclh" path="res://player/sprites/Sam_Atacando2_64x-v2.png" id="3_c35mf"]
 [ext_resource type="Script" uid="uid://dv26duycoykqb" path="res://scripts/state-machine-controller.gd" id="4_42fb3"]
 [ext_resource type="Texture2D" uid="uid://cip10md4ocajo" path="res://player/sprites/Sam_Atacando_64x.png" id="5_c35mf"]
 [ext_resource type="AudioStream" uid="uid://cfi8wr3tlrm1p" path="res://player/jump.wav" id="5_qjkh3"]
-[ext_resource type="Texture2D" uid="uid://2fywfs44h35e" path="res://player/sprites/Sam_Atacando2_64x.png" id="6_65viv"]
 [ext_resource type="AudioStream" uid="uid://d38rp2crk4yt5" path="res://player/hitHurt.wav" id="6_g6k8r"]
 [ext_resource type="Script" uid="uid://q73oaypbeup0" path="res://player/states/idle.gd" id="6_k3a0e"]
 [ext_resource type="Script" uid="uid://ddcsl88sibfwq" path="res://player/states/running.gd" id="7_k3a0e"]
@@ -17,6 +17,7 @@
 [ext_resource type="Script" uid="uid://drc4nrds68s6h" path="res://player/states/attack.gd" id="12_e7oew"]
 [ext_resource type="AudioStream" uid="uid://3laecupg6aud" path="res://audios/dash.mp3" id="13_kb6p2"]
 [ext_resource type="AudioStream" uid="uid://d332igum7mhtr" path="res://audios/highJump.wav" id="14_wodsf"]
+[ext_resource type="Script" uid="uid://dssafjncxk0x1" path="res://player/grip.gd" id="15_65viv"]
 [ext_resource type="Script" uid="uid://txrfqgoe07ub" path="res://componentes/hurt_box.gd" id="15_wodsf"]
 [ext_resource type="Script" uid="uid://btkgo3hwg7i8v" path="res://componentes/hit_Box.gd" id="16_32hag"]
 
@@ -33,16 +34,16 @@ atlas = ExtResource("5_c35mf")
 region = Rect2(170, 0, 85, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bjvpn"]
-atlas = ExtResource("6_65viv")
+atlas = ExtResource("3_c35mf")
 region = Rect2(0, 0, 85, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s7qer"]
-atlas = ExtResource("6_65viv")
+atlas = ExtResource("3_c35mf")
 region = Rect2(85, 0, 85, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g4c7l"]
-atlas = ExtResource("6_65viv")
-region = Rect2(170, 0, 85, 64)
+atlas = ExtResource("3_c35mf")
+region = Rect2(0, 64, 85, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2sfht"]
 atlas = ExtResource("1_3pu38")
@@ -180,7 +181,7 @@ script = ExtResource("1_2sfht")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.38, 0.38)
 sprite_frames = SubResource("SpriteFrames_0pucg")
-animation = &"attack"
+animation = &"idle"
 autoplay = "idle"
 
 [node name="HitBox" type="Area2D" parent="AnimatedSprite2D"]
@@ -198,6 +199,12 @@ position = Vector2(11.5, 1)
 shape = SubResource("RectangleShape2D_tqiix")
 disabled = true
 debug_color = Color(0.808481, 0, 0.186273, 0.42)
+
+[node name="WallDetector" type="RayCast2D" parent="AnimatedSprite2D"]
+position = Vector2(2.63158, 0)
+scale = Vector2(2.63158, 2.63158)
+target_position = Vector2(6, 0)
+collision_mask = 512
 
 [node name="collisionShape" type="CollisionShape2D" parent="."]
 position = Vector2(0, 2)
@@ -241,6 +248,10 @@ one_shot = true
 
 [node name="Attack" type="Node" parent="StateMachineController"]
 script = ExtResource("12_e7oew")
+metadata/_custom_type_script = "uid://l6eq8yklu062"
+
+[node name="Grip" type="Node" parent="StateMachineController"]
+script = ExtResource("15_65viv")
 metadata/_custom_type_script = "uid://l6eq8yklu062"
 
 [node name="Debug" type="Timer" parent="."]

@@ -1,27 +1,32 @@
 extends State
 
 @onready var player: Player = $"../.."
-var jump_speed = -300
+
 
 func enter():
 	player.sprite.play("jump")
 	if player.is_on_floor():
-		player.velocity.y = jump_speed
+		player.velocity.y = player.jump_speed
 		player.jump.play() # Toca o som de pulo normal
 	elif player.airJumps > 0 && Input.is_action_just_pressed("jump"):
-		player.velocity.y = jump_speed * 0.9
+		player.velocity.y = player.jump_speed * 0.9
 		player.airJumps -= 1
 		player.highJump.play()
+
 func physics_process(delta: float) -> void:
+	player.applyGravity(delta)
 	if Input.is_action_just_released("jump") && player.velocity.y < 0:
-		player.velocity.y = jump_speed / 4
+		player.velocity.y = player.jump_speed / 4
 
 	if Input.is_action_just_pressed("jump") && player.airJumps > 0:
-		player.velocity.y = jump_speed * 0.9
+		player.velocity.y = player.jump_speed * 0.9
 		player.airJumps -= 1
 		player.highJump.play()
+	
+	if player.wall_detector.is_colliding():
+		Transitioned.emit(self, "grip")
 		
-	elif player.is_on_floor():
+	if player.is_on_floor():
 		Transitioned.emit(self, "idle")
 		
 	elif Input.is_action_just_pressed("use_power"):
@@ -33,4 +38,4 @@ func physics_process(delta: float) -> void:
 		
 	else:
 		player.velocity.x = player.SPEED * player.directionX
-	player.applyGravity(delta)
+	

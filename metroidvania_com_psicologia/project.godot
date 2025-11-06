@@ -121,6 +121,7 @@ ataque={
 2d_physics/layer_7="enemyHurtBox"
 2d_physics/layer_8="playerHitBox"
 2d_physics/layer_9="playerHurtBox"
+2d_physics/layer_10="grippable_walls"
 
 [rendering]
 

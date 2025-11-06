@@ -10,7 +10,8 @@ var text = preload("res://gui/saveText/save_text.tscn")
 @onready var highJump: AudioStreamPlayer = $Sounds/HighJump
 @onready var attackShape: CollisionShape2D = $AnimatedSprite2D/HitBox/CollisionShape2D
 @onready var hurt_box: HurtBox = $HurtBox
-
+@onready var wall_detector: RayCast2D = $AnimatedSprite2D/WallDetector
+@onready var actualState: StateMachineController = $StateMachineController
 
 var directionX : float
 var directionY : float
@@ -21,6 +22,7 @@ var airJumps = 0
 
 # velocidade do jogador no estado de running
 const SPEED = 150
+var jump_speed = -300
 
 # items que o jogador tem.
 var dash = false
@@ -33,12 +35,9 @@ var knockbackDuration : float
 # verifica se o jogador pode salvar
 var canSave : bool = false
 
-# Verifica se o jogador está preso na parede pelas garras
-var grip_wall := false
 # Guarda a última direção do jogador ao sair do chão
 var gDirection = 0.0
 var saveLastPositionInGround = false
-
 
 func _ready() -> void:
 	loadSave()
@@ -50,11 +49,13 @@ func _ready() -> void:
 	
 func _process(delta: float) -> void:
 	if directionX:
+		gDirection = directionX * -1
 		sprite.scale.x = directionX * 0.38
 	
 func _physics_process(delta: float) -> void:
 	directionX = Input.get_axis("move_left", "move_right")
 	directionY = Input.get_axis("move_up", "move_down")
+	
 	
 	if Input.is_action_just_pressed("time_warp") && timeWarp:
 		Engine.time_scale = 0.5
