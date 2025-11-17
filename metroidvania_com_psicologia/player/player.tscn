@@ -212,8 +212,9 @@ script = ExtResource("1_2sfht")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.38, 0.38)
 sprite_frames = SubResource("SpriteFrames_0pucg")
-animation = &"climb"
+animation = &"idle"
 autoplay = "idle"
+frame_progress = 0.164641
 
 [node name="HitBox" type="Area2D" parent="AnimatedSprite2D"]
 scale = Vector2(2.63158, 2.63158)

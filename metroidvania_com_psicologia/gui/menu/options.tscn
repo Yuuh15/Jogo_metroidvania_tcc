@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bylnvutdpamas"]
+[gd_scene load_steps=22 format=3 uid="uid://bylnvutdpamas"]
 
 [ext_resource type="Script" uid="uid://btu6yrs1o2gi0" path="res://gui/menu/scripts/opções.gd" id="1_12uyd"]
 [ext_resource type="StyleBox" uid="uid://bpgk4scifo53n" path="res://gui/menu/shaders/menuTexture.tres" id="2_6focj"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dk2y2c7dfwmmr" path="res://gui/menu/img/botão com mouse.png" id="3_8ydq0"]
 [ext_resource type="Texture2D" uid="uid://dilcxp31wi5xv" path="res://gui/menu/img/Botão menu.png" id="4_hyomx"]
 [ext_resource type="PackedScene" uid="uid://c8ax3u5ckj3ct" path="res://gui/menu/effect/switch.tscn" id="5_6focj"]
+[ext_resource type="Script" uid="uid://rutmeltftktj" path="res://gui/menu/scripts/senoid-vbox.gd" id="5_h0tj4"]
 [ext_resource type="AudioStream" uid="uid://8wuo13ue5vf7" path="res://audios/select.wav" id="6_q6fm1"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_b5d6l"]
@@ -87,6 +88,7 @@ offset_bottom = 69.04
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 9
+script = ExtResource("5_h0tj4")
 
 [node name="Audio" type="Button" parent="VBoxContainer"]
 layout_mode = 2

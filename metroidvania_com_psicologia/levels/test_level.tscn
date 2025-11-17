@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=4 uid="uid://co8e3r47x3lmq"]
+[gd_scene load_steps=31 format=4 uid="uid://co8e3r47x3lmq"]
 
 [ext_resource type="Texture2D" uid="uid://vvnloco0jh08" path="res://tileset/tile-set demo (2).png" id="3_ly3hx"]
 [ext_resource type="PackedScene" uid="uid://dsjvp2jcex54l" path="res://items/double_jump/double_jump.tscn" id="4_4l2q7"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://d3dyo1f0naxcw" path="res://background/parralax-background.tscn" id="17_wjuib"]
 [ext_resource type="PackedScene" uid="uid://bnel1u2etfiwm" path="res://player/player.tscn" id="17_xag4j"]
 [ext_resource type="PackedScene" uid="uid://cvm5q4uu0opm2" path="res://player/playerCamera.tscn" id="18_xag4j"]
+[ext_resource type="PackedScene" uid="uid://dofgdsifm3xl2" path="res://gui/menu/pause_menu.tscn" id="19_68kkm"]
 [ext_resource type="PackedScene" uid="uid://b13xlg8v5v8yf" path="res://teste/save_point.tscn" id="19_pgbyh"]
 
 [sub_resource type="GDScript" id="GDScript_wjuib"]
@@ -284,3 +285,7 @@ position = Vector2(480, -112)
 
 [node name="SavePoint3" parent="." instance=ExtResource("19_pgbyh")]
 position = Vector2(2136, -288)
+
+[node name="PauseMenu" type="CanvasLayer" parent="."]
+
+[node name="pause_menu" parent="PauseMenu" instance=ExtResource("19_68kkm")]
