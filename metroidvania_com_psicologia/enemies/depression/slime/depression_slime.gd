@@ -8,11 +8,7 @@ var followSpeed : int = 100
 
 var speed : int
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
-<<<<<<< HEAD
-@onready var player: Player = $"../Player"
-=======
 @onready var player: CharacterBody2D = $"../../Player"
->>>>>>> principal
 @onready var ray_cast_2d: RayCast2D = $AnimatedSprite2D/vision
 var trail = preload("res://enemies/depression/slime/trail/trail.tscn")
 @onready var trailPos: Marker2D = $AnimatedSprite2D/trail

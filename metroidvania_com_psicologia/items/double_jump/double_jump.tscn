@@ -10,7 +10,7 @@ size = Vector2(10, 13)
 script = ExtResource("1_pjepq")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(1.125, 1.125)
+scale = Vector2(1.75, 1.75)
 texture = ExtResource("2_ek6sk")
 
 [node name="playerDetection" type="Area2D" parent="."]
@@ -18,6 +18,7 @@ collision_layer = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="playerDetection"]
 position = Vector2(0, 0.5)
+scale = Vector2(1.75, 1.75)
 shape = SubResource("RectangleShape2D_ek6sk")
 
 [connection signal="body_shape_entered" from="playerDetection" to="." method="_on_player_detection_body_shape_entered"]

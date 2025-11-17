@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://mpe4ophwvn2b"]
+[gd_scene load_steps=10 format=3 uid="uid://mpe4ophwvn2b"]
 
 [ext_resource type="Texture2D" uid="uid://bpmgih2rg4mdj" path="res://tileset/chaov2/chão re.png" id="1_1qb5x"]
 [ext_resource type="Texture2D" uid="uid://clf0ocw0vwiox" path="res://tileset/chaov2/quadrado pequeno interno.png" id="1_7j2kt"]
 [ext_resource type="Texture2D" uid="uid://4gi8yvv7xs4p" path="res://tileset/chaov2/tileset chão extra.png" id="2_y0sil"]
+[ext_resource type="Texture2D" uid="uid://ce8mbobsqbojc" path="res://tileset/parte 2 decoração.png" id="4_ddmrq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ddmrq"]
 texture = ExtResource("1_7j2kt")
@@ -106,9 +107,13 @@ texture = ExtResource("2_y0sil")
 5:2/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3w32q"]
+texture = ExtResource("4_ddmrq")
+0:0/size_in_atlas = Vector2i(3, 2)
 0:0/0 = 0
 3:0/0 = 0
+2:2/size_in_atlas = Vector2i(2, 2)
 2:2/0 = 0
+0:2/size_in_atlas = Vector2i(2, 2)
 0:2/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_gewpq"]

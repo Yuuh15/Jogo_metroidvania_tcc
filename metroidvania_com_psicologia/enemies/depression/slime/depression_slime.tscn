@@ -165,7 +165,7 @@ position = Vector2(-14, 16)
 
 [node name="vision" type="RayCast2D" parent="AnimatedSprite2D"]
 position = Vector2(0, 5)
-target_position = Vector2(80, 0)
+target_position = Vector2(50, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(3, 2)

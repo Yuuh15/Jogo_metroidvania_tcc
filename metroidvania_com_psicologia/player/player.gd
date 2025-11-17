@@ -13,6 +13,8 @@ var text = preload("res://gui/saveText/save_text.tscn")
 @onready var wall_detector: RayCast2D = $AnimatedSprite2D/WallDetector
 @onready var actualState: StateMachineController = $StateMachineController
 
+var door_to: Vector2
+
 var directionX : float
 var directionY : float
 

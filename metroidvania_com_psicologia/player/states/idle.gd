@@ -11,7 +11,8 @@ func physics_process(delta):
 		Transitioned.emit(self, "running")
 		
 	elif player.canSave && Input.is_action_just_pressed("move_up"):
-		player.save()
+		player.global_position = player.door_to
+		AudioPlayer.sfx_Door()
 		
 	elif Input.is_action_just_pressed("jump") || !player.is_on_floor():
 		Transitioned.emit(self, "jump")

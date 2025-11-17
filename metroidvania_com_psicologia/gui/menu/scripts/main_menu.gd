@@ -12,7 +12,7 @@ func _process(delta):
 func _on_start_pressed() -> void:
 	AudioPlayer.stop()
 	var config = ConfigFile.new()
-	var sceneToLoad = "res://levels/test_level.tscn"
+	var sceneToLoad = "res://levels/level_1.tscn"
 	get_tree().change_scene_to_file(sceneToLoad)
 
 func _on_options_pressed() -> void:

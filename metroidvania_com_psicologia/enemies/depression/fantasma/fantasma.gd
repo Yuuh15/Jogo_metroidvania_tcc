@@ -18,7 +18,7 @@ func _ready():
 	
 	patrol_points = [
 		global_position,
-		global_position + Vector2(200, 0),
+		global_position + Vector2(100, 0),
 		global_position + Vector2(100, 0),
 	]
 	

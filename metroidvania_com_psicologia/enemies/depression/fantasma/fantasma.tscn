@@ -120,7 +120,7 @@ script = ExtResource("1_mkdhj")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_vro25")
-animation = &"dying"
+animation = &"idle"
 autoplay = "atacando"
 
 [node name="HitBox" type="Area2D" parent="AnimatedSprite2D"]
