@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bs142q3whn5qa" path="res://enemies/depression/slime/depression_slime.tscn" id="5_odbgv"]
 [ext_resource type="PackedScene" uid="uid://cg4up2guckhol" path="res://player/player.tscn" id="6_bcf81"]
 [ext_resource type="PackedScene" uid="uid://o0o06ki3ajpk" path="res://misc/killzone.tscn" id="6_fmrvw"]
-[ext_resource type="PackedScene" uid="uid://c01ekom3u1ga5" path="res://player/playerCamera.tscn" id="7_bcf81"]
+[ext_resource type="PackedScene" uid="uid://cvm5q4uu0opm2" path="res://player/playerCamera.tscn" id="7_bcf81"]
 [ext_resource type="PackedScene" uid="uid://b13xlg8v5v8yf" path="res://teste/save_point.tscn" id="8_f6t8j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bcf81"]
