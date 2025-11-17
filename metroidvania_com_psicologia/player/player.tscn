@@ -15,13 +15,13 @@
 [ext_resource type="Script" uid="uid://ce6u4e75xpbc1" path="res://player/states/jump.gd" id="8_n3yqn"]
 [ext_resource type="Script" uid="uid://jrml8fgb4dtx" path="res://player/states/dash.gd" id="9_vwjo1"]
 [ext_resource type="Script" uid="uid://cln1ydxw421ep" path="res://player/states/stomp.gd" id="10_swvrg"]
-[ext_resource type="Script" path="res://player/states/attack.gd" id="12_e7oew"]
+[ext_resource type="Script" uid="uid://drc4nrds68s6h" path="res://player/states/attack.gd" id="12_e7oew"]
 [ext_resource type="AudioStream" uid="uid://3laecupg6aud" path="res://audios/dash.mp3" id="13_kb6p2"]
 [ext_resource type="AudioStream" uid="uid://d332igum7mhtr" path="res://audios/highJump.wav" id="14_wodsf"]
-[ext_resource type="Script" path="res://player/grip.gd" id="15_65viv"]
+[ext_resource type="Script" uid="uid://dssafjncxk0x1" path="res://player/grip.gd" id="15_65viv"]
 [ext_resource type="Script" uid="uid://txrfqgoe07ub" path="res://componentes/hurt_box.gd" id="15_wodsf"]
 [ext_resource type="Script" uid="uid://btkgo3hwg7i8v" path="res://componentes/hit_Box.gd" id="16_32hag"]
-[ext_resource type="Script" path="res://player/states/mid_air.gd" id="16_x7c3f"]
+[ext_resource type="Script" uid="uid://bfffp077cyd2a" path="res://player/states/mid_air.gd" id="16_x7c3f"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c35mf"]
 atlas = ExtResource("5_c35mf")

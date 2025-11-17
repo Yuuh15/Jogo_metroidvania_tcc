@@ -1,13 +1,38 @@
 [gd_scene load_steps=15 format=4 uid="uid://io473shbrsht"]
 
 [ext_resource type="PackedScene" uid="uid://bnel1u2etfiwm" path="res://player/player.tscn" id="1_bt44k"]
-[ext_resource type="Script" uid="uid://cn6anqyqwi5au" path="res://scripts/wiggling_floor.gd" id="1_btoec"]
-[ext_resource type="Script" uid="uid://bydcc1rexel5i" path="res://levels/level_1.gd" id="1_gwceb"]
+[ext_resource type="Script" path="res://scripts/wiggling_floor.gd" id="1_btoec"]
+[ext_resource type="Script" path="res://levels/level_1.gd" id="1_gwceb"]
 [ext_resource type="PackedScene" uid="uid://mpe4ophwvn2b" path="res://tileset/chaov2/tile_map_layer_depression.tscn" id="1_kx6l7"]
 [ext_resource type="PackedScene" uid="uid://d3dyo1f0naxcw" path="res://background/parralax-background.tscn" id="1_vn7o3"]
 [ext_resource type="PackedScene" uid="uid://cvm5q4uu0opm2" path="res://player/playerCamera.tscn" id="2_kx6l7"]
 [ext_resource type="PackedScene" uid="uid://bs142q3whn5qa" path="res://enemies/depression/slime/depression_slime.tscn" id="5_n46q3"]
 [ext_resource type="PackedScene" uid="uid://c6b5wiedlbj1y" path="res://gui/healthBar/health_bar.tscn" id="8_l53as"]
+
+[sub_resource type="Animation" id="Animation_btoec"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("map/WigglingFloor:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("map/WigglingFloor:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
 
 [sub_resource type="Animation" id="Animation_n46q3"]
 resource_name = "sinoidal_floor"
@@ -36,35 +61,35 @@ tracks/1/keys = {
 "times": PackedFloat32Array(-0.0333333, 1.5, 5, 6.5)
 }
 
-[sub_resource type="Animation" id="Animation_btoec"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gwceb"]
+_data = {
+&"RESET": SubResource("Animation_btoec"),
+&"sinoidal_floor": SubResource("Animation_n46q3")
+}
+
+[sub_resource type="Animation" id="Animation_3sk1a"]
 length = 0.001
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("map/WigglingFloor:position:x")
+tracks/0/path = NodePath("../CanvasLayer/HealthBar:scale:x")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(3, -0.15, 0, 0.15, 0),
 "times": PackedFloat32Array(0)
 }
 tracks/1/type = "bezier"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("map/WigglingFloor:position:y")
+tracks/1/path = NodePath("../CanvasLayer/HealthBar:scale:y")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(3, -0.15, 0, 0.15, 0),
 "times": PackedFloat32Array(0)
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_gwceb"]
-_data = {
-&"RESET": SubResource("Animation_btoec"),
-&"sinoidal_floor": SubResource("Animation_n46q3")
 }
 
 [sub_resource type="Animation" id="Animation_l53as"]
@@ -91,31 +116,6 @@ tracks/1/keys = {
 "handle_modes": PackedInt32Array(0, 0),
 "points": PackedFloat32Array(4, -0.15, 0, 0.15, 0, 3, -0.15, 0, 0.15, 0),
 "times": PackedFloat32Array(0, 0.3)
-}
-
-[sub_resource type="Animation" id="Animation_3sk1a"]
-length = 0.001
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../CanvasLayer/HealthBar:scale:x")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(3, -0.15, 0, 0.15, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../CanvasLayer/HealthBar:scale:y")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(3, -0.15, 0, 0.15, 0),
-"times": PackedFloat32Array(0)
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_08mmt"]
