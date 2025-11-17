@@ -1,6 +1,7 @@
 extends ProgressBar
 
-@export var player : Player
+@export var player: Player
+@onready var anim = $"../../animation_players/health_bar"
 
 func _ready() -> void:
 	# Espera o player carregar para continuar
@@ -12,3 +13,4 @@ func _ready() -> void:
 	
 func healthUpdate():
 	value = player.hurt_box.health
+	anim.play("damage")

@@ -16,4 +16,5 @@ func physics_process(_delta : float):
 		Transitioned.emit(self, "follow")
 
 func _on_hurt_box_health_changed() -> void:
+	await get_tree().create_timer(0.5).timeout
 	Transitioned.emit(self, "follow")
