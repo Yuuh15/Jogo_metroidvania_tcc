@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://bnel1u2etfiwm"]
+[gd_scene load_steps=48 format=3 uid="uid://bnel1u2etfiwm"]
 
 [ext_resource type="Script" uid="uid://cxwo6iykdp5rv" path="res://player/player.gd" id="1_2sfht"]
 [ext_resource type="Texture2D" uid="uid://dfkenf16iboyf" path="res://player/sprites/Sam_Parado_64x.png" id="1_3pu38"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://do3n6qf4mx41k" path="res://player/sprites/Sam_Andando_64x.png" id="3_42fb3"]
 [ext_resource type="Texture2D" uid="uid://c6w8fj68qdclh" path="res://player/sprites/Sam_Atacando2_64x-v2.png" id="3_c35mf"]
 [ext_resource type="Script" uid="uid://dv26duycoykqb" path="res://scripts/state-machine-controller.gd" id="4_42fb3"]
+[ext_resource type="Texture2D" uid="uid://bvwk14j801v4c" path="res://player/sprites/Sam_Escalando_64x.png" id="4_bjvpn"]
 [ext_resource type="Texture2D" uid="uid://cip10md4ocajo" path="res://player/sprites/Sam_Atacando_64x.png" id="5_c35mf"]
 [ext_resource type="AudioStream" uid="uid://cfi8wr3tlrm1p" path="res://player/jump.wav" id="5_qjkh3"]
 [ext_resource type="AudioStream" uid="uid://d38rp2crk4yt5" path="res://player/hitHurt.wav" id="6_g6k8r"]
@@ -45,6 +46,18 @@ region = Rect2(85, 0, 85, 64)
 [sub_resource type="AtlasTexture" id="AtlasTexture_g4c7l"]
 atlas = ExtResource("3_c35mf")
 region = Rect2(0, 64, 85, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_knn7v"]
+atlas = ExtResource("4_bjvpn")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7pqkx"]
+atlas = ExtResource("4_bjvpn")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uw77l"]
+atlas = ExtResource("4_bjvpn")
+region = Rect2(128, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2sfht"]
 atlas = ExtResource("1_3pu38")
@@ -117,6 +130,20 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_knn7v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7pqkx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uw77l")
+}],
+"loop": true,
+"name": &"climb",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_2sfht")
 }, {
 "duration": 1.0,
@@ -167,6 +194,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tqiix"]
 size = Vector2(17, 22)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bjvpn"]
+size = Vector2(18, 20)
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xlp3g"]
 radius = 4.0
 height = 20.0
@@ -184,6 +214,7 @@ scale = Vector2(0.38, 0.38)
 sprite_frames = SubResource("SpriteFrames_0pucg")
 animation = &"idle"
 autoplay = "idle"
+frame_progress = 0.164641
 
 [node name="HitBox" type="Area2D" parent="AnimatedSprite2D"]
 scale = Vector2(2.63158, 2.63158)
@@ -206,6 +237,10 @@ position = Vector2(2.63158, 0)
 scale = Vector2(2.63158, 2.63158)
 target_position = Vector2(6, 0)
 collision_mask = 512
+
+[node name="walljump" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_bjvpn")
+disabled = true
 
 [node name="collisionShape" type="CollisionShape2D" parent="."]
 position = Vector2(0, 2)

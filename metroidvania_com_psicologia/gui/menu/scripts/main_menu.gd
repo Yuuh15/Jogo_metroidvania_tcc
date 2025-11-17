@@ -1,6 +1,7 @@
 extends Control
 
 func _ready():
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	AudioPlayer.play_music_menu()
 	for button in $VBoxContainer.get_children():
 		button.connect("mouse_entered", $Switch.play)

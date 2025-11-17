@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://8f83ka8xk0mu"
+path="res://.godot/imported/Creatones - My Home (No Fades).mp3-4f592c0fe191971152bf067a3bed2bc0.mp3str"
+
+[deps]
+
+source_file="res://audios/Creatones - My Home (No Fades).mp3"
+dest_files=["res://.godot/imported/Creatones - My Home (No Fades).mp3-4f592c0fe191971152bf067a3bed2bc0.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

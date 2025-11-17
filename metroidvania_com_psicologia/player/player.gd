@@ -28,6 +28,7 @@ var jump_speed = -300
 var dash = false
 var stomp = false
 var timeWarp = false
+var claws = false
 
 var knockback : Vector2
 var knockbackDuration : float
@@ -41,7 +42,6 @@ var saveLastPositionInGround = false
 var wallJumping = false
 
 func _ready() -> void:
-	loadSave()
 	airJumps = maxAirJumps
 	#damageAreas = get_tree().get_nodes_in_group("damage")
 	#if damageAreas.size() > 0:
@@ -54,7 +54,6 @@ func _process(delta: float) -> void:
 		sprite.scale.x = directionX * 0.38
 	
 func _physics_process(delta: float) -> void:
-	print(actualState.current_state.name)
 	if !wallJumping:
 		directionX = Input.get_axis("move_left", "move_right")
 		directionY = Input.get_axis("move_up", "move_down")
@@ -68,6 +67,7 @@ func _physics_process(delta: float) -> void:
 		dash = true
 		stomp = true
 		timeWarp = true
+		claws = true
 		maxAirJumps = 1
 	
 	# aplica knockback
