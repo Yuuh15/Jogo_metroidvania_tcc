@@ -54,10 +54,10 @@ func _process(delta: float) -> void:
 		sprite.scale.x = directionX * 0.38
 	
 func _physics_process(delta: float) -> void:
+	print(actualState.current_state.name)
 	if !wallJumping:
 		directionX = Input.get_axis("move_left", "move_right")
 		directionY = Input.get_axis("move_up", "move_down")
-	print(wallJumping)
 	
 	if Input.is_action_just_pressed("time_warp") && timeWarp:
 		Engine.time_scale = 0.5

@@ -1,7 +1,5 @@
-[gd_scene load_steps=33 format=4 uid="uid://co8e3r47x3lmq"]
+[gd_scene load_steps=30 format=4 uid="uid://co8e3r47x3lmq"]
 
-[ext_resource type="Texture2D" uid="uid://bllm7pssgvr1t" path="res://levels/tile/tileset-PLACE-HOLDER.png" id="1_8nelv"]
-[ext_resource type="Texture2D" uid="uid://di7repnlatj4v" path="res://levels/tile/background-PLACE-HOLDER.png" id="1_aeujl"]
 [ext_resource type="Texture2D" uid="uid://vvnloco0jh08" path="res://tileset/tile-set demo (2).png" id="3_ly3hx"]
 [ext_resource type="PackedScene" uid="uid://dsjvp2jcex54l" path="res://items/double_jump/double_jump.tscn" id="4_4l2q7"]
 [ext_resource type="Texture2D" uid="uid://rm2pebjn368u" path="res://tileset/tile-set demo v3.png" id="4_wkb0e"]
@@ -29,7 +27,6 @@ func _ready() -> void:
 "
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xag4j"]
-texture = ExtResource("1_aeujl")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -37,17 +34,6 @@ texture = ExtResource("1_aeujl")
 
 [sub_resource type="TileSet" id="TileSet_fi7ic"]
 sources/0 = SubResource("TileSetAtlasSource_xag4j")
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pgbyh"]
-texture = ExtResource("1_8nelv")
-0:0/0 = 0
-0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-1:0/0 = 0
-1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-2:0/0 = 0
-2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-3:0/0 = 0
-3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_68kkm"]
 texture = ExtResource("3_ly3hx")
@@ -124,7 +110,6 @@ texture = ExtResource("5_paa45")
 
 [sub_resource type="TileSet" id="TileSet_ju12x"]
 physics_layer_0/collision_layer = 2
-sources/0 = SubResource("TileSetAtlasSource_pgbyh")
 sources/5 = SubResource("TileSetAtlasSource_68kkm")
 sources/6 = SubResource("TileSetAtlasSource_n4g7x")
 sources/7 = SubResource("TileSetAtlasSource_atrxo")
@@ -229,7 +214,7 @@ tile_map_data = PackedByteArray("AAAAAAIABQABAAAAAAABAAIABQABAAAAAAACAAIABQABAAA
 tile_set = SubResource("TileSet_ju12x")
 
 [node name="grippable_walls" type="TileMapLayer" parent="map"]
-tile_map_data = PackedByteArray("AADx//v/AQACAAEAAADx//z/AQACAAEAAADx//3/AQACAAEAAADx//7/AQACAAEAAADx////AQACAAEAAADx/wAAAQACAAEAAADx/wEAAQACAAEAAAD1//r/AQAAAAEAAAD1//v/AQAAAAEAAAD1//z/AQAAAAEAAAD1//3/AQAAAAEAAAD1//7/AQAAAAEAAAD1////AQAAAAIAAAA=")
+tile_map_data = PackedByteArray("AADx//v/AQACAAEAAADx//z/AQACAAEAAADx//3/AQACAAEAAADx//7/AQACAAEAAADx////AQACAAEAAADx/wAAAQACAAEAAADx/wEAAQACAAEAAAD2//r/AQAAAAEAAAD2//v/AQAAAAEAAAD2//z/AQAAAAEAAAD2//3/AQAAAAEAAAD2//7/AQAAAAEAAAD2////AQAAAAIAAAA=")
 tile_set = SubResource("TileSet_pgbyh")
 
 [node name="Plataforma-teste" parent="map" instance=ExtResource("6_paa45")]
@@ -287,7 +272,7 @@ player = NodePath("../../Player")
 [node name="background" parent="." instance=ExtResource("17_wjuib")]
 
 [node name="Player" parent="." instance=ExtResource("17_xag4j")]
-position = Vector2(-199, 1)
+position = Vector2(-193, 15)
 
 [node name="PlayerCamera" parent="Player" instance=ExtResource("18_xag4j")]
 
