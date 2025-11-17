@@ -6,7 +6,7 @@ extends State
 @onready var dashCue: AudioStreamPlayer = $"../../Sounds/Dash"
 
 func enter():
-	var dashDirection = -1 if player.sprite.flip_h else 1
+	var dashDirection = -1 if player.sprite.scale.x < 0 else 1
 	player.velocity.y = 0
 	player.velocity.x = 450 * dashDirection
 	duration.start()

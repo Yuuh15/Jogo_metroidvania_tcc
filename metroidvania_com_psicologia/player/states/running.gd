@@ -22,3 +22,6 @@ func physics_process(delta: float) -> void:
 		
 		elif player.dash:
 			Transitioned.emit(self, "dash")
+			
+	elif Input.is_action_just_pressed("ataque"):
+		Transitioned.emit(self, "attack")

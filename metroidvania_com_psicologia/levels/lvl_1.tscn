@@ -4,9 +4,9 @@
 [ext_resource type="PackedScene" uid="uid://d3dyo1f0naxcw" path="res://background/parralax-background.tscn" id="2_x3lfk"]
 [ext_resource type="PackedScene" uid="uid://c6b5wiedlbj1y" path="res://gui/healthBar/health_bar.tscn" id="4_x3lfk"]
 [ext_resource type="PackedScene" uid="uid://bs142q3whn5qa" path="res://enemies/depression/slime/depression_slime.tscn" id="5_odbgv"]
-[ext_resource type="PackedScene" uid="uid://cg4up2guckhol" path="res://player/player.tscn" id="6_bcf81"]
+[ext_resource type="PackedScene" uid="uid://bnel1u2etfiwm" path="res://player/player.tscn" id="6_bcf81"]
 [ext_resource type="PackedScene" uid="uid://o0o06ki3ajpk" path="res://misc/killzone.tscn" id="6_fmrvw"]
-[ext_resource type="PackedScene" uid="uid://c01ekom3u1ga5" path="res://player/playerCamera.tscn" id="7_bcf81"]
+[ext_resource type="PackedScene" uid="uid://cvm5q4uu0opm2" path="res://player/playerCamera.tscn" id="7_bcf81"]
 [ext_resource type="PackedScene" uid="uid://b13xlg8v5v8yf" path="res://teste/save_point.tscn" id="8_f6t8j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bcf81"]
@@ -23,12 +23,12 @@ tile_map_data = PackedByteArray("AAABAAAAAQABAAAAAAACAAAAAQABAAAAAAADAAAAAQABAAA
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="HealthBar" parent="CanvasLayer" node_paths=PackedStringArray("target") instance=ExtResource("4_x3lfk")]
+[node name="HealthBar" parent="CanvasLayer" node_paths=PackedStringArray("player") instance=ExtResource("4_x3lfk")]
 offset_left = 16.0
 offset_top = 16.0
 offset_right = 116.0
 offset_bottom = 21.0
-target = NodePath("../../Player")
+player = NodePath("../../Player")
 
 [node name="depression-slime" parent="." node_paths=PackedStringArray("patrolPoints") instance=ExtResource("5_odbgv")]
 position = Vector2(1314, 16)

@@ -1,13 +1,13 @@
 [gd_scene load_steps=20 format=4 uid="uid://8l28htvdpvxi"]
 
-[ext_resource type="PackedScene" uid="uid://c7fis7bne66wy" path="res://misc/grippable_area.tscn" id="1_iqd51"]
-[ext_resource type="Texture2D" uid="uid://di7repnlatj4v" path="res://levels/tile/background-PLACE-HOLDER.png" id="2_iqd51"]
-[ext_resource type="Texture2D" uid="uid://bllm7pssgvr1t" path="res://levels/tile/tileset-PLACE-HOLDER.png" id="3_omf64"]
+[ext_resource type="PackedScene" path="res://misc/grippable_area.tscn" id="1_iqd51"]
+[ext_resource type="Texture2D" path="res://levels/tile/background-PLACE-HOLDER.png" id="2_iqd51"]
+[ext_resource type="Texture2D" path="res://levels/tile/tileset-PLACE-HOLDER.png" id="3_omf64"]
 [ext_resource type="Texture2D" uid="uid://vvnloco0jh08" path="res://tileset/tile-set demo (2).png" id="4_fqcau"]
 [ext_resource type="Texture2D" uid="uid://rm2pebjn368u" path="res://tileset/tile-set demo v3.png" id="5_g1t34"]
 [ext_resource type="Texture2D" uid="uid://ha16dk4ski05" path="res://tileset/tile-set demo v4.png" id="6_g5u7k"]
 [ext_resource type="PackedScene" uid="uid://bcdcroi4twh5k" path="res://teste/plataforma_teste.tscn" id="7_gb6d1"]
-[ext_resource type="PackedScene" uid="uid://bnel1u2etfiwm" path="res://player/player.tscn" id="8_hecrj"]
+[ext_resource type="PackedScene" uid="uid://cg4up2guckhol" path="res://player/player.tscn" id="8_hecrj"]
 [ext_resource type="PackedScene" uid="uid://cu1636428kvds" path="res://items/claws/claws.tscn" id="9_iqd51"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_omf64"]

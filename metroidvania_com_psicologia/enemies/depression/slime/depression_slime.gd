@@ -9,11 +9,10 @@ var followSpeed : int = 100
 var speed : int
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var player: CharacterBody2D = $"../Player"
-@onready var ray_cast_2d: RayCast2D = $vision
+@onready var ray_cast_2d: RayCast2D = $AnimatedSprite2D/vision
 var trail = preload("res://enemies/depression/slime/trail/trail.tscn")
-@onready var trailPos: Marker2D = $trail
-@onready var walk: RayCast2D = $walk
-@onready var hurt_box_shape: CollisionShape2D = $HurtBox/hurtBoxShape
+@onready var trailPos: Marker2D = $AnimatedSprite2D/trail
+@onready var walk: RayCast2D = $AnimatedSprite2D/walk
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 
 var directionX := 1
@@ -27,20 +26,9 @@ func _ready() -> void:
 		points.sort()
 
 func _physics_process(delta: float) -> void:
-	if directionX == 1:
-		sprite.flip_h = false
-		ray_cast_2d.target_position.x = 80
-		trailPos.position.x = -14
-		walk.position.x = 17
-		hurt_box_shape.position.x = 12
-		collision_shape_2d.position.x = 2.5
-	else:
-		sprite.flip_h = true
-		ray_cast_2d.target_position.x = -80
-		trailPos.position.x = 14
-		walk.position.x = -17
-		hurt_box_shape.position.x = -12
-		collision_shape_2d.position.x = -2.5
+	if directionX:
+		sprite.scale.x = directionX
+		collision_shape_2d.position.x = 3 if directionX == 1 else -3
 
 	if not is_on_floor():
 		velocity += get_gravity() * delta
@@ -59,10 +47,20 @@ func canWalk() -> bool:
 	if walk.is_colliding():
 		return true
 	return false
+	
 
+func attackPlayer(area: Area2D) -> void:
+	var direction = -1 if sprite.flip_h else 1
+	var force = Vector2(500, 0)
+	player.applyKnockback(directionX, force, 0.2)
+	
 
-func _on_hurt_box_body_entered(body: Node2D) -> void:
-	if body is Player:
-		var direction = -1 if sprite.flip_h else 1
-		var force = Vector2(500, 0)
-		body.applyKnockback(directionX, force, 0.2)
+func _on_hurt_box_die() -> void:
+	speed = 0
+	sprite.play("death")
+	$AnimatedSprite2D/HitBox.queue_free()
+	$StateMachineController.queue_free()
+	set_collision_layer_value(4, false)
+	set_collision_mask_value(1, false)
+	
+	sprite.animation_finished.connect(queue_free)
