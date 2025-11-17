@@ -1,7 +1,8 @@
 extends State
 
 @onready var player: Player = $"../.."
-
+@onready var walljump: CollisionShape2D = $"../../walljump"
+@onready var wall_detector: RayCast2D = $"../../AnimatedSprite2D/WallDetector"
 
 func enter():
 	player.sprite.play("jump")
@@ -28,9 +29,18 @@ func physics_process(delta: float) -> void:
 		player.wallJumping = false
 		player.gDirection *= -1
 		
+		player.sprite.play("climb")
+		player.sprite.frame = 1
+		player.sprite.pause()
+		
+		walljump.disabled = false
+		wall_detector.target_position.x = 9
+		
 	if player.is_on_floor():
 		Transitioned.emit(self, "idle")
 		player.wallJumping = false
+		walljump.disabled = true
+		wall_detector.target_position.x = 6
 	
 	elif Input.is_action_just_pressed("use_power"):
 		if player.directionY > 0 && player.stomp:
