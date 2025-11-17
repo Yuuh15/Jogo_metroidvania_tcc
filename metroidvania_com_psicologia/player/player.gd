@@ -41,6 +41,8 @@ var gDirection = 0.0
 var saveLastPositionInGround = false
 var wallJumping = false
 
+var enemyHitBox : HitBox
+
 func _ready() -> void:
 	airJumps = maxAirJumps
 	#damageAreas = get_tree().get_nodes_in_group("damage")
@@ -121,3 +123,6 @@ func loadSave():
 		if scene == get_parent().scene_file_path:
 			position = config.get_value("player", "pos")
 			print("Posição do jogador carregada")
+
+func _on_feet_hit_box_attacked() -> void:
+	velocity.y = jump_speed

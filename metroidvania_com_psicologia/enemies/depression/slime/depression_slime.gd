@@ -8,12 +8,14 @@ var followSpeed : int = 100
 
 var speed : int
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
-@onready var player: CharacterBody2D = $"../Player"
+@onready var player: Player = $"../Player"
 @onready var ray_cast_2d: RayCast2D = $AnimatedSprite2D/vision
 var trail = preload("res://enemies/depression/slime/trail/trail.tscn")
 @onready var trailPos: Marker2D = $AnimatedSprite2D/trail
 @onready var walk: RayCast2D = $AnimatedSprite2D/walk
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
+@onready var hit_box: HitBox = $AnimatedSprite2D/HitBox
+@onready var state_machine_controller: StateMachineController = $StateMachineController
 
 var directionX := 1
 
@@ -32,7 +34,7 @@ func _physics_process(delta: float) -> void:
 
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-	
+		
 	velocity.x = directionX * speed
 	move_and_slide()
 
@@ -53,6 +55,13 @@ func attackPlayer(area: Area2D) -> void:
 	var direction = -1 if sprite.flip_h else 1
 	var force = Vector2(500, 0)
 	player.applyKnockback(directionX, force, 0.2)
+	await get_tree().create_timer(0.5).timeout
+	if hit_box.overlaps_area(player.hurt_box):
+		state_machine_controller.on_child_transition(state_machine_controller.current_state, "patrol")
+		$AnimatedSprite2D/vision.enabled = false
+		await get_tree().create_timer(0.5).timeout
+		$AnimatedSprite2D/vision.enabled = true
+		state_machine_controller.on_child_transition(state_machine_controller.current_state, "follow")
 	
 
 func _on_hurt_box_die() -> void:

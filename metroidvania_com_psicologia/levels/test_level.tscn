@@ -274,7 +274,7 @@ player = NodePath("../../Player")
 [node name="background" parent="." instance=ExtResource("17_wjuib")]
 
 [node name="Player" parent="." instance=ExtResource("17_xag4j")]
-position = Vector2(-144, 15)
+position = Vector2(2631, -307)
 
 [node name="PlayerCamera" parent="Player" instance=ExtResource("18_xag4j")]
 

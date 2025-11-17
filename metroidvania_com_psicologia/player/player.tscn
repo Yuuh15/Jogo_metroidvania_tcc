@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://bnel1u2etfiwm"]
+[gd_scene load_steps=49 format=3 uid="uid://bnel1u2etfiwm"]
 
 [ext_resource type="Script" uid="uid://cxwo6iykdp5rv" path="res://player/player.gd" id="1_2sfht"]
 [ext_resource type="Texture2D" uid="uid://dfkenf16iboyf" path="res://player/sprites/Sam_Parado_64x.png" id="1_3pu38"]
@@ -194,6 +194,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tqiix"]
 size = Vector2(17, 22)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s7qer"]
+size = Vector2(3, 1)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bjvpn"]
 size = Vector2(18, 20)
 
@@ -226,11 +229,23 @@ enemy = false
 metadata/_custom_type_script = "uid://btkgo3hwg7i8v"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/HitBox"]
-visible = false
 position = Vector2(11.5, 1)
 shape = SubResource("RectangleShape2D_tqiix")
 disabled = true
 debug_color = Color(0.808481, 0, 0.186273, 0.42)
+
+[node name="FeetHitBox" type="Area2D" parent="AnimatedSprite2D"]
+collision_layer = 128
+collision_mask = 64
+script = ExtResource("16_32hag")
+damage = 10
+metadata/_custom_type_script = "uid://btkgo3hwg7i8v"
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="AnimatedSprite2D/FeetHitBox"]
+position = Vector2(0, 26.3158)
+scale = Vector2(2.63158, 2.63158)
+shape = SubResource("RectangleShape2D_s7qer")
+debug_color = Color(0.807843, 0, 0.184314, 0.419608)
 
 [node name="WallDetector" type="RayCast2D" parent="AnimatedSprite2D"]
 position = Vector2(2.63158, 0)
@@ -331,10 +346,12 @@ shape = SubResource("CapsuleShape2D_32hag")
 debug_color = Color(0.115889, 0.678139, 0, 0.42)
 
 [connection signal="area_entered" from="AnimatedSprite2D/HitBox" to="." method="attack"]
+[connection signal="attacked" from="AnimatedSprite2D/FeetHitBox" to="." method="_on_feet_hit_box_attacked"]
 [connection signal="timeout" from="StateMachineController/Dash/Duration" to="StateMachineController/Dash" method="_on_duration_timeout"]
 [connection signal="timeout" from="StateMachineController/Dash/Cooldown" to="StateMachineController/Dash" method="_on_cooldown_timeout"]
 [connection signal="timeout" from="StateMachineController/Stomp/Cooldown" to="StateMachineController/Stomp" method="_on_cooldown_timeout"]
 [connection signal="timeout" from="Debug" to="." method="_on_debug_timeout"]
 [connection signal="timeout" from="TimeWarpDuration" to="." method="_on_time_warp_duration_timeout"]
 [connection signal="timeout" from="Save" to="." method="save"]
+[connection signal="healthChanged" from="HurtBox" to="." method="_on_hurt_box_health_changed"]
 [connection signal="healthChanged" from="HurtBox" to="." method="takeDamage"]
