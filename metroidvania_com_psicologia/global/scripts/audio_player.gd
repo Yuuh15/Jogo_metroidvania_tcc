@@ -5,6 +5,7 @@ const level_1_intro = preload("res://audios/I'm In Madness - Intro.mp3")
 const level_1_loop = preload("res://audios/I'm In Madness - Loop.mp3")
 
 const sfxSelectNormal = preload("res://audios/select.wav")
+const sfxCollectItem = preload("res://audios/powerAcquired.wav")
 
 func _play_music(music: AudioStream, volume = -9.0):
 	if stream == music:
@@ -30,6 +31,9 @@ func play_FX(stream: AudioStream, volume = 0.0, pitch = 1.0):
 
 func sfx_Select_Normal():
 	play_FX(sfxSelectNormal, -5.0)
+	
+func sfx_Collect():
+	play_FX(sfxCollectItem, -9.0)
 
 func play_music_level1():
 	_play_music(level_1_intro)

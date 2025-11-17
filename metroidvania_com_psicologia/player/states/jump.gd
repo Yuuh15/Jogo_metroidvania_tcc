@@ -24,7 +24,7 @@ func physics_process(delta: float) -> void:
 		player.airJumps -= 1
 		player.highJump.play()
 	
-	if player.wall_detector.is_colliding():
+	if player.wall_detector.is_colliding() and player.claws == true:
 		Transitioned.emit(self, "grip")
 		player.wallJumping = false
 		player.gDirection *= -1

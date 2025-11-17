@@ -8,6 +8,7 @@ radius = 11.3562
 height = 49.418
 
 [node name="claws" type="Node2D"]
+scale = Vector2(0.3, 0.3)
 script = ExtResource("1_3shsa")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
