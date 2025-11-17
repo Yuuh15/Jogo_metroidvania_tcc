@@ -19,7 +19,7 @@ func physics_process(delta: float) -> void:
 		else:
 			Transitioned.emit(self, "idle")
 		return
-	elif Input.is_action_just_pressed("jump") || !player.is_on_floor():
+	elif Input.is_action_just_pressed("jump"):
 		Transitioned.emit(self, "jump")
 		
 	elif Input.is_action_just_pressed("use_power"):

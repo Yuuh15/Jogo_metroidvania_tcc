@@ -141,7 +141,7 @@ metadata/_custom_type_script = "uid://btkgo3hwg7i8v"
 [node name="hitBoxShape" type="CollisionShape2D" parent="AnimatedSprite2D/HitBox"]
 position = Vector2(10, 3)
 shape = SubResource("CapsuleShape2D_oo5vg")
-debug_color = Color(0.808481, 0, 0.186273, 0.42)
+debug_color = Color(0.807843, 0, 0.176471, 0.419608)
 
 [node name="HurtBox" type="Area2D" parent="AnimatedSprite2D"]
 collision_layer = 64

@@ -1,9 +1,11 @@
-[gd_scene load_steps=19 format=3 uid="uid://besthe13sfm0e"]
+[gd_scene load_steps=21 format=3 uid="uid://besthe13sfm0e"]
 
 [ext_resource type="Script" uid="uid://djsqjqom1mp0l" path="res://enemies/depression/fantasma/fantasma.gd" id="1_mkdhj"]
 [ext_resource type="Texture2D" uid="uid://df0wimk0vesay" path="res://assets/inimigo_fantasma_depressao/fantasma atacando.png" id="1_w0qjp"]
 [ext_resource type="Texture2D" uid="uid://cb3fs50le842k" path="res://assets/inimigo_fantasma_depressao/fantasma morrendo.png" id="2_mkdhj"]
 [ext_resource type="Texture2D" uid="uid://b5uw3453bfwcc" path="res://assets/inimigo_fantasma_depressao/fantasma parado.png" id="3_v5tm2"]
+[ext_resource type="Script" uid="uid://txrfqgoe07ub" path="res://componentes/hurt_box.gd" id="5_foooe"]
+[ext_resource type="Script" uid="uid://btkgo3hwg7i8v" path="res://componentes/hit_Box.gd" id="5_fseuv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1proa"]
 atlas = ExtResource("1_w0qjp")
@@ -85,7 +87,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_onk5f")
 }],
-"loop": true,
+"loop": false,
 "name": &"dying",
 "speed": 4.0
 }, {
@@ -118,12 +120,37 @@ script = ExtResource("1_mkdhj")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_vro25")
-animation = &"atacando"
+animation = &"dying"
 autoplay = "atacando"
-frame_progress = 0.0690161
+
+[node name="HitBox" type="Area2D" parent="AnimatedSprite2D"]
+collision_layer = 128
+collision_mask = 256
+script = ExtResource("5_fseuv")
+damage = 15
+metadata/_custom_type_script = "uid://btkgo3hwg7i8v"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/HitBox"]
+position = Vector2(0, 1)
+shape = SubResource("CapsuleShape2D_mkdhj")
+debug_color = Color(0.807843, 0, 0.176471, 0.419608)
+
+[node name="HurtBox" type="Area2D" parent="AnimatedSprite2D"]
+collision_layer = 64
+collision_mask = 0
+script = ExtResource("5_foooe")
+metadata/_custom_type_script = "uid://txrfqgoe07ub"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/HurtBox"]
+position = Vector2(0, 1)
+shape = SubResource("CapsuleShape2D_mkdhj")
+debug_color = Color(0.115889, 0.678139, 0, 0.42)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
 shape = SubResource("CapsuleShape2D_mkdhj")
 
 [node name="Timer" type="Timer" parent="."]
+
+[connection signal="attacked" from="AnimatedSprite2D/HitBox" to="." method="_on_hit_box_attacked"]
+[connection signal="die" from="AnimatedSprite2D/HurtBox" to="." method="_on_hurt_box_die"]

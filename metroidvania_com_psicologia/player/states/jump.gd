@@ -48,7 +48,10 @@ func physics_process(delta: float) -> void:
 		
 		elif player.dash:
 			Transitioned.emit(self, "dash")
-		
+			
+	elif Input.is_action_just_pressed("ataque"):
+		Transitioned.emit(self, "attack")
+	
 	else:
 		player.velocity.x = player.SPEED * player.directionX
 	
