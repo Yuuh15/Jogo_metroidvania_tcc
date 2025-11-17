@@ -1,6 +1,7 @@
 extends Node
 
 var volumeValue = 1.5
+@onready var player : Player
 
 func _ready() -> void:
 	var actions = getInputActions()

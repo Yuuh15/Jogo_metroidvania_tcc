@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://di7repnlatj4v"
-path="res://.godot/imported/background-PLACE-HOLDER.png-5b0fc16b80d7912314bff723a11660f4.ctex"
+uid="uid://c6w8fj68qdclh"
+path="res://.godot/imported/Sam_Atacando2_64x-v2.png-0b7398909019ec55e256f08ca836ccf7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://levels/tile/background-PLACE-HOLDER.png"
-dest_files=["res://.godot/imported/background-PLACE-HOLDER.png-5b0fc16b80d7912314bff723a11660f4.ctex"]
+source_file="res://player/sprites/Sam_Atacando2_64x-v2.png"
+dest_files=["res://.godot/imported/Sam_Atacando2_64x-v2.png-0b7398909019ec55e256f08ca836ccf7.ctex"]
 
 [params]
 

@@ -8,6 +8,10 @@ var text = preload("res://gui/saveText/save_text.tscn")
 @onready var hurt: AudioStreamPlayer = $Sounds/Hurt
 @onready var jump: AudioStreamPlayer = $Sounds/Jump
 @onready var highJump: AudioStreamPlayer = $Sounds/HighJump
+@onready var attackShape: CollisionShape2D = $AnimatedSprite2D/HitBox/CollisionShape2D
+@onready var hurt_box: HurtBox = $HurtBox
+@onready var wall_detector: RayCast2D = $AnimatedSprite2D/WallDetector
+@onready var actualState: StateMachineController = $StateMachineController
 
 var directionX : float
 var directionY : float
@@ -18,16 +22,12 @@ var airJumps = 0
 
 # velocidade do jogador no estado de running
 const SPEED = 150
+var jump_speed = -300
 
 # items que o jogador tem.
 var dash = false
 var stomp = false
 var timeWarp = false
-
-# vida
-signal healthChanged()
-@export var health : int = 100
-var damageAreas
 
 var knockback : Vector2
 var knockbackDuration : float
@@ -35,30 +35,29 @@ var knockbackDuration : float
 # verifica se o jogador pode salvar
 var canSave : bool = false
 
-# Verifica se o jogador está preso na parede pelas garras
-var grip_wall := false
 # Guarda a última direção do jogador ao sair do chão
 var gDirection = 0.0
 var saveLastPositionInGround = false
+var wallJumping = false
 
 func _ready() -> void:
 	loadSave()
-	damageAreas = get_tree().get_nodes_in_group("damage")
 	airJumps = maxAirJumps
+	#damageAreas = get_tree().get_nodes_in_group("damage")
+	#if damageAreas.size() > 0:
+		#for area in damageAreas:
+			#area.area_entered.connect(takeDamage.bind(area.damage))
 	
-	if damageAreas.size() != 0:
-		for area in damageAreas:
-			area.body_entered.connect(takeDamage.bind(area))
-
 func _process(delta: float) -> void:
-	if directionX > 0:
-		sprite.flip_h = false
-	elif directionX < 0:
-		sprite.flip_h = true
+	if directionX and !wallJumping:
+		gDirection = directionX * -1
+		sprite.scale.x = directionX * 0.38
 	
 func _physics_process(delta: float) -> void:
-	directionX = Input.get_axis("move_left", "move_right")
-	directionY = Input.get_axis("move_up", "move_down")
+	print(actualState.current_state.name)
+	if !wallJumping:
+		directionX = Input.get_axis("move_left", "move_right")
+		directionY = Input.get_axis("move_up", "move_down")
 	
 	if Input.is_action_just_pressed("time_warp") && timeWarp:
 		Engine.time_scale = 0.5
@@ -77,7 +76,10 @@ func _physics_process(delta: float) -> void:
 		knockbackDuration -= delta
 		if 0 > knockbackDuration:
 			knockback = Vector2.ZERO
-
+	
+	if wallJumping and !is_on_floor():
+		velocity.x = 100 * gDirection
+	
 	move_and_slide()
 	
 func applyGravity(delta : float):
@@ -92,13 +94,10 @@ func _on_debug_timeout() -> void:
 func _on_time_warp_duration_timeout() -> void:
 	Engine.time_scale = 1
 	
-func takeDamage(body : Node2D, area : Area2D):
-	if body == self:
-		health -= area.damage
-		healthChanged.emit()
-		hurt.play()
-		if health <= 0:
-			get_tree().change_scene_to_file("res://gui/menu/main_menu.tscn")
+func takeDamage():
+	hurt.play()
+	if hurt_box.health <= 0:
+		get_tree().change_scene_to_file("res://gui/menu/main_menu.tscn")
 
 func applyKnockback(directionX : int, force : Vector2, duration : float):
 	knockbackDuration = duration

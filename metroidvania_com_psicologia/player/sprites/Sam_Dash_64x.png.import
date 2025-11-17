@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bllm7pssgvr1t"
-path="res://.godot/imported/tileset-PLACE-HOLDER.png-4fae7802a985bddbffaa107b1f3ddb48.ctex"
+uid="uid://bwrxs5fa3xexs"
+path="res://.godot/imported/Sam_Dash_64x.png-2e2adc8363dc531bee6cf6d012e23e4e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://levels/tile/tileset-PLACE-HOLDER.png"
-dest_files=["res://.godot/imported/tileset-PLACE-HOLDER.png-4fae7802a985bddbffaa107b1f3ddb48.ctex"]
+source_file="res://player/sprites/Sam_Dash_64x.png"
+dest_files=["res://.godot/imported/Sam_Dash_64x.png-2e2adc8363dc531bee6cf6d012e23e4e.ctex"]
 
 [params]
 

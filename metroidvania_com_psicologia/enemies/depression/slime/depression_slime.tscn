@@ -1,12 +1,30 @@
-[gd_scene load_steps=20 format=3 uid="uid://bs142q3whn5qa"]
+[gd_scene load_steps=26 format=3 uid="uid://bs142q3whn5qa"]
 
 [ext_resource type="Script" uid="uid://mrd4xvmbpeot" path="res://enemies/depression/slime/depression_slime.gd" id="1_0to1k"]
 [ext_resource type="Texture2D" uid="uid://bvjwksv7dkr5g" path="res://enemies/depression/slime/sprite/gosma depressiva parada.png" id="1_d3t7g"]
+[ext_resource type="Texture2D" uid="uid://cqkt7i42wva5n" path="res://enemies/depression/slime/sprite/gosma morte.png" id="2_102uf"]
 [ext_resource type="Texture2D" uid="uid://dmbc4srkktimy" path="res://enemies/depression/slime/sprite/gosma depressiva atacando.png" id="3_wqjqj"]
 [ext_resource type="Script" uid="uid://dv26duycoykqb" path="res://scripts/state-machine-controller.gd" id="3_x4mbx"]
 [ext_resource type="Script" uid="uid://n72t1rkwfmg4" path="res://enemies/depression/slime/states/patrol.gd" id="4_ipp72"]
 [ext_resource type="Script" uid="uid://epdp0k0us1qw" path="res://enemies/depression/slime/states/follow.gd" id="5_ipp72"]
-[ext_resource type="PackedScene" uid="uid://bb0nk86d7xdgp" path="res://componentes/hurt_box.tscn" id="7_0j8vl"]
+[ext_resource type="Script" uid="uid://btkgo3hwg7i8v" path="res://componentes/hit_Box.gd" id="7_3tucb"]
+[ext_resource type="Script" uid="uid://txrfqgoe07ub" path="res://componentes/hurt_box.gd" id="8_3tucb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o2vy2"]
+atlas = ExtResource("2_102uf")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oan54"]
+atlas = ExtResource("2_102uf")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ghbdf"]
+atlas = ExtResource("2_102uf")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u3vde"]
+atlas = ExtResource("2_102uf")
+region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0to1k"]
 atlas = ExtResource("1_d3t7g")
@@ -44,6 +62,23 @@ region = Rect2(96, 0, 32, 32)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_o2vy2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oan54")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ghbdf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u3vde")
+}],
+"loop": false,
+"name": &"death",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_0to1k")
 }, {
 "duration": 1.0,
@@ -77,16 +112,15 @@ animations = [{
 "speed": 7.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oo5vg"]
+radius = 1.0
+height = 26.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_102uf"]
+height = 32.0
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0j8vl"]
-size = Vector2(17, 31)
-
-[sub_resource type="GDScript" id="GDScript_0j8vl"]
-script/source = "extends \"res://componentes/hurt_box.gd\"
-"
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0j8vl"]
-radius = 3.0
-height = 20.0
+size = Vector2(12, 28)
 
 [node name="depression-slime" type="CharacterBody2D"]
 collision_layer = 8
@@ -97,8 +131,44 @@ script = ExtResource("1_0to1k")
 sprite_frames = SubResource("SpriteFrames_wqjqj")
 autoplay = "default"
 
+[node name="HitBox" type="Area2D" parent="AnimatedSprite2D"]
+collision_layer = 32
+collision_mask = 256
+script = ExtResource("7_3tucb")
+damage = 15
+metadata/_custom_type_script = "uid://btkgo3hwg7i8v"
+
+[node name="hitBoxShape" type="CollisionShape2D" parent="AnimatedSprite2D/HitBox"]
+position = Vector2(10, 3)
+shape = SubResource("CapsuleShape2D_oo5vg")
+debug_color = Color(0.808481, 0, 0.186273, 0.42)
+
+[node name="HurtBox" type="Area2D" parent="AnimatedSprite2D"]
+collision_layer = 64
+collision_mask = 0
+monitoring = false
+script = ExtResource("8_3tucb")
+metadata/_custom_type_script = "uid://txrfqgoe07ub"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/HurtBox"]
+position = Vector2(3, 0)
+shape = SubResource("CapsuleShape2D_102uf")
+debug_color = Color(0.115889, 0.678139, 0, 0.42)
+
+[node name="walk" type="RayCast2D" parent="AnimatedSprite2D"]
+position = Vector2(17, 0)
+target_position = Vector2(0, 23)
+collision_mask = 2
+
+[node name="trail" type="Marker2D" parent="AnimatedSprite2D"]
+position = Vector2(-14, 16)
+
+[node name="vision" type="RayCast2D" parent="AnimatedSprite2D"]
+position = Vector2(0, 5)
+target_position = Vector2(80, 0)
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(2.5, 0.5)
+position = Vector2(3, 2)
 shape = SubResource("RectangleShape2D_0j8vl")
 
 [node name="StateMachineController" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
@@ -120,31 +190,12 @@ metadata/_custom_type_script = "uid://l6eq8yklu062"
 wait_time = 5.0
 one_shot = true
 
-[node name="vision" type="RayCast2D" parent="."]
-position = Vector2(0, 5)
-target_position = Vector2(80, 0)
-
 [node name="TrailTimer" type="Timer" parent="."]
 wait_time = 0.1
 autostart = true
 
-[node name="trail" type="Marker2D" parent="."]
-position = Vector2(-14, 16)
-
-[node name="walk" type="RayCast2D" parent="."]
-position = Vector2(17, 0)
-target_position = Vector2(0, 23)
-collision_mask = 2
-
-[node name="HurtBox" parent="." instance=ExtResource("7_0j8vl")]
-script = SubResource("GDScript_0j8vl")
-damage = 15
-
-[node name="hurtBoxShape" type="CollisionShape2D" parent="HurtBox"]
-position = Vector2(12, 5)
-shape = SubResource("CapsuleShape2D_0j8vl")
-debug_color = Color(0.970763, 0, 0.452533, 0.42)
-
+[connection signal="area_entered" from="AnimatedSprite2D/HitBox" to="." method="attackPlayer"]
+[connection signal="die" from="AnimatedSprite2D/HurtBox" to="." method="_on_hurt_box_die"]
+[connection signal="healthChanged" from="AnimatedSprite2D/HurtBox" to="StateMachineController/Patrol" method="_on_hurt_box_health_changed"]
 [connection signal="timeout" from="Timer" to="StateMachineController/Follow" method="_on_timer_timeout"]
 [connection signal="timeout" from="TrailTimer" to="." method="_on_trail_timer_timeout"]
-[connection signal="body_entered" from="HurtBox" to="." method="_on_hurt_box_body_entered"]

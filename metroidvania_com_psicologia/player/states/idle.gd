@@ -23,6 +23,9 @@ func physics_process(delta):
 		elif player.dash:
 			Transitioned.emit(self, "dash")
 	
+	elif Input.is_action_just_pressed("ataque"):
+		Transitioned.emit(self, "attack")
+	
 	
 	player.velocity.x = move_toward(player.velocity.x,0, player.SPEED)
 	player.applyGravity(delta)
