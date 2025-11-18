@@ -1,11 +1,15 @@
 extends Control
 
+@onready var anim = $fade
+@onready var vbox = $VBoxContainer
+
 func _ready():
-	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	AudioPlayer.play_music_menu()
-	for button in $VBoxContainer.get_children():
-		button.connect("mouse_entered", $Switch.play)
-		
+	if get_tree().current_scene.name == "MainMenu":
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		AudioPlayer.play_music_menu()
+		for button in vbox.get_children():
+			button.connect("mouse_entered", $Switch.play)
+	
 func _process(delta):
 	pass
 
@@ -21,3 +25,7 @@ func _on_options_pressed() -> void:
 
 func _on_exit_pressed() -> void:
 	get_tree().quit()
+
+
+func _on_fade_animation_finished(anim_name: StringName) -> void:
+	$transition/ColorRect.visible = false

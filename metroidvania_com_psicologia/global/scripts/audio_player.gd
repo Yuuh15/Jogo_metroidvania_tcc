@@ -6,6 +6,7 @@ const level_1_loop = preload("res://audios/I'm In Madness - Loop.mp3")
 
 const sfxSelectNormal = preload("res://audios/select.wav")
 const sfxCollectItem = preload("res://audios/powerAcquired.wav")
+const sfxDash = preload("res://audios/dash_sound.wav")
 const sfxDoor = preload("res://audios/Woosh.mp3")
 const heal = preload("res://audios/heal.wav")
 
@@ -42,6 +43,9 @@ func sfx_Door():
 
 func sfx_heal():
 	play_FX(heal, -9.0)
+	
+func sfx_dash():
+	play_FX(sfxDash, -9.0)
 
 func play_music_level1():
 	_play_music(level_1_intro)

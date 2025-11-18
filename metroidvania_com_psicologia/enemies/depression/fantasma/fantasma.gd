@@ -66,10 +66,20 @@ func _on_hurt_box_die() -> void:
 	set_collision_layer_value(4, false)
 	set_collision_mask_value(1, false)
 	
-	
 	sprite.animation_finished.connect(queue_free)
-
+	await sprite.animation_finished
+	spawn_healthkit(global_position)
+	
 func _on_hit_box_attacked() -> void:
 	var direction = -1 if (player.global_position.x - global_position.x) < 0 else 1
 	var force = Vector2(90, 0)
 	player.applyKnockback(direction, force, 0.2)
+	
+
+func spawn_healthkit(position: Vector2):
+	var healthkit_scene = preload("res://items/health_kit/health_kit.tscn")
+	var healthkit = healthkit_scene.instantiate()
+	var items = get_tree().current_scene.get_node("items")
+	items.add_child(healthkit)
+	healthkit.position.x = position.x
+	healthkit.position.y = position.y

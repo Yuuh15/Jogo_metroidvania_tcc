@@ -13,6 +13,11 @@ var text = preload("res://gui/saveText/save_text.tscn")
 @onready var wall_detector: RayCast2D = $AnimatedSprite2D/WallDetector
 @onready var actualState: StateMachineController = $StateMachineController
 
+@onready var gameOver = $"../PauseMenu/game_over/AnimationPlayer"
+
+@onready var anim_fade_credits = $"../animation_players/fade_out"
+@onready var color_rect = $"../Fade/ColorRect"
+
 var door_to: Vector2
 
 var directionX : float
@@ -37,6 +42,7 @@ var knockbackDuration : float
 
 # verifica se o jogador pode salvar
 var canSave : bool = false
+var canCredits : bool = false
 
 # Guarda a última direção do jogador ao sair do chão
 var gDirection = 0.0

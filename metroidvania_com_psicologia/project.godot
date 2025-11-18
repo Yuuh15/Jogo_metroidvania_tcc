@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 
 GameManager="*res://global/gameManager.gd"
 AudioPlayer="*res://global/scenes/audio_player.tscn"
+Vars="*res://global/vars.gd"
 
 [display]
 

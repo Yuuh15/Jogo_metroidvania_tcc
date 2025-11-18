@@ -2,6 +2,7 @@ extends State
 
 @onready var player : Player = $"../.."
 
+
 func enter():
 	if player.sprite != null:
 		player.sprite.play("idle")
@@ -13,6 +14,14 @@ func physics_process(delta):
 	elif player.canSave && Input.is_action_just_pressed("move_up"):
 		player.global_position = player.door_to
 		AudioPlayer.sfx_Door()
+		
+	elif player.canCredits && Input.is_action_just_pressed("move_up"):
+		player.anim_fade_credits.play("credits_fade_out")
+		player.color_rect.visible = true
+		AudioPlayer.play_FX(AudioPlayer.sfxDoor, -5, 0.75)
+		await player.anim_fade_credits.animation_finished
+		AudioPlayer.stop()
+		get_tree().change_scene_to_file("res://credits.tscn")
 		
 	elif Input.is_action_just_pressed("jump") || !player.is_on_floor():
 		Transitioned.emit(self, "jump")

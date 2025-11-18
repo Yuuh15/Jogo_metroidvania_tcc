@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://bnel1u2etfiwm"]
+[gd_scene load_steps=52 format=3 uid="uid://bnel1u2etfiwm"]
 
 [ext_resource type="Script" uid="uid://cxwo6iykdp5rv" path="res://player/player.gd" id="1_2sfht"]
 [ext_resource type="Texture2D" uid="uid://dfkenf16iboyf" path="res://player/sprites/Sam_Parado_64x.png" id="1_3pu38"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://bvwk14j801v4c" path="res://player/sprites/Sam_Escalando_64x.png" id="4_bjvpn"]
 [ext_resource type="Texture2D" uid="uid://cip10md4ocajo" path="res://player/sprites/Sam_Atacando_64x.png" id="5_c35mf"]
 [ext_resource type="AudioStream" uid="uid://cfi8wr3tlrm1p" path="res://player/jump.wav" id="5_qjkh3"]
+[ext_resource type="Texture2D" uid="uid://bwrxs5fa3xexs" path="res://player/sprites/Sam_Dash_64x.png" id="5_s7qer"]
 [ext_resource type="AudioStream" uid="uid://d38rp2crk4yt5" path="res://player/hitHurt.wav" id="6_g6k8r"]
 [ext_resource type="Script" uid="uid://q73oaypbeup0" path="res://player/states/idle.gd" id="6_k3a0e"]
 [ext_resource type="Script" uid="uid://ddcsl88sibfwq" path="res://player/states/running.gd" id="7_k3a0e"]
@@ -58,6 +59,14 @@ region = Rect2(64, 0, 64, 64)
 [sub_resource type="AtlasTexture" id="AtlasTexture_uw77l"]
 atlas = ExtResource("4_bjvpn")
 region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rptt4"]
+atlas = ExtResource("5_s7qer")
+region = Rect2(0, 0, 65, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r7pn3"]
+atlas = ExtResource("5_s7qer")
+region = Rect2(65, 0, 65, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2sfht"]
 atlas = ExtResource("1_3pu38")
@@ -144,6 +153,17 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_rptt4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r7pn3")
+}],
+"loop": true,
+"name": &"dash",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_2sfht")
 }, {
 "duration": 1.0,
@@ -215,9 +235,9 @@ script = ExtResource("1_2sfht")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.38, 0.38)
 sprite_frames = SubResource("SpriteFrames_0pucg")
-animation = &"idle"
+animation = &"dash"
 autoplay = "idle"
-frame_progress = 0.164641
+frame_progress = 0.612646
 
 [node name="HitBox" type="Area2D" parent="AnimatedSprite2D"]
 scale = Vector2(2.63158, 2.63158)
@@ -339,6 +359,7 @@ volume_db = -12.0
 collision_layer = 256
 collision_mask = 0
 script = ExtResource("15_wodsf")
+health = 200
 metadata/_custom_type_script = "uid://txrfqgoe07ub"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]

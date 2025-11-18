@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cryu4q7hkmnkr"]
+[gd_scene load_steps=5 format=3 uid="uid://cryu4q7hkmnkr"]
 
 [ext_resource type="Script" uid="uid://dfa8ooxc4gq5y" path="res://misc/door.gd" id="1_66shi"]
 [ext_resource type="Texture2D" uid="uid://ksw6a84yseaj" path="res://tileset/door.png" id="1_c8eba"]
+[ext_resource type="Texture2D" uid="uid://dvla4q2lwwbjk" path="res://gui/enter-door.png" id="3_alqjr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yacxr"]
 size = Vector2(33, 33)
@@ -24,6 +25,12 @@ scale = Vector2(0.354167, 0.354167)
 texture = ExtResource("1_c8eba")
 region_enabled = true
 region_rect = Rect2(0, 0, 48, 64)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -18.5)
+scale = Vector2(0.136029, 0.136029)
+texture = ExtResource("3_alqjr")
 
 [connection signal="body_entered" from="area" to="." method="_on_area_body_entered"]
 [connection signal="body_exited" from="area" to="." method="_on_area_body_exited"]

@@ -66,3 +66,13 @@ func attackPlayer(area: Area2D) -> void:
 
 func _on_hurt_box_die() -> void:
 	state_machine_controller.on_child_transition(state_machine_controller.current_state, "die")
+	await sprite.animation_finished
+	spawn_healthkit(global_position)
+	
+func spawn_healthkit(position: Vector2):
+	var healthkit_scene = preload("res://items/health_kit/health_kit.tscn")
+	var healthkit = healthkit_scene.instantiate()
+	var items = get_tree().current_scene.get_node("items")
+	items.add_child(healthkit)
+	healthkit.position.x = position.x
+	healthkit.position.y = position.y
