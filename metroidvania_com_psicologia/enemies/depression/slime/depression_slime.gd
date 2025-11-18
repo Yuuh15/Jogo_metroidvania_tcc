@@ -65,11 +65,4 @@ func attackPlayer(area: Area2D) -> void:
 	
 
 func _on_hurt_box_die() -> void:
-	speed = 0
-	sprite.play("death")
-	$AnimatedSprite2D/HitBox.queue_free()
-	$StateMachineController.queue_free()
-	set_collision_layer_value(4, false)
-	set_collision_mask_value(1, false)
-	
-	sprite.animation_finished.connect(queue_free)
+	state_machine_controller.on_child_transition(state_machine_controller.current_state, "die")

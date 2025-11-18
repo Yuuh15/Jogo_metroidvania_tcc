@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://bs142q3whn5qa"]
+[gd_scene load_steps=27 format=3 uid="uid://bs142q3whn5qa"]
 
 [ext_resource type="Script" uid="uid://mrd4xvmbpeot" path="res://enemies/depression/slime/depression_slime.gd" id="1_0to1k"]
 [ext_resource type="Texture2D" uid="uid://bvjwksv7dkr5g" path="res://enemies/depression/slime/sprite/gosma depressiva parada.png" id="1_d3t7g"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://epdp0k0us1qw" path="res://enemies/depression/slime/states/follow.gd" id="5_ipp72"]
 [ext_resource type="Script" uid="uid://btkgo3hwg7i8v" path="res://componentes/hit_Box.gd" id="7_3tucb"]
 [ext_resource type="Script" uid="uid://txrfqgoe07ub" path="res://componentes/hurt_box.gd" id="8_3tucb"]
+[ext_resource type="Script" uid="uid://d2qx26tbjba5j" path="res://enemies/depression/slime/states/die.gd" id="10_oo5vg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o2vy2"]
 atlas = ExtResource("2_102uf")
@@ -183,6 +184,11 @@ metadata/_custom_type_script = "uid://l6eq8yklu062"
 
 [node name="Follow" type="Node" parent="StateMachineController" node_paths=PackedStringArray("enemy")]
 script = ExtResource("5_ipp72")
+enemy = NodePath("../..")
+metadata/_custom_type_script = "uid://l6eq8yklu062"
+
+[node name="Die" type="Node" parent="StateMachineController" node_paths=PackedStringArray("enemy")]
+script = ExtResource("10_oo5vg")
 enemy = NodePath("../..")
 metadata/_custom_type_script = "uid://l6eq8yklu062"
 
