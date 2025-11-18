@@ -9,6 +9,7 @@ func _ready() -> void:
 		await get_tree().process_frame
 		
 	player.hurt_box.healthChanged.connect(healthUpdate)
+	player.hurt_box.heal.connect(healthUpdate)
 	healthUpdate()
 	
 func healthUpdate():

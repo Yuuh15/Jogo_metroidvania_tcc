@@ -1,8 +1,9 @@
 class_name HurtBox
 extends Area2D
 
-@export var health : int = 100
+@export var health : int = 50
 
+signal heal
 signal healthChanged
 signal die
 

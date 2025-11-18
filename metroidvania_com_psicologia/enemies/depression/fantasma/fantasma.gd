@@ -66,6 +66,7 @@ func _on_hurt_box_die() -> void:
 	set_collision_layer_value(4, false)
 	set_collision_mask_value(1, false)
 	
+	
 	sprite.animation_finished.connect(queue_free)
 
 func _on_hit_box_attacked() -> void:

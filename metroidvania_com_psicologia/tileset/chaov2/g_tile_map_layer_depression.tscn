@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bevoi3rjvchlh"]
+
+[ext_resource type="TileSet" uid="uid://0b6btawqjmds" path="res://tileset/chaov2/g_tile_map_layer_depression.tres" id="1_botos"]
+
+[node name="TileMapLayerDepression" type="TileMapLayer"]
+tile_set = ExtResource("1_botos")

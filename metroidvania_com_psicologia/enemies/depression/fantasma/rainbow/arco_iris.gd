@@ -9,7 +9,7 @@ class_name arcoIris_enemy
 @onready var laser_cooldown = $LaserCooldown
 @onready var laser_duration = $LaserDuration
 @onready var laser_sprite = $LaserSprite
-@onready var laser_hitbox = $LaserHitbox
+@onready var laser_hitbox = $DetectionArea/CollisionShape2D
 
 var is_chase: bool = false
 var is_roaming: bool = true
