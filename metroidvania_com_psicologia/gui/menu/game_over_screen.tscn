@@ -1,0 +1,142 @@
+[gd_scene load_steps=10 format=3 uid="uid://b05ni4q0bl1ce"]
+
+[ext_resource type="Script" uid="uid://bicwxenqjwfl0" path="res://gui/menu/game_over_screen.gd" id="1_xenbb"]
+[ext_resource type="Shader" uid="uid://ki4hmxgkl8ux" path="res://gui/menu/shaders/blur.gdshader" id="2_y1uya"]
+[ext_resource type="Script" uid="uid://cm7487iox8ffl" path="res://gui/menu/scripts/main_menu.gd" id="3_68vpw"]
+[ext_resource type="Script" uid="uid://rutmeltftktj" path="res://gui/menu/scripts/senoid-vbox.gd" id="4_4siyh"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fo40p"]
+shader = ExtResource("2_y1uya")
+shader_parameter/lod = 1.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1gyae"]
+
+[sub_resource type="Animation" id="Animation_6mmo3"]
+resource_name = "blur"
+length = 0.3
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.15, 0, 0.15, 0, 1, -0.15, 0, 0.15, 0),
+"times": PackedFloat32Array(0, 0.3)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:material:shader_parameter/lod")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.15, 0, 0.15, 0, 1, -0.15, 0, 0.15, 0),
+"times": PackedFloat32Array(0, 0.3)
+}
+
+[sub_resource type="Animation" id="Animation_utl4q"]
+resource_name = "blur_transition"
+length = 0.3
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.15, 0, 0.15, 0),
+"times": PackedFloat32Array(0.3)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:material:shader_parameter/lod")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0.805, -0.15, 0, 0.15, 0, 0, -0.15, 0, 0.15, 0),
+"times": PackedFloat32Array(0, 0.3)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kbhks"]
+_data = {
+&"blur": SubResource("Animation_6mmo3"),
+&"blur_transition": SubResource("Animation_utl4q")
+}
+
+[node name="game_over" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xenbb")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_fo40p")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="background" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_1gyae")
+
+[node name="pause" type="Label" parent="background"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.430208
+anchor_right = 0.569792
+anchor_bottom = 0.0851852
+grow_horizontal = 2
+text = "Game Over"
+script = ExtResource("3_68vpw")
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="background"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.197917
+anchor_top = 0.259259
+anchor_right = 0.804167
+anchor_bottom = 0.833333
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_4siyh")
+offset = Vector2(0, 50)
+metadata/_edit_use_anchors_ = true
+
+[node name="restart" type="Button" parent="background/VBoxContainer"]
+layout_mode = 2
+text = "Reiniciar"
+
+[node name="exit" type="Button" parent="background/VBoxContainer"]
+layout_mode = 2
+text = "Sair"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_kbhks")
+}
+
+[connection signal="focus_entered" from="background/VBoxContainer/restart" to="." method="_on_button_focus_entered"]
+[connection signal="mouse_entered" from="background/VBoxContainer/restart" to="." method="_on_button_mouse_entered"]
+[connection signal="pressed" from="background/VBoxContainer/restart" to="." method="_on_restart_pressed"]
+[connection signal="focus_entered" from="background/VBoxContainer/exit" to="." method="_on_button_focus_entered"]
+[connection signal="mouse_entered" from="background/VBoxContainer/exit" to="." method="_on_button_mouse_entered"]
+[connection signal="pressed" from="background/VBoxContainer/exit" to="." method="_on_exit_pressed"]
